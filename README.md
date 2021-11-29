@@ -1,8 +1,10 @@
 In this project, which I wrote for commercial purposes in 2012-2013, Asp.Net 4.5 MVC project N-layer structure was coded.
-.
-Unit of Work
-Generic Repository
-Architectures such as IOC have been used with containers such as unity.
+
+- Unit of Work
+
+- Generic Repository
+
+- Architectures such as IOC have been used with containers such as unity.
 
 You can use the project for commercial purposes. The shortcoming that comes to my mind when I think about it: The features and qualities of the vehicle and spare parts are not used with a pattern like a decorator. It might be helpful to edit that part.
 
