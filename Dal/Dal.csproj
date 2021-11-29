@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6C6D07D7-D34A-4A58-A3A4-9C9F94F98630}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Dal</RootNamespace>
+    <AssemblyName>Dal</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity.Design" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AuthTypes.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoServices.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BankBins.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Bills.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CaseTypes.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Categories.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ChatLogs.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cities.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Colors.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Countries.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Credits.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Currencies.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DamageStates.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Denominations.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Districts.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EnginePowers.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EngineVolumes.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FuelTypes.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Galleries.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GearTypes.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GuarantySituations.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\BaseEntity.cs" />
+    <Compile Include="Marks.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006011056477_initial.cs" />
+    <Compile Include="Migrations\202006011056477_initial.Designer.cs">
+      <DependentUpon>202006011056477_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ModelOto.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelOto.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelOto.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelOto.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelOto.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ModelYears.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderDetails.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Orders.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentTypes.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PlateNationalities.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PostComments.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PostLikes.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PostShares.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductCategoryProvider.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductGroupProvider.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductGroups.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductPlaces.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Products.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductSeller.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductStates.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductTypes.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublishDurations.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Regions.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Roles.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SpareParts.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubDistrict.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tokens.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Towns.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TractionTypes.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransportTypes.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserAdresses.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserEducationLevel.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserFeedbacks.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserFriends.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserGender.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserJob.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserMessages.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserPosts.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserProfile.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserRole.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserTypes.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VehicleTypes.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="webpages_Membership.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="webpages_OAuthMembership.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="webpages_Roles.cs">
+      <DependentUpon>ModelOto.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="ModelOto.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelOto.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ModelOto.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelOto.edmx</DependentUpon>
+      <LastGenOutput>ModelOto.Context.cs</LastGenOutput>
+    </None>
+    <None Include="ModelOto.edmx.diagram">
+      <DependentUpon>ModelOto.edmx</DependentUpon>
+    </None>
+    <None Include="ModelOto.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelOto.edmx</DependentUpon>
+      <LastGenOutput>ModelOto.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202006011056477_initial.resx">
+      <DependentUpon>202006011056477_initial.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

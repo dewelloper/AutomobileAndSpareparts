@@ -1,0 +1,88 @@
+﻿@{
+    Page.Title = "Giriş sayfası partial";
+}
+
+@if (Request.IsAuthenticated)
+{
+    <div class="loggedInHeader">
+        @{
+    if (@Session["UserMessages"] != null && (@Session["UserMessages"] as System.Collections.Generic.List<BusinessObjects.UserMessage>).Count() > 0)
+    {
+        var mesajcount = (@Session["UserMessages"] as System.Collections.Generic.List<BusinessObjects.UserMessage>).Where(k => k.ReceiveDate == null).Count().ToString();
+        <span class="badge">@mesajcount.ToString()</span>}
+        <span>
+            Merhaba,
+        </span> @Html.ActionLink(User.Identity.Name, "Manage", "Account", null, new { @class = "dropdown-toggle loggedL", title = "Manage", id = "loggedDd", @data_toggle = "dropdown", @aria_expanded = "true" })!
+
+                                                                                                                                                                                                                    <ul role="menu" aria-labelledby="loggedDd">
+                                                                                                                                                                                                                        <li>@Html.ActionLink("Profil", "ProfileView", "otomobilvasita", null, new { @class = "menuBtn" })</li>
+                                                                                                                                                                                                                        <li>
+                                                                                                                                                                                                                            @{
+    if (@Session["UserMessages"] != null && (@Session["UserMessages"] as System.Collections.Generic.List<BusinessObjects.UserMessage>).Count() > 0)
+    {
+        var msgCount = (@Session["UserMessages"] as System.Collections.Generic.List<BusinessObjects.UserMessage>).Where(k => k.ReceiveDate == null).Count().ToString();
+        var uid = (@Session["UserMessages"] as System.Collections.Generic.List<BusinessObjects.UserMessage>)[0].ReceiverUserId;
+
+        <a href="/MessageSenderPartial?ui@uid&pid=0">Mesajlar<span class="badge"></span></a>
+
+    }
+                                                                                                                                                                                                                    </li>
+                                                                                                                                                                                                                                <li>
+                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                            </ul>
+                                                                                                                                                                                                                            }
+
+
+
+                                                                                                                                                                                                                        </div>
+
+                                                                                                                                                                                                                        <div class="umessage">
+
+
+                                                                                                                                                                                                                            if (Session["UserFeedBacks"] != null && (@Session["UserFeedBacks"] as System.Collections.Generic.List<BusinessObjects.userfeedback>
+                                                                                                                                                                                                                                ).Count() > 0 && Model != null && Model.GetType().Name == "AccountInformation")
+                                                                                                                                                                                                                                {
+                                                                                                                                                                                                                                System.Collections.Generic.List<BusinessObjects.userfeedback>
+                                                                                                                                                                                                                                    items = (@Session["UserFeedBacks"] as System.Collections.Generic.List<BusinessObjects.userfeedback>
+                                                                                                                                                                                                                                        );
+                                                                                                                                                                                                                                        <br />
+                                                                                                                                                                                                                                        <a style="padding-right:10px;">Favorilerim:</a>
+                                                                                                                                                                                                                                        <span class="FormListBox" style="float:right;">
+                                                                                                                                                                                                                                            <select name="favorite" id="favorite">
+                                                                                                                                                                                                                                                <option value="" selected>Favorilerim</option>
+                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                        </span>
+
+                                                                                                                                                                                                                                        }
+
+                                                                                                                                                                                                                        </div>                                                                                                                                                                                                              }
+
+        </div>
+}
+else
+{
+    <ul>
+        <li>@Html.ActionLink("Kaydol", "Register", "Account", null, new { id = "registerLink", @class = "ulink" })</li>
+        <li>@Html.ActionLink("Giriş Yap", "Login", "Account", null, new { id = "loginLink", @class = "ulink" })</li>
+        <li>
+            <b>@Html.ActionLink("ÜCRETSİZ İLAN VER!", "ilankategorisi", "otomobilvasita", new { @class = "btn btn-success h46" })</b>
+        </li>
+    </ul>
+}
+
+<script type="text/javascript">
+    $("#favorite").change(function () {
+        $.ajax({
+            url: '@Url.Action("aracozellikleri", "otomobilvasita")',
+            type: 'GET',
+            data: { prdcId: $('#favorite').val().split('=')[1].toString() },
+            success: function (result) {
+                var url = "@Url.Action("aracozellikleri", "otomobilvasita")?prdcId=" + $('#favorite').val().split('=')[1].toString();
+                window.location.href = url;
+            }
+        });
+    });
+
+
+</script>
+

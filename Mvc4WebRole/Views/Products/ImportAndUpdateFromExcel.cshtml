@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Excel'den Aktar ya da Güncelle";
+}
+
+<h2>Excel'den Ürün Aktar ya da Güncelle</h2>
+
+@using (Html.BeginForm("enterOrUpdateProducts", "Products", FormMethod.Post, new { id = "submitForm", enctype = "multipart/form-data" }))
+{ 
+    @Html.Label("Yüklenecek Excel Dosyasını Seçin : ")
+    <input type="file" id="ExcelFile" name="ExcelFile" accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+    <input id="entrUpdtPrdcBtn" name="entrUpdtPrdcBtn" type="submit" value="Yükle" onclick="JavascriptFunction();" onkeypress="    if (event.keycode == 13) { JavascriptFunction(); }" />
+    <br />    
+}
+
+<div id="divLoading" style="margin: 0; padding: 0; position: fixed; right: 0;
+    top: 0; width: 100%; height: 100%; background-color: #666666; z-index: 30001; -ms-opacity: .8; opacity: .8; -webkit-filter: alpha(opacity=70); -moz-filter: alpha(opacity=70); -o-filter: alpha(opacity=70); filter: alpha(opacity=70);display:none">
+    <p style="width:100%; height:100%; left:40.85%; position: absolute; top: 30%; margin: 0 auto; color: White;">
+    <p style="margin:auto;">Yükleniyor, lütfen bekleyiniz...</p><br />
+    <img src="~/Images/PageContentImages/ajax-loading.gif" alt="Yükleniyor"/>
+</div>
+
+<script type="text/javascript" language="javascript">
+    function JavascriptFunction() {
+        var url = '@Url.Action("enterOrUpdateProducts", "Products")';
+        $("#divLoading").show();
+        $.post(url, null,
+                function (data) {
+                    $("#PID")[0].innerHTML = data;
+                    $("#divLoading").hide();
+                });
+    }
+</script>

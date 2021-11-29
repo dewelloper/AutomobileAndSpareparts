@@ -1,0 +1,1595 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3995E3C4-E78D-40B9-A103-B00D055FDCA3}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Otomotivist</RootNamespace>
+    <AssemblyName>Otomotivist</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="adodb, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Bytescout.Watermarking, Version=3.0.0.194, Culture=neutral, PublicKeyToken=f7dd1bd9d40a50eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\OtomotivistAzureMvc\Mvc4WebRole\bin\Bytescout.Watermarking.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.3.4.13329\lib\net45-full\DotNetOpenAuth.AspNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.3.4.13329\lib\net45-full\DotNetOpenAuth.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OpenId.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.3.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.3.4.13329\lib\net45-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.FriendlyUrls">
+      <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.2\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Edm.5.7.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.OData.5.7.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Services.Client.5.7.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.3.2.3\lib\net45\Microsoft.Web.WebPages.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Diagnostics, Version=2.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unofficial.Microsoft.WindowsAzure.Diagnostics.2.7.0.0\lib\net40\Microsoft.WindowsAzure.Diagnostics.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.ServiceRuntime, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <HintPath>..\..\OtomotivistAzureMvc\Mvc4WebRole\bin\Microsoft.WindowsAzure.ServiceRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=6.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAzure.Storage.6.2.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mvc.Mailer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvcMailer.4.5\lib\45\Mvc.Mailer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="SecurityGuard, Version=1.0.53.580, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SecurityGuard.MVC4.1.0.14\lib\net40\SecurityGuard.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System">
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity.Design">
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System.Data.Services.Client">
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security">
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Spatial, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Spatial.5.7.0\lib\net40\System.Spatial.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData">
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System.Web.Entity">
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices">
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.OData, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.OData.5.7.0\lib\net45\System.Web.Http.OData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web">
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System.Web.Abstractions">
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System.Web.Routing">
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System.Transactions">
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.3.2.3\lib\net45\WebMatrix.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.3.2.3\lib\net45\WebMatrix.WebData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\HtmlHelperExtensions.cs" />
+    <Compile Include="App_Start\OtomotivistCacheFilterAttribute.cs" />
+    <Compile Include="App_Start\OtomotivistHttpHandler.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="App_Start\WhitespaceFilterAttribute.cs" />
+    <Compile Include="App_Start\WhitespaceStream.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserManagementController.cs" />
+    <Compile Include="Areas\Admin\Models\AreaHomeViewModel.cs" />
+    <Compile Include="Areas\SecurityGuard\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\SecurityGuard\Controllers\MembershipController.cs" />
+    <Compile Include="Areas\SecurityGuard\Controllers\RoleController.cs" />
+    <Compile Include="Areas\SecurityGuard\Models\ChangePasswordViewModel.cs" />
+    <Compile Include="Areas\SecurityGuard\Models\DashboardViewModel.cs" />
+    <Compile Include="Areas\SecurityGuard\Models\ForgotPasswordViewModel.cs" />
+    <Compile Include="Areas\SecurityGuard\Models\GrantRolesToUserViewModel.cs" />
+    <Compile Include="Areas\SecurityGuard\Models\JsonResponse.cs" />
+    <Compile Include="Areas\SecurityGuard\Models\ManageRolesViewModel.cs" />
+    <Compile Include="Areas\SecurityGuard\Models\ManageUsersViewModel.cs" />
+    <Compile Include="Areas\SecurityGuard\Models\RegisterViewModel.cs" />
+    <Compile Include="Areas\SecurityGuard\Models\ResponseItem.cs" />
+    <Compile Include="Areas\SecurityGuard\Models\RoleViewModel.cs" />
+    <Compile Include="Areas\SecurityGuard\Models\SelectObject.cs" />
+    <Compile Include="Areas\SecurityGuard\Models\UserViewModel.cs" />
+    <Compile Include="Areas\SecurityGuard\SecurityGuardAreaRegistration.cs" />
+    <Compile Include="Auth\CustomHandleError.cs" />
+    <Compile Include="Auth\CustomPrincipal.cs" />
+    <Compile Include="Auth\Secure\BaseViewPage.cs" />
+    <Compile Include="Auth\Secure\CustomAuthorizeAttribute.cs" />
+    <Compile Include="Controllers\SitemapController.cs" />
+    <Compile Include="Filters\AuthorizeActionFilterAttribute.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\DenominationsController.cs" />
+    <Compile Include="Controllers\otomobilvasitaController.cs" />
+    <Compile Include="Controllers\MarksController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\ProductGroupsController.cs" />
+    <Compile Include="Controllers\ProductPlacesController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\SedaController.cs" />
+    <Compile Include="Controllers\SGAccountController.cs" />
+    <Compile Include="Controllers\UserTypesController.cs" />
+    <Compile Include="Filters\CompressAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Mailers\IPasswordResetMailer.cs" />
+    <Compile Include="Mailers\Models\MailerModel.cs" />
+    <Compile Include="Mailers\PasswordResetMailer.cs" />
+    <Compile Include="Models\LogOnViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="rss\SyndicationFeed.cs" />
+    <Compile Include="rss\SyndicationFeedResult.cs" />
+    <Compile Include="Site.Mobile.Master.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.designer.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ViewSwitcher.ascx.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewSwitcher.ascx.designer.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebRole.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Content\AdminLayoutMenu.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\app.css" />
+    <Content Include="Content\css\bootstrap-select.css" />
+    <Content Include="Content\css\bootstrap-select.min.css" />
+    <Content Include="Content\css\bootstrap-theme.css" />
+    <Content Include="Content\css\bootstrap-theme.min.css" />
+    <Content Include="Content\css\bootstrap-.css" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\bootstrap.icon-large.css" />
+    <Content Include="Content\css\bootstrap.icon-large.min.css" />
+    <Content Include="Content\css\bootstrap.min-.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\font-awesome.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
+    <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.dataTables.css" />
+    <Content Include="Content\DataTables\css\autoFill.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.foundation.css" />
+    <Content Include="Content\DataTables\css\autoFill.foundation.min.css" />
+    <Content Include="Content\DataTables\css\autoFill.jqueryui.css" />
+    <Content Include="Content\DataTables\css\autoFill.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\buttons.bootstrap.css" />
+    <Content Include="Content\DataTables\css\buttons.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\buttons.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\buttons.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\buttons.dataTables.css" />
+    <Content Include="Content\DataTables\css\buttons.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\buttons.foundation.css" />
+    <Content Include="Content\DataTables\css\buttons.foundation.min.css" />
+    <Content Include="Content\DataTables\css\buttons.jqueryui.css" />
+    <Content Include="Content\DataTables\css\buttons.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.bootstrap.css" />
+    <Content Include="Content\DataTables\css\colReorder.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.dataTables.css" />
+    <Content Include="Content\DataTables\css\colReorder.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.foundation.css" />
+    <Content Include="Content\DataTables\css\colReorder.foundation.min.css" />
+    <Content Include="Content\DataTables\css\colReorder.jqueryui.css" />
+    <Content Include="Content\DataTables\css\colReorder.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.bootstrap.css" />
+    <Content Include="Content\DataTables\css\dataTables.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.bootstrap4.css" />
+    <Content Include="Content\DataTables\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.foundation.css" />
+    <Content Include="Content\DataTables\css\dataTables.foundation.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.jqueryui.css" />
+    <Content Include="Content\DataTables\css\dataTables.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.material.css" />
+    <Content Include="Content\DataTables\css\dataTables.material.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.semanticui.css" />
+    <Content Include="Content\DataTables\css\dataTables.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\dataTables.uikit.css" />
+    <Content Include="Content\DataTables\css\dataTables.uikit.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.bootstrap.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.dataTables.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.foundation.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.foundation.min.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.jqueryui.css" />
+    <Content Include="Content\DataTables\css\fixedColumns.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.bootstrap.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.dataTables.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.foundation.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.foundation.min.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.jqueryui.css" />
+    <Content Include="Content\DataTables\css\fixedHeader.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\jquery.dataTables.css" />
+    <Content Include="Content\DataTables\css\jquery.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Content\DataTables\css\keyTable.bootstrap.css" />
+    <Content Include="Content\DataTables\css\keyTable.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\keyTable.dataTables.css" />
+    <Content Include="Content\DataTables\css\keyTable.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\keyTable.foundation.css" />
+    <Content Include="Content\DataTables\css\keyTable.foundation.min.css" />
+    <Content Include="Content\DataTables\css\keyTable.jqueryui.css" />
+    <Content Include="Content\DataTables\css\keyTable.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\responsive.bootstrap.css" />
+    <Content Include="Content\DataTables\css\responsive.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\responsive.dataTables.css" />
+    <Content Include="Content\DataTables\css\responsive.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\responsive.foundation.css" />
+    <Content Include="Content\DataTables\css\responsive.foundation.min.css" />
+    <Content Include="Content\DataTables\css\responsive.jqueryui.css" />
+    <Content Include="Content\DataTables\css\responsive.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.bootstrap.css" />
+    <Content Include="Content\DataTables\css\rowReorder.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.dataTables.css" />
+    <Content Include="Content\DataTables\css\rowReorder.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.foundation.css" />
+    <Content Include="Content\DataTables\css\rowReorder.foundation.min.css" />
+    <Content Include="Content\DataTables\css\rowReorder.jqueryui.css" />
+    <Content Include="Content\DataTables\css\rowReorder.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\scroller.bootstrap.css" />
+    <Content Include="Content\DataTables\css\scroller.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\scroller.dataTables.css" />
+    <Content Include="Content\DataTables\css\scroller.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\scroller.foundation.css" />
+    <Content Include="Content\DataTables\css\scroller.foundation.min.css" />
+    <Content Include="Content\DataTables\css\scroller.jqueryui.css" />
+    <Content Include="Content\DataTables\css\scroller.jqueryui.min.css" />
+    <Content Include="Content\DataTables\css\select.bootstrap.css" />
+    <Content Include="Content\DataTables\css\select.bootstrap.min.css" />
+    <Content Include="Content\DataTables\css\select.dataTables.css" />
+    <Content Include="Content\DataTables\css\select.dataTables.min.css" />
+    <Content Include="Content\DataTables\css\select.foundation.css" />
+    <Content Include="Content\DataTables\css\select.foundation.min.css" />
+    <Content Include="Content\DataTables\css\select.jqueryui.css" />
+    <Content Include="Content\DataTables\css\select.jqueryui.min.css" />
+    <Content Include="Content\DataTables\images\details_close.png" />
+    <Content Include="Content\DataTables\images\details_open.png" />
+    <Content Include="Content\DataTables\images\sort_asc.png" />
+    <Content Include="Content\DataTables\images\sort_asc_disabled.png" />
+    <Content Include="Content\DataTables\images\sort_both.png" />
+    <Content Include="Content\DataTables\images\sort_desc.png" />
+    <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
+    <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\Fix.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\forfooter.css" />
+    <Content Include="Content\images\ajax-loader.gif" />
+    <Content Include="Content\images\backoto.jpg" />
+    <Content Include="Content\images\bx_loader.gif" />
+    <Content Include="Content\images\controls.png" />
+    <Content Include="Content\images\icons-png\action-black.png" />
+    <Content Include="Content\images\icons-png\action-white.png" />
+    <Content Include="Content\images\icons-png\alert-black.png" />
+    <Content Include="Content\images\icons-png\alert-white.png" />
+    <Content Include="Content\images\icons-png\arrow-d-black.png" />
+    <Content Include="Content\images\icons-png\arrow-d-l-black.png" />
+    <Content Include="Content\images\icons-png\arrow-d-l-white.png" />
+    <Content Include="Content\images\icons-png\arrow-d-r-black.png" />
+    <Content Include="Content\images\icons-png\arrow-d-r-white.png" />
+    <Content Include="Content\images\icons-png\arrow-d-white.png" />
+    <Content Include="Content\images\icons-png\arrow-l-black.png" />
+    <Content Include="Content\images\icons-png\arrow-l-white.png" />
+    <Content Include="Content\images\icons-png\arrow-r-black.png" />
+    <Content Include="Content\images\icons-png\arrow-r-white.png" />
+    <Content Include="Content\images\icons-png\arrow-u-black.png" />
+    <Content Include="Content\images\icons-png\arrow-u-l-black.png" />
+    <Content Include="Content\images\icons-png\arrow-u-l-white.png" />
+    <Content Include="Content\images\icons-png\arrow-u-r-black.png" />
+    <Content Include="Content\images\icons-png\arrow-u-r-white.png" />
+    <Content Include="Content\images\icons-png\arrow-u-white.png" />
+    <Content Include="Content\images\icons-png\audio-black.png" />
+    <Content Include="Content\images\icons-png\audio-white.png" />
+    <Content Include="Content\images\icons-png\back-black.png" />
+    <Content Include="Content\images\icons-png\back-white.png" />
+    <Content Include="Content\images\icons-png\bars-black.png" />
+    <Content Include="Content\images\icons-png\bars-white.png" />
+    <Content Include="Content\images\icons-png\bullets-black.png" />
+    <Content Include="Content\images\icons-png\bullets-white.png" />
+    <Content Include="Content\images\icons-png\calendar-black.png" />
+    <Content Include="Content\images\icons-png\calendar-white.png" />
+    <Content Include="Content\images\icons-png\camera-black.png" />
+    <Content Include="Content\images\icons-png\camera-white.png" />
+    <Content Include="Content\images\icons-png\carat-d-black.png" />
+    <Content Include="Content\images\icons-png\carat-d-white.png" />
+    <Content Include="Content\images\icons-png\carat-l-black.png" />
+    <Content Include="Content\images\icons-png\carat-l-white.png" />
+    <Content Include="Content\images\icons-png\carat-r-black.png" />
+    <Content Include="Content\images\icons-png\carat-r-white.png" />
+    <Content Include="Content\images\icons-png\carat-u-black.png" />
+    <Content Include="Content\images\icons-png\carat-u-white.png" />
+    <Content Include="Content\images\icons-png\check-black.png" />
+    <Content Include="Content\images\icons-png\check-white.png" />
+    <Content Include="Content\images\icons-png\clock-black.png" />
+    <Content Include="Content\images\icons-png\clock-white.png" />
+    <Content Include="Content\images\icons-png\cloud-black.png" />
+    <Content Include="Content\images\icons-png\cloud-white.png" />
+    <Content Include="Content\images\icons-png\comment-black.png" />
+    <Content Include="Content\images\icons-png\comment-white.png" />
+    <Content Include="Content\images\icons-png\delete-black.png" />
+    <Content Include="Content\images\icons-png\delete-white.png" />
+    <Content Include="Content\images\icons-png\edit-black.png" />
+    <Content Include="Content\images\icons-png\edit-white.png" />
+    <Content Include="Content\images\icons-png\eye-black.png" />
+    <Content Include="Content\images\icons-png\eye-white.png" />
+    <Content Include="Content\images\icons-png\forbidden-black.png" />
+    <Content Include="Content\images\icons-png\forbidden-white.png" />
+    <Content Include="Content\images\icons-png\forward-black.png" />
+    <Content Include="Content\images\icons-png\forward-white.png" />
+    <Content Include="Content\images\icons-png\gear-black.png" />
+    <Content Include="Content\images\icons-png\gear-white.png" />
+    <Content Include="Content\images\icons-png\grid-black.png" />
+    <Content Include="Content\images\icons-png\grid-white.png" />
+    <Content Include="Content\images\icons-png\heart-black.png" />
+    <Content Include="Content\images\icons-png\heart-white.png" />
+    <Content Include="Content\images\icons-png\home-black.png" />
+    <Content Include="Content\images\icons-png\home-white.png" />
+    <Content Include="Content\images\icons-png\info-black.png" />
+    <Content Include="Content\images\icons-png\info-white.png" />
+    <Content Include="Content\images\icons-png\location-black.png" />
+    <Content Include="Content\images\icons-png\location-white.png" />
+    <Content Include="Content\images\icons-png\lock-black.png" />
+    <Content Include="Content\images\icons-png\lock-white.png" />
+    <Content Include="Content\images\icons-png\mail-black.png" />
+    <Content Include="Content\images\icons-png\mail-white.png" />
+    <Content Include="Content\images\icons-png\minus-black.png" />
+    <Content Include="Content\images\icons-png\minus-white.png" />
+    <Content Include="Content\images\icons-png\navigation-black.png" />
+    <Content Include="Content\images\icons-png\navigation-white.png" />
+    <Content Include="Content\images\icons-png\phone-black.png" />
+    <Content Include="Content\images\icons-png\phone-white.png" />
+    <Content Include="Content\images\icons-png\plus-black.png" />
+    <Content Include="Content\images\icons-png\plus-white.png" />
+    <Content Include="Content\images\icons-png\power-black.png" />
+    <Content Include="Content\images\icons-png\power-white.png" />
+    <Content Include="Content\images\icons-png\recycle-black.png" />
+    <Content Include="Content\images\icons-png\recycle-white.png" />
+    <Content Include="Content\images\icons-png\refresh-black.png" />
+    <Content Include="Content\images\icons-png\refresh-white.png" />
+    <Content Include="Content\images\icons-png\search-black.png" />
+    <Content Include="Content\images\icons-png\search-white.png" />
+    <Content Include="Content\images\icons-png\shop-black.png" />
+    <Content Include="Content\images\icons-png\shop-white.png" />
+    <Content Include="Content\images\icons-png\star-black.png" />
+    <Content Include="Content\images\icons-png\star-white.png" />
+    <Content Include="Content\images\icons-png\tag-black.png" />
+    <Content Include="Content\images\icons-png\tag-white.png" />
+    <Content Include="Content\images\icons-png\user-black.png" />
+    <Content Include="Content\images\icons-png\user-white.png" />
+    <Content Include="Content\images\icons-png\video-black.png" />
+    <Content Include="Content\images\icons-png\video-white.png" />
+    <Content Include="Content\images\icons-svg\action-black.svg" />
+    <Content Include="Content\images\icons-svg\action-white.svg" />
+    <Content Include="Content\images\icons-svg\alert-black.svg" />
+    <Content Include="Content\images\icons-svg\alert-white.svg" />
+    <Content Include="Content\images\icons-svg\arrow-d-black.svg" />
+    <Content Include="Content\images\icons-svg\arrow-d-l-black.svg" />
+    <Content Include="Content\images\icons-svg\arrow-d-l-white.svg" />
+    <Content Include="Content\images\icons-svg\arrow-d-r-black.svg" />
+    <Content Include="Content\images\icons-svg\arrow-d-r-white.svg" />
+    <Content Include="Content\images\icons-svg\arrow-d-white.svg" />
+    <Content Include="Content\images\icons-svg\arrow-l-black.svg" />
+    <Content Include="Content\images\icons-svg\arrow-l-white.svg" />
+    <Content Include="Content\images\icons-svg\arrow-r-black.svg" />
+    <Content Include="Content\images\icons-svg\arrow-r-white.svg" />
+    <Content Include="Content\images\icons-svg\arrow-u-black.svg" />
+    <Content Include="Content\images\icons-svg\arrow-u-l-black.svg" />
+    <Content Include="Content\images\icons-svg\arrow-u-l-white.svg" />
+    <Content Include="Content\images\icons-svg\arrow-u-r-black.svg" />
+    <Content Include="Content\images\icons-svg\arrow-u-r-white.svg" />
+    <Content Include="Content\images\icons-svg\arrow-u-white.svg" />
+    <Content Include="Content\images\icons-svg\audio-black.svg" />
+    <Content Include="Content\images\icons-svg\audio-white.svg" />
+    <Content Include="Content\images\icons-svg\back-black.svg" />
+    <Content Include="Content\images\icons-svg\back-white.svg" />
+    <Content Include="Content\images\icons-svg\bars-black.svg" />
+    <Content Include="Content\images\icons-svg\bars-white.svg" />
+    <Content Include="Content\images\icons-svg\bullets-black.svg" />
+    <Content Include="Content\images\icons-svg\bullets-white.svg" />
+    <Content Include="Content\images\icons-svg\calendar-black.svg" />
+    <Content Include="Content\images\icons-svg\calendar-white.svg" />
+    <Content Include="Content\images\icons-svg\camera-black.svg" />
+    <Content Include="Content\images\icons-svg\camera-white.svg" />
+    <Content Include="Content\images\icons-svg\carat-d-black.svg" />
+    <Content Include="Content\images\icons-svg\carat-d-white.svg" />
+    <Content Include="Content\images\icons-svg\carat-l-black.svg" />
+    <Content Include="Content\images\icons-svg\carat-l-white.svg" />
+    <Content Include="Content\images\icons-svg\carat-r-black.svg" />
+    <Content Include="Content\images\icons-svg\carat-r-white.svg" />
+    <Content Include="Content\images\icons-svg\carat-u-black.svg" />
+    <Content Include="Content\images\icons-svg\carat-u-white.svg" />
+    <Content Include="Content\images\icons-svg\check-black.svg" />
+    <Content Include="Content\images\icons-svg\check-white.svg" />
+    <Content Include="Content\images\icons-svg\clock-black.svg" />
+    <Content Include="Content\images\icons-svg\clock-white.svg" />
+    <Content Include="Content\images\icons-svg\cloud-black.svg" />
+    <Content Include="Content\images\icons-svg\cloud-white.svg" />
+    <Content Include="Content\images\icons-svg\comment-black.svg" />
+    <Content Include="Content\images\icons-svg\comment-white.svg" />
+    <Content Include="Content\images\icons-svg\delete-black.svg" />
+    <Content Include="Content\images\icons-svg\delete-white.svg" />
+    <Content Include="Content\images\icons-svg\edit-black.svg" />
+    <Content Include="Content\images\icons-svg\edit-white.svg" />
+    <Content Include="Content\images\icons-svg\eye-black.svg" />
+    <Content Include="Content\images\icons-svg\eye-white.svg" />
+    <Content Include="Content\images\icons-svg\forbidden-black.svg" />
+    <Content Include="Content\images\icons-svg\forbidden-white.svg" />
+    <Content Include="Content\images\icons-svg\forward-black.svg" />
+    <Content Include="Content\images\icons-svg\forward-white.svg" />
+    <Content Include="Content\images\icons-svg\gear-black.svg" />
+    <Content Include="Content\images\icons-svg\gear-white.svg" />
+    <Content Include="Content\images\icons-svg\grid-black.svg" />
+    <Content Include="Content\images\icons-svg\grid-white.svg" />
+    <Content Include="Content\images\icons-svg\heart-black.svg" />
+    <Content Include="Content\images\icons-svg\heart-white.svg" />
+    <Content Include="Content\images\icons-svg\home-black.svg" />
+    <Content Include="Content\images\icons-svg\home-white.svg" />
+    <Content Include="Content\images\icons-svg\info-black.svg" />
+    <Content Include="Content\images\icons-svg\info-white.svg" />
+    <Content Include="Content\images\icons-svg\location-black.svg" />
+    <Content Include="Content\images\icons-svg\location-white.svg" />
+    <Content Include="Content\images\icons-svg\lock-black.svg" />
+    <Content Include="Content\images\icons-svg\lock-white.svg" />
+    <Content Include="Content\images\icons-svg\mail-black.svg" />
+    <Content Include="Content\images\icons-svg\mail-white.svg" />
+    <Content Include="Content\images\icons-svg\minus-black.svg" />
+    <Content Include="Content\images\icons-svg\minus-white.svg" />
+    <Content Include="Content\images\icons-svg\navigation-black.svg" />
+    <Content Include="Content\images\icons-svg\navigation-white.svg" />
+    <Content Include="Content\images\icons-svg\phone-black.svg" />
+    <Content Include="Content\images\icons-svg\phone-white.svg" />
+    <Content Include="Content\images\icons-svg\plus-black.svg" />
+    <Content Include="Content\images\icons-svg\plus-white.svg" />
+    <Content Include="Content\images\icons-svg\power-black.svg" />
+    <Content Include="Content\images\icons-svg\power-white.svg" />
+    <Content Include="Content\images\icons-svg\recycle-black.svg" />
+    <Content Include="Content\images\icons-svg\recycle-white.svg" />
+    <Content Include="Content\images\icons-svg\refresh-black.svg" />
+    <Content Include="Content\images\icons-svg\refresh-white.svg" />
+    <Content Include="Content\images\icons-svg\search-black.svg" />
+    <Content Include="Content\images\icons-svg\search-white.svg" />
+    <Content Include="Content\images\icons-svg\shop-black.svg" />
+    <Content Include="Content\images\icons-svg\shop-white.svg" />
+    <Content Include="Content\images\icons-svg\star-black.svg" />
+    <Content Include="Content\images\icons-svg\star-white.svg" />
+    <Content Include="Content\images\icons-svg\tag-black.svg" />
+    <Content Include="Content\images\icons-svg\tag-white.svg" />
+    <Content Include="Content\images\icons-svg\user-black.svg" />
+    <Content Include="Content\images\icons-svg\user-white.svg" />
+    <Content Include="Content\images\icons-svg\video-black.svg" />
+    <Content Include="Content\images\icons-svg\video-white.svg" />
+    <Content Include="Content\images\istsale.png" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\jquery-ui-1.10.4.custom.css" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\jquery.bxslider.css" />
+    <Content Include="Content\jquery.mobile-1.4.5.css" />
+    <Content Include="Content\jquery.mobile-1.4.5.min.css" />
+    <Content Include="Content\jquery.mobile.external-png-1.4.5.css" />
+    <Content Include="Content\jquery.mobile.external-png-1.4.5.min.css" />
+    <Content Include="Content\jquery.mobile.icons-1.4.5.css" />
+    <Content Include="Content\jquery.mobile.icons-1.4.5.min.css" />
+    <Content Include="Content\jquery.mobile.inline-png-1.4.5.css" />
+    <Content Include="Content\jquery.mobile.inline-png-1.4.5.min.css" />
+    <Content Include="Content\jquery.mobile.inline-svg-1.4.5.css" />
+    <Content Include="Content\jquery.mobile.inline-svg-1.4.5.min.css" />
+    <Content Include="Content\jquery.mobile.structure-1.4.5.css" />
+    <Content Include="Content\jquery.mobile.structure-1.4.5.min.css" />
+    <Content Include="Content\jquery.mobile.theme-1.4.5.css" />
+    <Content Include="Content\jquery.mobile.theme-1.4.5.min.css" />
+    <Content Include="Content\magnific-popup.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\responsive-nav.css" />
+    <Content Include="Content\responsive-nav.js" />
+    <Content Include="Content\responsive-nav.min.js" />
+    <Content Include="Content\SecurityGuard\images\blue_ico.png" />
+    <Content Include="Content\SecurityGuard\images\blue_message.gif" />
+    <Content Include="Content\SecurityGuard\images\go.gif" />
+    <Content Include="Content\SecurityGuard\images\green_ico.png" />
+    <Content Include="Content\SecurityGuard\images\green_message.gif" />
+    <Content Include="Content\SecurityGuard\images\negative.gif" />
+    <Content Include="Content\SecurityGuard\images\next.gif" />
+    <Content Include="Content\SecurityGuard\images\pag_bg.gif" />
+    <Content Include="Content\SecurityGuard\images\positive.gif" />
+    <Content Include="Content\SecurityGuard\images\prev.gif" />
+    <Content Include="Content\SecurityGuard\images\red_ico.png" />
+    <Content Include="Content\SecurityGuard\images\red_message.gif" />
+    <Content Include="Content\SecurityGuard\images\td_bg1.gif" />
+    <Content Include="Content\SecurityGuard\images\td_bg2.gif" />
+    <Content Include="Content\SecurityGuard\images\white_ico.png" />
+    <Content Include="Content\SecurityGuard\images\white_message.gif" />
+    <Content Include="Content\SecurityGuard\images\yellow_ico.png" />
+    <Content Include="Content\SecurityGuard\images\yellow_message.gif" />
+    <Content Include="Content\SecurityGuard\pagination.css" />
+    <Content Include="Content\SecurityGuard\scripts\jquery.jqia.selects.js" />
+    <Content Include="Content\SecurityGuard\scripts\jquery.validate.min.js" />
+    <Content Include="Content\SecurityGuard\scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Content\SecurityGuard\scripts\modernizr-1.7.min.js" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\affix.js" />
+    <Content Include="Scripts\alert.js" />
+    <Content Include="Scripts\bootstrap-select.js" />
+    <Content Include="Scripts\bootstrap-select.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\button.js" />
+    <Content Include="Scripts\carousel.js" />
+    <Content Include="Scripts\collapse.js" />
+    <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
+    <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
+    <Content Include="Scripts\DataTables\autoFill.foundation.js" />
+    <Content Include="Scripts\DataTables\autoFill.foundation.min.js" />
+    <Content Include="Scripts\DataTables\autoFill.jqueryui.js" />
+    <Content Include="Scripts\DataTables\autoFill.jqueryui.min.js" />
+    <Content Include="Scripts\DataTables\buttons.bootstrap.js" />
+    <Content Include="Scripts\DataTables\buttons.bootstrap.min.js" />
+    <Content Include="Scripts\DataTables\buttons.bootstrap4.js" />
+    <Content Include="Scripts\DataTables\buttons.bootstrap4.min.js" />
+    <Content Include="Scripts\DataTables\buttons.colVis.js" />
+    <Content Include="Scripts\DataTables\buttons.colVis.min.js" />
+    <Content Include="Scripts\DataTables\buttons.flash.js" />
+    <Content Include="Scripts\DataTables\buttons.flash.min.js" />
+    <Content Include="Scripts\DataTables\buttons.foundation.js" />
+    <Content Include="Scripts\DataTables\buttons.foundation.min.js" />
+    <Content Include="Scripts\DataTables\buttons.html5.js" />
+    <Content Include="Scripts\DataTables\buttons.html5.min.js" />
+    <Content Include="Scripts\DataTables\buttons.jqueryui.js" />
+    <Content Include="Scripts\DataTables\buttons.jqueryui.min.js" />
+    <Content Include="Scripts\DataTables\buttons.print.js" />
+    <Content Include="Scripts\DataTables\buttons.print.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.autoFill.js" />
+    <Content Include="Scripts\DataTables\dataTables.autoFill.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.bootstrap.js" />
+    <Content Include="Scripts\DataTables\dataTables.bootstrap.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.bootstrap4.js" />
+    <Content Include="Scripts\DataTables\dataTables.bootstrap4.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.buttons.js" />
+    <Content Include="Scripts\DataTables\dataTables.buttons.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.colReorder.js" />
+    <Content Include="Scripts\DataTables\dataTables.colReorder.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.fixedColumns.js" />
+    <Content Include="Scripts\DataTables\dataTables.fixedColumns.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.fixedHeader.js" />
+    <Content Include="Scripts\DataTables\dataTables.fixedHeader.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.foundation.js" />
+    <Content Include="Scripts\DataTables\dataTables.foundation.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.jqueryui.js" />
+    <Content Include="Scripts\DataTables\dataTables.jqueryui.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.keyTable.js" />
+    <Content Include="Scripts\DataTables\dataTables.keyTable.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.material.js" />
+    <Content Include="Scripts\DataTables\dataTables.material.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.responsive.js" />
+    <Content Include="Scripts\DataTables\dataTables.responsive.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.rowReorder.js" />
+    <Content Include="Scripts\DataTables\dataTables.rowReorder.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.scroller.js" />
+    <Content Include="Scripts\DataTables\dataTables.scroller.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.select.js" />
+    <Content Include="Scripts\DataTables\dataTables.select.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.semanticui.js" />
+    <Content Include="Scripts\DataTables\dataTables.semanticui.min.js" />
+    <Content Include="Scripts\DataTables\dataTables.uikit.js" />
+    <Content Include="Scripts\DataTables\dataTables.uikit.min.js" />
+    <Content Include="Scripts\DataTables\jquery.dataTables.js" />
+    <Content Include="Scripts\DataTables\jquery.dataTables.min.js" />
+    <Content Include="Scripts\DataTables\responsive.bootstrap.js" />
+    <Content Include="Scripts\DataTables\responsive.bootstrap.min.js" />
+    <Content Include="Scripts\DataTables\responsive.foundation.js" />
+    <Content Include="Scripts\DataTables\responsive.foundation.min.js" />
+    <Content Include="Scripts\DataTables\responsive.jqueryui.js" />
+    <Content Include="Scripts\DataTables\responsive.jqueryui.min.js" />
+    <Content Include="Scripts\dropdown.js" />
+    <Content Include="Scripts\i18n\defaults-cs_CZ.js" />
+    <Content Include="Scripts\i18n\defaults-cs_CZ.min.js" />
+    <Content Include="Scripts\i18n\defaults-de_DE.js" />
+    <Content Include="Scripts\i18n\defaults-de_DE.min.js" />
+    <Content Include="Scripts\i18n\defaults-en_US.js" />
+    <Content Include="Scripts\i18n\defaults-en_US.min.js" />
+    <Content Include="Scripts\i18n\defaults-es_CL.js" />
+    <Content Include="Scripts\i18n\defaults-es_CL.min.js" />
+    <Content Include="Scripts\i18n\defaults-eu.js" />
+    <Content Include="Scripts\i18n\defaults-eu.min.js" />
+    <Content Include="Scripts\i18n\defaults-fr_FR.js" />
+    <Content Include="Scripts\i18n\defaults-fr_FR.min.js" />
+    <Content Include="Scripts\i18n\defaults-it_IT.js" />
+    <Content Include="Scripts\i18n\defaults-it_IT.min.js" />
+    <Content Include="Scripts\i18n\defaults-nl_NL.js" />
+    <Content Include="Scripts\i18n\defaults-nl_NL.min.js" />
+    <Content Include="Scripts\i18n\defaults-pl_PL.js" />
+    <Content Include="Scripts\i18n\defaults-pl_PL.min.js" />
+    <Content Include="Scripts\i18n\defaults-pt_BR.js" />
+    <Content Include="Scripts\i18n\defaults-pt_BR.min.js" />
+    <Content Include="Scripts\i18n\defaults-ro_RO.js" />
+    <Content Include="Scripts\i18n\defaults-ro_RO.min.js" />
+    <Content Include="Scripts\i18n\defaults-ru_RU.js" />
+    <Content Include="Scripts\i18n\defaults-ru_RU.min.js" />
+    <Content Include="Scripts\i18n\defaults-ua_UA.js" />
+    <Content Include="Scripts\i18n\defaults-ua_UA.min.js" />
+    <Content Include="Scripts\i18n\defaults-zh_CN.js" />
+    <Content Include="Scripts\i18n\defaults-zh_CN.min.js" />
+    <Content Include="Scripts\i18n\defaults-zh_TW.js" />
+    <Content Include="Scripts\i18n\defaults-zh_TW.min.js" />
+    <Content Include="Scripts\filter.js" />
+    <Content Include="Areas\Admin\Views\Web.config" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\otomobilvasita\Index.cshtml" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Areas\Admin\Views\otomobilvasita\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManagement\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManagement\Edit.cshtml" />
+    <Content Include="Areas\SecurityGuard\Views\Shared\_SecurityGuardLayoutPage.cshtml" />
+    <Content Include="Areas\SecurityGuard\Views\Role\Index.cshtml" />
+    <Content Include="Areas\SecurityGuard\Views\Membership\Update.cshtml" />
+    <Content Include="Areas\SecurityGuard\Views\Membership\GrantRolesToUser.cshtml" />
+    <Content Include="Areas\SecurityGuard\Views\Membership\CreateUser.cshtml" />
+    <Content Include="Content\DataTables\css\mixins.scss" />
+    <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <None Include="Properties\PublishProfiles\hamit.pubxml" />
+    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <None Include="Scripts\jquery-2.2.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-2.1.4.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.js" />
+    <Content Include="Scripts\jquery-2.2.1.js" />
+    <Content Include="Scripts\jquery-2.2.1.min.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\jquery.magnific-popup.js" />
+    <Content Include="Scripts\jquery.mobile-1.4.5.js" />
+    <Content Include="Scripts\jquery.mobile-1.4.5.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-3.4.0.debug.js" />
+    <Content Include="Scripts\knockout-3.4.0.js" />
+    <Content Include="Scripts\modal.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\Layout.js" />
+    <Content Include="Content\otomotivistindex.js" />
+    <Content Include="Content\SecurityGuard\scripts\jquery-1.6.1.min.js" />
+    <Content Include="Content\SecurityGuard\securityguard.css" />
+    <Content Include="Content\old_Site_mid.css" />
+    <Content Include="Content\old_Site_min.css" />
+    <Content Include="Images\1.png" />
+    <Content Include="Images\2.png" />
+    <Content Include="Images\3.png" />
+    <Content Include="Images\arrow_black.gif" />
+    <Content Include="Images\facebook.png" />
+    <Content Include="Images\hill_trees.jpg" />
+    <Content Include="Images\houses.jpg" />
+    <Content Include="Images\me_trees.jpg" />
+    <Content Include="Images\otomotivist_banner.jpg" />
+    <Content Include="Images\PageContentImages\ajax-loading.gif" />
+    <Content Include="Images\PageContentImages\car.png" />
+    <Content Include="Images\PageContentImages\car_tab.png" />
+    <Content Include="Images\PageContentImages\car_tab_gray_big.png" />
+    <Content Include="Images\PageContentImages\car_tab_gray_little.png" />
+    <Content Include="Images\PageContentImages\dark-plus-green.png" />
+    <Content Include="Images\PageContentImages\delete.png" />
+    <Content Include="Images\PageContentImages\empty_shopping_cart.png" />
+    <Content Include="Images\PageContentImages\favicon.ico" />
+    <Content Include="Images\PageContentImages\full_shopping_cart.png" />
+    <Content Include="Images\PageContentImages\logo.png" />
+    <Content Include="Images\PageContentImages\logo1.png" />
+    <Content Include="Images\PageContentImages\mastercardlogo.jpg" />
+    <Content Include="Images\PageContentImages\select-arrow.png" />
+    <Content Include="Images\PageContentImages\SparePart.jpg" />
+    <Content Include="Images\PageContentImages\sparepart_tab.png" />
+    <Content Include="Images\PageContentImages\sparepart_tab_gray_big.png" />
+    <Content Include="Images\PageContentImages\sparepart_tab_gray_little.png" />
+    <Content Include="Images\PageContentImages\Vakıfbankworldlogo.jpg" />
+    <Content Include="Images\PageContentImages\visalogo.jpg" />
+    <Content Include="Images\UserProfileImages\default_profile.jpg" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery.bxslider.js" />
+    <Content Include="Scripts\jquery.bxslider.min.js" />
+    <Content Include="Scripts\jquery.magnific-popup.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\jquery.sidecontent.js" />
+    <Content Include="Scripts\plugins\jquery.easing.1.3.js" />
+    <Content Include="Scripts\plugins\jquery.fitvids.js" />
+    <Content Include="Scripts\popover.js" />
+    <Content Include="Scripts\scrollspy.js" />
+    <Content Include="Scripts\tab.js" />
+    <Content Include="Scripts\tinymce\jquery.tinymce.min.js" />
+    <Content Include="Scripts\tinymce\langs\en.js" />
+    <Content Include="Scripts\tinymce\license.txt" />
+    <Content Include="Scripts\tinymce\plugins\advhr\rule.htm" />
+    <Content Include="Scripts\tinymce\plugins\advimage\image.htm" />
+    <Content Include="Scripts\tinymce\plugins\advlink\js\advlink.js" />
+    <Content Include="Scripts\tinymce\plugins\advlink\link.htm" />
+    <Content Include="Scripts\tinymce\plugins\advlist\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\advlist\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\anchor\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\anchor\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\autolink\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\autolink\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\autolink\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\autoresize\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\autoresize\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\autoresize\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\autosave\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\autosave\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\autosave\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\bbcode\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\bbcode\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\charmap\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\charmap\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\codesample\css\prism.css" />
+    <Content Include="Scripts\tinymce\plugins\codesample\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\codesample\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\code\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\code\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\colorpicker\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\colorpicker\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\css\dialog.css" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\img\buttons.png" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\img\icons.gif" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\img\items.gif" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\img\menu_arrow.gif" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\img\menu_check.gif" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\img\progress.gif" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\img\tabs.gif" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\tiny_mce_popup.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\utils\editable_selects.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\utils\form_utils.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\utils\mctabs.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\utils\validate.js" />
+    <Content Include="Scripts\tinymce\plugins\contextmenu\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\contextmenu\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\contextmenu\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\directionality\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\directionality\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-cool.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-cry.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-embarassed.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-foot-in-mouth.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-frown.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-innocent.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-kiss.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-laughing.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-money-mouth.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-sealed.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-smile.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-surprised.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-tongue-out.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-undecided.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-wink.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-yell.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\example\dialog.html" />
+    <Content Include="Scripts\tinymce\plugins\example\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\example\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\example\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\example_dependency\editor_plugin_src.js" />
+    <Content Include="Scripts\tinymce\plugins\example_dependency\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\example_dependency\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\fullpage\fullpage.htm" />
+    <Content Include="Scripts\tinymce\plugins\fullpage\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\fullpage\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\fullscreen\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\fullscreen\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\hr\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\hr\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\imagetools\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\imagetools\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\image\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\image\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\importcss\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\importcss\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\insertdatetime\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\insertdatetime\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\layer\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\layer\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\legacyoutput\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\legacyoutput\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\link\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\link\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\lists\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\lists\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\media\js\media.js" />
+    <Content Include="Scripts\tinymce\plugins\media\media.htm" />
+    <Content Include="Scripts\tinymce\plugins\media\moxieplayer.swf" />
+    <Content Include="Scripts\tinymce\plugins\media\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\media\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\nonbreaking\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\nonbreaking\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\noneditable\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\noneditable\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\pagebreak\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\pagebreak\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\preview\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\preview\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\print\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\print\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\save\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\save\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\searchreplace\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\searchreplace\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\searchreplace\searchreplace.htm" />
+    <Content Include="Scripts\tinymce\plugins\spellchecker\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\spellchecker\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\style\props.htm" />
+    <Content Include="Scripts\tinymce\plugins\tabfocus\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\tabfocus\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\table\cell.htm" />
+    <Content Include="Scripts\tinymce\plugins\table\merge_cells.htm" />
+    <Content Include="Scripts\tinymce\plugins\table\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\table\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\table\row.htm" />
+    <Content Include="Scripts\tinymce\plugins\table\table.htm" />
+    <Content Include="Scripts\tinymce\plugins\template\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\template\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\template\template.htm" />
+    <Content Include="Scripts\tinymce\plugins\textcolor\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\textcolor\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\textpattern\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\textpattern\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\css\visualblocks.css" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\address.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\article.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\aside.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\blockquote.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\div.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\dl.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\figure.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\h1.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\h2.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\h3.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\h4.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\h5.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\h6.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\hgroup.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\ol.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\p.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\pre.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\section.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\ul.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\visualchars\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\visualchars\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\wordcount\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\wordcount\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\xhtmlxtras\abbr.htm" />
+    <Content Include="Scripts\tinymce\plugins\xhtmlxtras\acronym.htm" />
+    <Content Include="Scripts\tinymce\plugins\xhtmlxtras\attributes.htm" />
+    <Content Include="Scripts\tinymce\plugins\xhtmlxtras\cite.htm" />
+    <Content Include="Scripts\tinymce\plugins\xhtmlxtras\del.htm" />
+    <Content Include="Scripts\tinymce\plugins\xhtmlxtras\ins.htm" />
+    <Content Include="Scripts\tinymce\skins\lightgray\content.inline.min.css" />
+    <Content Include="Scripts\tinymce\skins\lightgray\content.min.css" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.svg" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.svg" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\anchor.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\loader.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\object.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\trans.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\skin.ie7.min.css" />
+    <Content Include="Scripts\tinymce\skins\lightgray\skin.min.css" />
+    <Content Include="Scripts\tinymce\themes\advanced\about.htm" />
+    <Content Include="Scripts\tinymce\themes\advanced\editor_template.js" />
+    <Content Include="Scripts\tinymce\themes\advanced\editor_template_src.js" />
+    <Content Include="Scripts\tinymce\themes\advanced\image.htm" />
+    <Content Include="Scripts\tinymce\themes\advanced\js\about.js" />
+    <Content Include="Scripts\tinymce\themes\advanced\js\color_picker.js" />
+    <Content Include="Scripts\tinymce\themes\advanced\langs\en.js" />
+    <Content Include="Scripts\tinymce\themes\advanced\langs\en_dlg.js" />
+    <Content Include="Scripts\tinymce\themes\advanced\link.htm" />
+    <Content Include="Scripts\tinymce\themes\advanced\skins\default\content.css" />
+    <Content Include="Scripts\tinymce\themes\advanced\skins\default\dialog.css" />
+    <Content Include="Scripts\tinymce\themes\advanced\skins\highcontrast\dialog.css" />
+    <Content Include="Scripts\tinymce\themes\advanced\skins\o2k7\content.css" />
+    <Content Include="Scripts\tinymce\themes\advanced\skins\o2k7\dialog.css" />
+    <Content Include="Scripts\tinymce\themes\modern\theme.js" />
+    <Content Include="Scripts\tinymce\themes\modern\theme.min.js" />
+    <Content Include="Scripts\tinymce\tinymce.js" />
+    <Content Include="Scripts\tinymce\tinymce.min.js" />
+    <Content Include="Scripts\tinymce\tiny_mce.js" />
+    <Content Include="Scripts\tinymce\tiny_mce_src.js" />
+    <Content Include="Scripts\tooltip.js" />
+    <Content Include="Scripts\transition.js" />
+    <Content Include="Scripts\web\css\dataTables.editor.css" />
+    <Content Include="Scripts\web\css\dataTables.editor.min.css" />
+    <Content Include="Scripts\web\css\editor.bootstrap.css" />
+    <Content Include="Scripts\web\css\editor.bootstrap.min.css" />
+    <Content Include="Scripts\web\css\editor.dataTables.css" />
+    <Content Include="Scripts\web\css\editor.dataTables.min.css" />
+    <Content Include="Scripts\web\css\editor.foundation.css" />
+    <Content Include="Scripts\web\css\editor.foundation.min.css" />
+    <Content Include="Scripts\web\css\editor.jqueryui.css" />
+    <Content Include="Scripts\web\css\editor.jqueryui.min.css" />
+    <Content Include="Scripts\web\examples\advanced\deepObjects.html" />
+    <Content Include="Scripts\web\examples\advanced\formOnlyData.html" />
+    <Content Include="Scripts\web\examples\advanced\htmlTable.html" />
+    <Content Include="Scripts\web\examples\advanced\index.html" />
+    <Content Include="Scripts\web\examples\advanced\joinArray.html" />
+    <Content Include="Scripts\web\examples\advanced\joinLinkTable.html" />
+    <Content Include="Scripts\web\examples\advanced\joinSelf.html" />
+    <Content Include="Scripts\web\examples\advanced\jsonId.html" />
+    <Content Include="Scripts\web\examples\advanced\localstorage.html" />
+    <Content Include="Scripts\web\examples\advanced\multiItem.html" />
+    <Content Include="Scripts\web\examples\advanced\REST.html" />
+    <Content Include="Scripts\web\examples\advanced\tableOnlyData.html" />
+    <Content Include="Scripts\web\examples\advanced\upload-many.html" />
+    <Content Include="Scripts\web\examples\advanced\upload.html" />
+    <Content Include="Scripts\web\examples\api\backNext.html" />
+    <Content Include="Scripts\web\examples\api\cancelButton.html" />
+    <Content Include="Scripts\web\examples\api\checkbox.html" />
+    <Content Include="Scripts\web\examples\api\clientValidation.html" />
+    <Content Include="Scripts\web\examples\api\confirmClose.html" />
+    <Content Include="Scripts\web\examples\api\dependentFields.html" />
+    <Content Include="Scripts\web\examples\api\duplicateButton.html" />
+    <Content Include="Scripts\web\examples\api\index.html" />
+    <Content Include="Scripts\web\examples\api\triggerButton.html" />
+    <Content Include="Scripts\web\examples\bubble-editing\defaultOptions.html" />
+    <Content Include="Scripts\web\examples\bubble-editing\grouped.html" />
+    <Content Include="Scripts\web\examples\bubble-editing\index.html" />
+    <Content Include="Scripts\web\examples\bubble-editing\inTableControls.html" />
+    <Content Include="Scripts\web\examples\bubble-editing\options.html" />
+    <Content Include="Scripts\web\examples\bubble-editing\simple.html" />
+    <Content Include="Scripts\web\examples\dates\dates.html" />
+    <Content Include="Scripts\web\examples\dates\datetime.html" />
+    <Content Include="Scripts\web\examples\dates\formatting.html" />
+    <Content Include="Scripts\web\examples\dates\html5.html" />
+    <Content Include="Scripts\web\examples\dates\i18n.html" />
+    <Content Include="Scripts\web\examples\dates\index.html" />
+    <Content Include="Scripts\web\examples\dates\jqueryui-formatting.html" />
+    <Content Include="Scripts\web\examples\dates\jqueryui.html" />
+    <Content Include="Scripts\web\examples\dates\options-disable-days.html" />
+    <Content Include="Scripts\web\examples\dates\options-min-max.html" />
+    <Content Include="Scripts\web\examples\dates\options-week-numbers.html" />
+    <Content Include="Scripts\web\examples\dates\time-increment.html" />
+    <Content Include="Scripts\web\examples\dates\time.html" />
+    <Content Include="Scripts\web\examples\extensions\autoFill.html" />
+    <Content Include="Scripts\web\examples\extensions\excel.html" />
+    <Content Include="Scripts\web\examples\extensions\exportButtons.html" />
+    <Content Include="Scripts\web\examples\extensions\index.html" />
+    <Content Include="Scripts\web\examples\extensions\keyTable.html" />
+    <Content Include="Scripts\web\examples\extensions\responsive.html" />
+    <Content Include="Scripts\web\examples\extensions\rowReorder.html" />
+    <Content Include="Scripts\web\examples\index.html" />
+    <Content Include="Scripts\web\examples\inline-editing\columns.html" />
+    <Content Include="Scripts\web\examples\inline-editing\editIcon.html" />
+    <Content Include="Scripts\web\examples\inline-editing\index.html" />
+    <Content Include="Scripts\web\examples\inline-editing\join.html" />
+    <Content Include="Scripts\web\examples\inline-editing\options.html" />
+    <Content Include="Scripts\web\examples\inline-editing\responsive.html" />
+    <Content Include="Scripts\web\examples\inline-editing\simple.html" />
+    <Content Include="Scripts\web\examples\inline-editing\submitButton.html" />
+    <Content Include="Scripts\web\examples\inline-editing\submitData.html" />
+    <Content Include="Scripts\web\examples\inline-editing\tabControl.html" />
+    <Content Include="Scripts\web\examples\plug-ins\displayController.html" />
+    <Content Include="Scripts\web\examples\plug-ins\fieldPlugin.html" />
+    <Content Include="Scripts\web\examples\plug-ins\index.html" />
+    <Content Include="Scripts\web\examples\resources\demo.css" />
+    <Content Include="Scripts\web\examples\resources\demo.js" />
+    <Content Include="Scripts\web\examples\resources\editor-demo.js" />
+    <Content Include="Scripts\web\examples\resources\syntax\shCore.css" />
+    <Content Include="Scripts\web\examples\resources\syntax\shCore.js" />
+    <Content Include="Scripts\web\examples\simple\fieldDefaults.html" />
+    <Content Include="Scripts\web\examples\simple\fieldTypes.html" />
+    <Content Include="Scripts\web\examples\simple\i18n.html" />
+    <Content Include="Scripts\web\examples\simple\index.html" />
+    <Content Include="Scripts\web\examples\simple\inTableControls.html" />
+    <Content Include="Scripts\web\examples\simple\join.html" />
+    <Content Include="Scripts\web\examples\simple\multiRow.html" />
+    <Content Include="Scripts\web\examples\simple\server-side-processing.html" />
+    <Content Include="Scripts\web\examples\simple\simple.html" />
+    <Content Include="Scripts\web\examples\sql\mysql.sql" />
+    <Content Include="Scripts\web\examples\sql\postgres.sql" />
+    <Content Include="Scripts\web\examples\sql\sqlite.sql" />
+    <Content Include="Scripts\web\examples\sql\sqlserver.sql" />
+    <Content Include="Scripts\web\examples\standalone\bubble.html" />
+    <Content Include="Scripts\web\examples\standalone\collection.html" />
+    <Content Include="Scripts\web\examples\standalone\index.html" />
+    <Content Include="Scripts\web\examples\standalone\inline.html" />
+    <Content Include="Scripts\web\examples\standalone\simple.html" />
+    <Content Include="Scripts\web\examples\styling\bootstrap.html" />
+    <Content Include="Scripts\web\examples\styling\columns.html" />
+    <Content Include="Scripts\web\examples\styling\envelope.html" />
+    <Content Include="Scripts\web\examples\styling\envelopeInTable.html" />
+    <Content Include="Scripts\web\examples\styling\fieldDisplay.html" />
+    <Content Include="Scripts\web\examples\styling\foundation.html" />
+    <Content Include="Scripts\web\examples\styling\index.html" />
+    <Content Include="Scripts\web\examples\styling\jqueryui.html" />
+    <Content Include="Scripts\web\examples\styling\large.html" />
+    <Content Include="Scripts\web\examples\styling\stackedInputs.html" />
+    <Content Include="Scripts\web\images\ajax-loader--.gif" />
+    <Content Include="Scripts\web\images\ajax-loader-.gif" />
+    <Content Include="Scripts\web\images\ajax-loader-small-.gif" />
+    <Content Include="Scripts\web\images\ajax-loader-small.gif" />
+    <Content Include="Scripts\web\images\ajax-loader.gif" />
+    <Content Include="Scripts\web\images\calender.png" />
+    <Content Include="Scripts\web\images\close.png" />
+    <Content Include="Scripts\web\images\shadow_left.png" />
+    <Content Include="Scripts\web\images\shadow_right.png" />
+    <Content Include="Scripts\web\js\dataTables.editor.js" />
+    <Content Include="Scripts\web\js\dataTables.editor.min.js" />
+    <Content Include="Scripts\web\js\editor.bootstrap.js" />
+    <Content Include="Scripts\web\js\editor.bootstrap.min.js" />
+    <Content Include="Scripts\web\js\editor.foundation.js" />
+    <Content Include="Scripts\web\js\editor.foundation.min.js" />
+    <Content Include="Scripts\web\js\editor.jqueryui.js" />
+    <Content Include="Scripts\web\js\editor.jqueryui.min.js" />
+    <Content Include="SiteLaws.htm" />
+    <Content Include="UserConvention.htm" />
+    <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Views\favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="ClassDiagram1.cd" />
+    <Content Include="Areas\SecurityGuard\Views\Web.config" />
+    <Content Include="Areas\SecurityGuard\Views\Membership\Index.cshtml" />
+    <Content Include="Areas\SecurityGuard\Views\Dashboard\Index.cshtml" />
+    <Content Include="Content\css\bootstrap-theme.css.map" />
+    <Content Include="Content\css\bootstrap.css.map" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\css\theme.less" />
+    <Content Include="Content\css\variables.less" />
+    <Content Include="Content\css\bootstrap-select.css.map" />
+    <Content Include="Content\css\font-awesome.css.map" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\less\animated.less" />
+    <Content Include="Content\less\bordered-pulled.less" />
+    <Content Include="Content\less\core.less" />
+    <Content Include="Content\less\fixed-width.less" />
+    <Content Include="Content\less\font-awesome.less" />
+    <Content Include="Content\less\icons.less" />
+    <Content Include="Content\less\larger.less" />
+    <Content Include="Content\less\list.less" />
+    <Content Include="Content\less\mixins.less" />
+    <Content Include="Content\less\path.less" />
+    <Content Include="Content\less\rotated-flipped.less" />
+    <Content Include="Content\less\stacked.less" />
+    <Content Include="Content\less\variables.less" />
+    <Content Include="Content\scss\font-awesome.scss" />
+    <Content Include="Content\scss\_animated.scss" />
+    <Content Include="Content\scss\_bordered-pulled.scss" />
+    <Content Include="Content\scss\_core.scss" />
+    <Content Include="Content\scss\_fixed-width.scss" />
+    <Content Include="Content\scss\_icons.scss" />
+    <Content Include="Content\scss\_larger.scss" />
+    <Content Include="Content\scss\_list.scss" />
+    <Content Include="Content\scss\_mixins.scss" />
+    <Content Include="Content\scss\_path.scss" />
+    <Content Include="Content\scss\_rotated-flipped.scss" />
+    <Content Include="Content\scss\_stacked.scss" />
+    <Content Include="Content\scss\_variables.scss" />
+    <Content Include="Scripts\bootstrap-select.js.map" />
+    <Content Include="Scripts\jquery-2.2.1.min.map" />
+    <Content Include="Scripts\jquery.mobile-1.4.5.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\knockout-2.2.0.debug.js" />
+    <Content Include="Views\SGAccount\ChangePassword.aspx" />
+    <Content Include="Views\SGAccount\ChangePasswordSuccess.aspx" />
+    <Content Include="Views\SGAccount\EnterSecretAnswer.aspx" />
+    <Content Include="Views\SGAccount\ForgotPassword.aspx" />
+    <Content Include="Views\SGAccount\ForgotPasswordSuccess.aspx" />
+    <Content Include="Views\SGAccount\Login.aspx" />
+    <Content Include="Views\SGAccount\Register.aspx" />
+    <Content Include="Views\Shared\_SearchProductSpareparts.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Content\old_Site.css" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\otomobilvasita\otomotivisthakkinda.cshtml" />
+    <Content Include="Views\otomobilvasita\iletisim.cshtml" />
+    <Content Include="Views\otomobilvasita\yeniikinciel.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Marks\Create.cshtml" />
+    <Content Include="Views\Marks\Edit.cshtml" />
+    <Content Include="Views\Marks\Delete.cshtml" />
+    <Content Include="Views\Marks\Details.cshtml" />
+    <Content Include="Views\Marks\Index.cshtml" />
+    <Content Include="Views\Marks\_CreateOrEdit.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Products\_CreateOrEdit.cshtml" />
+    <Content Include="Views\Denominations\Create.cshtml" />
+    <Content Include="Views\Denominations\Edit.cshtml" />
+    <Content Include="Views\Denominations\Delete.cshtml" />
+    <Content Include="Views\Denominations\Details.cshtml" />
+    <Content Include="Views\Denominations\Index.cshtml" />
+    <Content Include="Views\Denominations\_CreateOrEdit.cshtml" />
+    <Content Include="Views\ProductPlaces\Create.cshtml" />
+    <Content Include="Views\ProductPlaces\Edit.cshtml" />
+    <Content Include="Views\ProductPlaces\Delete.cshtml" />
+    <Content Include="Views\ProductPlaces\Details.cshtml" />
+    <Content Include="Views\ProductPlaces\Index.cshtml" />
+    <Content Include="Views\ProductPlaces\_CreateOrEdit.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\_CreateOrEdit.cshtml" />
+    <Content Include="Views\UserTypes\Create.cshtml" />
+    <Content Include="Views\UserTypes\Edit.cshtml" />
+    <Content Include="Views\UserTypes\Delete.cshtml" />
+    <Content Include="Views\UserTypes\Details.cshtml" />
+    <Content Include="Views\UserTypes\Index.cshtml" />
+    <Content Include="Views\UserTypes\_CreateOrEdit.cshtml" />
+    <Content Include="Views\ProductGroups\Index.cshtml" />
+    <Content Include="Views\ProductGroups\Details.cshtml" />
+    <Content Include="Views\ProductGroups\Create.cshtml" />
+    <Content Include="Views\ProductGroups\Edit.cshtml" />
+    <Content Include="Views\ProductGroups\Delete.cshtml" />
+    <Content Include="Views\otomobilvasita\otomobilyedekparcaservisilangirisi.cshtml" />
+    <Content Include="Views\otomobilvasita\ProfileView.cshtml" />
+    <Content Include="Views\otomobilvasita\EntryView.cshtml" />
+    <Content Include="Views\Order\_OrderBasketView.cshtml" />
+    <Content Include="Views\Shared\PartialOrderBasketView.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\otomobilvasita\aracozellikleri.cshtml" />
+    <Content Include="Views\Order\ConfirmOrder.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\tinymce_jquery_full.cshtml" />
+    <Content Include="Views\otomobilvasita\aracozellikleriduzenle.cshtml" />
+    <Content Include="Views\PasswordResetMailer\PasswordReset.cshtml" />
+    <Content Include="Views\Products\ImportAndUpdateFromExcel.cshtml" />
+    <Content Include="Views\Shared\SedaMakinaSiparis.cshtml" />
+    <Content Include="Views\Seda\SedaMakinaSiparis.cshtml" />
+    <Content Include="Views\otomobilvasita\ilankategorisi.cshtml" />
+    <Content Include="Views\Shared\MessageSenderPartial.cshtml" />
+    <Content Include="Views\otomobilvasita\gizlilik.cshtml" />
+    <Content Include="Views\otomobilvasita\kullanicisozlesmesi.cshtml" />
+    <Content Include="Views\otomobilvasita\sozlesmehaklar.cshtml" />
+    <Content Include="Views\Shared\_SideBarPartial.cshtml" />
+    <Content Include="Site.Mobile.Master" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\View1.cshtml" />
+    <Content Include="Views\Shared\_SearchProductVhicle.cshtml" />
+    <Content Include="Scripts\web\css\scss\bubble.scss" />
+    <Content Include="Scripts\web\css\scss\datatable.scss" />
+    <Content Include="Scripts\web\css\scss\dataTables.editor.scss" />
+    <Content Include="Scripts\web\css\scss\datetime.scss" />
+    <Content Include="Scripts\web\css\scss\editor.bubble.scss" />
+    <Content Include="Scripts\web\css\scss\editor.datatable.scss" />
+    <Content Include="Scripts\web\css\scss\editor.envelope.scss" />
+    <Content Include="Scripts\web\css\scss\editor.fields.scss" />
+    <Content Include="Scripts\web\css\scss\editor.inline.scss" />
+    <Content Include="Scripts\web\css\scss\editor.lightbox.scss" />
+    <Content Include="Scripts\web\css\scss\editor.main.scss" />
+    <Content Include="Scripts\web\css\scss\editor.mixins.scss" />
+    <Content Include="Scripts\web\css\scss\editor.scss" />
+    <Content Include="Scripts\web\css\scss\envelope.scss" />
+    <Content Include="Scripts\web\css\scss\fields.scss" />
+    <Content Include="Scripts\web\css\scss\inline.scss" />
+    <Content Include="Scripts\web\css\scss\lightbox.scss" />
+    <Content Include="Scripts\web\css\scss\main.scss" />
+    <Content Include="Scripts\web\css\scss\mixins.scss" />
+    <Content Include="Scripts\web\css\scss\pikaday.scss" />
+    <Content Include="Scripts\web\css\scss\upload.scss" />
+    <Content Include="Scripts\web\examples\resources\examples.php" />
+    <Content Include="Scripts\web\examples\resources\syntax\Syntax Highlighter license" />
+    <Content Include="Scripts\web\js\dataTables.editor.js.gz" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.woff" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.json" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.woff" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.ttf" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.json" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.eot" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
+    <Content Include="Scripts\tinymce\langs\readme.md" />
+    <Content Include="Views\SGAccount\Register.cshtml" />
+    <Content Include="Views\SGAccount\Login.cshtml" />
+    <Content Include="Views\SGAccount\ForgotPasswordSuccess.cshtml" />
+    <Content Include="Views\SGAccount\ForgotPassword.cshtml" />
+    <Content Include="Views\SGAccount\EnterSecretAnswer.cshtml" />
+    <Content Include="Views\SGAccount\ChangePasswordSuccess.cshtml" />
+    <Content Include="Views\SGAccount\ChangePassword.cshtml" />
+    <Content Include="Views\PasswordResetMailer\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="File\" />
+    <Folder Include="Images\ProductImages\" />
+    <Folder Include="Migrations\" />
+    <Folder Include="Scripts\web\examples\resources\foundation\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessObjects\BusinessObjects.csproj">
+      <Project>{1c9c87b3-ca4b-4b2e-b1e2-57eb3d77e0a0}</Project>
+      <Name>BusinessObjects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dal\Dal.csproj">
+      <Project>{6c6d07d7-d34a-4a58-a3a4-9c9f94f98630}</Project>
+      <Name>Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Otomotivist.ServiceLayer\Otomotivist.Service.csproj">
+      <Project>{82e7708a-2710-44ba-b70a-42b20c8e9899}</Project>
+      <Name>Otomotivist.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Unitofwork_Ioc\Pos.Domain\Otomotivist.Domain.csproj">
+      <Project>{99306e2c-fedb-4fcd-8f7e-0f238502e674}</Project>
+      <Name>Otomotivist.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Unitofwork_Ioc\Pos.IoC\Otomotivist.IoC.csproj">
+      <Project>{616a8634-8cd1-4933-91ff-b071ee1a0f57}</Project>
+      <Name>Otomotivist.IoC</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

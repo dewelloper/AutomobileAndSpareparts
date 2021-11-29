@@ -1,0 +1,32 @@
+@model BusinessObjects.ProductPlace
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>ProductPlace</legend>
+
+    <div class="display-label">Name</div>
+    <div class="display-field">@Model.Name</div>
+
+    <div class="display-label">AutoServiceId</div>
+    <div class="display-field">@Model.AutoServiceId</div>
+
+    <div class="display-label">IpAddress</div>
+    <div class="display-field">@Model.IpAddress</div>
+
+    <div class="display-label">AutoService</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.AutoService).ToString()</div>
+
+    <div class="display-label">Products</div>
+    <div class="display-field">@(Model.Products == null ? "None" : Model.Products.Count.ToString())</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

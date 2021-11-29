@@ -1,0 +1,7 @@
+﻿@*@model IEnumerable<BusinessObjects.ProductGroup>
+
+@Html.DropDownListFor(model => model.FirstOrDefault().Id, Model.Select(x => new SelectListItem
+    {
+        Value = x.Id.ToString(),
+        Text = x.ProductName.ToString()
+    })); *@

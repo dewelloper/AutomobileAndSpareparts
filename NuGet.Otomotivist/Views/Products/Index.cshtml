@@ -1,0 +1,197 @@
+@model IEnumerable<NuGet.Otomotivist.Products>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            EqualId
+        </th>
+        <th>
+            SubProductId
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Code
+        </th>
+        <th>
+            Barcode
+        </th>
+        <th>
+            Explanation
+        </th>
+        <th>
+            ImagePath
+        </th>
+        <th>
+            OfferedPrice
+        </th>
+        <th>
+            CurrentPrice
+        </th>
+        <th>
+            RecordDate
+        </th>
+        <th>
+            LastAccessDate
+        </th>
+        <th>
+            RegistererId
+        </th>
+        <th>
+            ModifierId
+        </th>
+        <th>
+            FeedCount
+        </th>
+        <th>
+            SpecialCode
+        </th>
+        <th>
+            IsActive
+        </th>
+        <th>
+            Catagories
+        </th>
+        <th>
+            CatagoriesReference
+        </th>
+        <th>
+            Denominations
+        </th>
+        <th>
+            DenominationsReference
+        </th>
+        <th>
+            Marks
+        </th>
+        <th>
+            MarksReference
+        </th>
+        <th>
+            ProductGroups
+        </th>
+        <th>
+            ProductGroupsReference
+        </th>
+        <th>
+            ProductPlaces
+        </th>
+        <th>
+            ProductPlacesReference
+        </th>
+        <th>
+            ProductStates
+        </th>
+        <th>
+            ProductStatesReference
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+        <td>
+			@Html.DisplayTextFor(_ => item.EqualId).ToString()
+        </td>
+        <td>
+			@Html.DisplayTextFor(_ => item.SubProductId).ToString()
+        </td>
+        <td>
+			@item.Name
+        </td>
+        <td>
+			@item.Code
+        </td>
+        <td>
+			@item.Barcode
+        </td>
+        <td>
+			@item.Explanation
+        </td>
+        <td>
+			@item.ImagePath
+        </td>
+        <td>
+			@String.Format("{0:F}", item.OfferedPrice)
+        </td>
+        <td>
+			@String.Format("{0:F}", item.CurrentPrice)
+        </td>
+        <td>
+			@String.Format("{0:g}", item.RecordDate)
+        </td>
+        <td>
+			@String.Format("{0:g}", item.LastAccessDate)
+        </td>
+        <td>
+			@Html.DisplayTextFor(_ => item.RegistererId).ToString()
+        </td>
+        <td>
+			@Html.DisplayTextFor(_ => item.ModifierId).ToString()
+        </td>
+        <td>
+			@Html.DisplayTextFor(_ => item.FeedCount).ToString()
+        </td>
+        <td>
+			@item.SpecialCode
+        </td>
+        <td>
+			@item.IsActive
+        </td>
+        <td>
+			@(item.Catagories == null ? "None" : item.Catagories.Name)
+        </td>
+        <td>
+			@Html.DisplayTextFor(_ => item.CatagoriesReference).ToString()
+        </td>
+        <td>
+			@(item.Denominations == null ? "None" : item.Denominations.Name)
+        </td>
+        <td>
+			@Html.DisplayTextFor(_ => item.DenominationsReference).ToString()
+        </td>
+        <td>
+			@Html.DisplayTextFor(_ => item.Marks).ToString()
+        </td>
+        <td>
+			@Html.DisplayTextFor(_ => item.MarksReference).ToString()
+        </td>
+        <td>
+			@Html.DisplayTextFor(_ => item.ProductGroups).ToString()
+        </td>
+        <td>
+			@Html.DisplayTextFor(_ => item.ProductGroupsReference).ToString()
+        </td>
+        <td>
+			@(item.ProductPlaces == null ? "None" : item.ProductPlaces.Name)
+        </td>
+        <td>
+			@Html.DisplayTextFor(_ => item.ProductPlacesReference).ToString()
+        </td>
+        <td>
+			@(item.ProductStates == null ? "None" : item.ProductStates.Name)
+        </td>
+        <td>
+			@Html.DisplayTextFor(_ => item.ProductStatesReference).ToString()
+        </td>
+    </tr>
+}
+
+</table>
+
+

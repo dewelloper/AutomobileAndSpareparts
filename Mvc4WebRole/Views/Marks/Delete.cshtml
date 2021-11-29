@@ -1,0 +1,29 @@
+@model BusinessObjects.Mark
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Mark</legend>
+
+    <div class="display-label">MarkName</div>
+    <div class="display-field">@Model.MarkName</div>
+
+    <div class="display-label">MarkCode</div>
+    <div class="display-field">@Model.MarkCode</div>
+
+    <div class="display-label">Products</div>
+    <div class="display-field">@(Model.Products == null ? "None" : Model.Products.Count.ToString())</div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+
+

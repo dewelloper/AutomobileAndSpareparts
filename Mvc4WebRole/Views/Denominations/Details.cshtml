@@ -1,0 +1,26 @@
+@model BusinessObjects.Denomination
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Denomination</legend>
+
+    <div class="display-label">Name</div>
+    <div class="display-field">@Model.Name</div>
+
+    <div class="display-label">ShortName</div>
+    <div class="display-field">@Model.ShortName</div>
+
+    <div class="display-label">Products</div>
+    <div class="display-field">@(Model.Products == null ? "None" : Model.Products.Count.ToString())</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

@@ -1,0 +1,260 @@
+@using System.Globalization
+@using System.Data
+@using System.Globalization
+@using System.Web.Mvc.Html
+
+<!DOCTYPE html>
+<html lang="tr,en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width; height=device-height; maximum-scale=1.6; initial-scale=1.0; user-scalable=no">
+    <title>Ýstanbul'da en ucuz, en çeþitli, fiyatý düþen, en yeni ilanlar burada! - Araba.com</title>
+    <meta name="description" content="Ýstanbul'un oto araç ve vasýta sitesi, Türkiye'nin en büyük ilan sitesi'">
+    <meta name="keywords" content="Ýstanbul'da otomobil araba arýyorsanýz burada bulabilirsiniz">
+    
+    <link rel="canonical" href="http://www.otomotivist.com/otomobilvasita/yeniikinciel">
+    <meta property="og:site_name" content="Türkiye'de ara - otomotivist.com" />
+    <link rel="author" href="https://plus.google.com/u/0/102784560905234393895/posts" />
+    <meta property="og:title" content="Ücretsiz araba ilaný ekle" />
+    <meta property="og:type" content="Otomobil Ýlanlarý ve Yedek Parça Ýlanlarý otomobil servis hizmetleri" />
+    <meta property="og:url" content="https://www.otomotivist.com" />
+    <meta property="og:description" content="cepten mobilden otomobil ilaný ver!" />
+    <meta property="fb:admins" content="https://www.facebook.com/otomotivist?ref=hl" />
+    <link rel="schema.dc" href="http://purl.org/dc/elements/1.1/" />
+    <meta name="dc.title" content="Ýstanbul'da en ucuz, en uygun, fiyatý düþen, en yeni ilanlar burada! - otomotivist.com" />
+    <meta name="dc.subject" content="Türkiye Ýstanbul">
+    <meta name="dc.creator" content="otomotivist.com" />
+    <meta name="dc.source" CONTENT="https://www.otomotivist.com/">
+    <meta name="dc.format" lang="tr" content="Ýlan, Seriilan">
+    <meta name="dc.language" content="tr" />
+    <meta name="author" content="otomotivist.com" />
+    <meta name="publisher" content="otomotivist.com" />
+    <meta name="robots" CONTENT="all">
+    <meta name="robots" content="index,follow" />
+    <meta name="audience" CONTENT="all">
+    <meta name="language" CONTENT="tr">
+    <meta http-EQUIV="expires" CONTENT="1">
+    <meta name="REVISIT-AFTER" CONTENT="3 days">
+    <link rel="search" type="application/opensearchdescription+xml" href="http://www.otomotivist.com/Sitemap/rss" title="otomotivist.com" />
+    <meta name="theme-color" content="#F6F6F6">
+    <meta name="application-name" content="otomotivist.com">
+    <meta name="msapplication-TileImage" content="/Images/PageContentImages/favicon.ico">
+    <link href="~/Images/PageContentImages/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="msapplication-TileColor" content="#F6F6F6">
+    <meta name="GENERATOR" content="Microsoft Visual Studio 8.0">
+    <meta name="publisher" content="VS 2013" />
+    <meta name="CODE_LANGUAGE" content="C#">
+
+    <script async src="~/Scripts/jquery-2.2.1.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#navbutton").click(function (event) {
+                $('#navbar').toggleClass("collapse");
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/tr_TR/sdk.js#xfbml=1&version=v2.5";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/tr_TR/sdk.js#xfbml=1&version=v2.5";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-54979446-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container" role="banner">
+            <div id="navbar-header">
+                <button type="button" id="navbutton" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="~/otomobilvasita/yeniikinciel" class="navbar-brand">
+                    <img src="~/Content/Images/logo.png" alt="otomotivist logo" onclick="href = '~/otomobilvasita/yeniikinciel'" onkeypress="    if (event.keycode == 13) { href = '~/otomobilvasita/yeniikinciel' }" class="navbar-logo" />
+                </a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <div class="tabMenucontainer">
+                    <input type="hidden" id="searchType" name="searchType" value="" />
+                    <div class="input-group" id="inpGrp">
+                        <input type="text" id="searchTextIdSparepartGeneral" name="searchTextIdSparepartGeneral" class="form-control brd0 h46 fixsearchup" placeholder="Kelime veya Ýlan Kodu ile ara" />
+                        <span class="input-group-btn"><input id="araGeneral" class="btn  btcont h46" type="button" name="btnAraGeneral" value="Bul" /></span>
+                        <div class="nav navbar-nav navbar-right">
+                            <div id="withoutPaymentLink">
+                                <ul>
+                                    <li>
+                                        <b>@Html.ActionLink("Oto Yedekparça ve Servis ÝLANI VER!", "ilankategorisi", "otomobilvasita", new { @class = "btn btn-success h46 freeadd" })</b>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="recivemessage"></div>
+            </div>
+        </div>
+    </nav>
+    <div class="secondBar" role="navigation">
+        <div class="container">
+            <div class="nav navbar-nav navbar-right secondBarLogin" id="login">
+                @Html.Partial("_LoginPartial")
+            </div>
+            @{ var act = HttpContext.Current.Request.RequestContext.RouteData.GetRequiredString("action");
+
+             if (act == "Index")
+             {
+                <div class="tabBtns">
+                    <ul id="siteCAT">
+                        <li id="btnVehicleSearchTab" name="btnVehicleSearchTab" class="selectedTab SelectedWhicle"><div>Araç</div></li>
+                        <li id="btnSparePartSearchTab" name="btnSparePartSearchTab" class=""> <div>Yedek Parça</div></li>
+                    </ul>
+                </div>}
+            }
+        </div>
+    </div>
+    <div class="clear-fix"></div>
+    <div id="body" class="container" role="main">
+        @if (IsSectionDefined("sideBar"))
+        {
+            @Html.Partial("_SideBarPartial")
+            @RenderSection("sideBar")
+        }
+        @RenderBody()
+    </div>
+    <div class="clearfix"></div>
+    <br />
+    <footer id="footer" role="contentinfo">
+        <div class="addpaddingToPanel">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 panelpad">
+                        <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+                            <div class="layoutMenuDiv">
+                                <span class="ssba_sharecount"></span>
+                                <a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u=http://www.otomotivist.com" target="_blank">
+                                    <img src="~/Images/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook" width="30" height="30">
+                                </a><span class="ssba_sharecount"></span>
+                                <a class="ssba_twitter_share" href="http://twitter.com/share?url=http://www.otomotivist.com" target="_blank">
+                                    <img src="~/Images/twitter.png" title="Twitter" class="ssba" alt="Tweet otomotivisthakkinda this on Twitter" width="30" height="30">
+                                </a><span class="ssba_sharecount"></span>
+                                <a class="ssba_stumbleupon_share ssba_share_link" href="http://www.stumbleupon.com/submit?url=http://www.otomotivist.com" target="_blank">
+                                    <img src="~/Images/stumbleupon.png" title="StumbleUpon" class="ssba" alt="StumbleUpon da paylaþ" width="30" height="30">
+                                </a><span class="ssba_sharecount"></span>
+                                <a class="ssba_linkedin_share ssba_share_link" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://www.otomotivist.com" target="_blank">
+                                    <img src="~/Images/linkedin.png" title="Linkedin" class="ssba" alt="LinkedIn de paylaþ" width="30" height="30">
+                                </a><span class="ssba_sharecount"></span>
+                                <a class="ssba_email_share" href="mailto:?Subject=http://www.otomotivist.com/">
+                                    <img src="~/Images/email.png" title="Email" class="ssba" alt="Herhangi birine Email gönderebilirsiniz" width="30" height="30" />
+                                </a>
+                                <a class="ssba_google_share" href="https://plus.google.com/share?url=http://www.otomotivist.com/" target="_blank">
+                                    <img src="~/Images/google.png" title="Google+" class="ssba" alt="Share on Google+" width="30" height="30">
+                                </a>
+                                <a href="https://plus.google.com/113660231663386144832" rel="publisher" target="_blank">Google+</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4 ">
+                            <ul>
+                                <li><strong class="whitecolor">Gizlilik & Güvenlik</strong></li>
+                                <li>@Html.ActionLink("Kullaným Koþullarý", "sozlesmehaklar", "otomobilvasita")</li>
+                                <li>@Html.ActionLink("Üyelik Sözleþmesi", "kullanicisozlesmesi", "otomobilvasita")</li>
+                                <li>@Html.ActionLink("Gizlilik Politikasý", "gizlilik", "otomobilvasita")</li>
+                                <li>@Html.ActionLink("RSS", "rss", "Sitemap")<a class="accessible" href="~/Sitemap/rss" alt="rss">[RSS]</a></li>
+                                <li>@Html.ActionLink("Kaydol", "Register", "Account")</li>
+                                @{
+                                    if (User != null && User.Identity.Name == "hamit")
+                                    {
+                                <li>
+                                    @Html.ActionLink("Excel'den Fiyat Aktar", "ImportAndUpdateFromExcel", "Products")
+                                </li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+                            <ul>
+                                <li><strong class="whitecolor">Kurumsal</strong></li>
+                                <li>@Html.ActionLink("Ana Sayfa", "yeniikinciel", "otomobilvasita")<a class="accessible" href="~/otomobilvasita/yeniikinciel" alt="anasayfa">[Ana Sayfa]</a></li>
+                                <li>@Html.ActionLink("Hakkýmýzda", "otomotivisthakkinda", "otomobilvasita")<a class="accessible" href="~/otomobilvasita/otomotivisthakkinda" alt="hakkýmýzda">[Hakkýnda]</a></li>
+                                <li>@Html.ActionLink("Ýletiþim", "iletisim", "otomobilvasita")<a class="accessible" href="~/otomobilvasita/iletisim" alt="iletiþim">[Ýletiþim]</a></li>
+                                <li>@Html.ActionLink("Sitemap", "Generate", "Sitemap")<a class="accessible" href="~/Sitemap/Generate" alt="Sitemap Güncelle">[Sitemap]</a></li>
+                                <li>@Html.ActionLink("Login", "Login", "Account")</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <a href="/otomobilvasita/yeniikinciel" class="navbar-brand" alt="otomotivist logo">
+                                <img src="/Content/Images/logo.png" alt="otomotivist logo" onclick="href = '~/otomobilvasita/yeniikinciel'" onkeypress="    if (event.keycode == 13) { href = '~/otomobilvasita/yeniikinciel' }" class="navbar-logo">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    @RenderSection("scripts", false)
+
+
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/jquery.ui.tabs.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+
+    <script async src="~/Scripts/jquery.sidecontent.js"></script>
+    <script async src="~/Scripts/filter.js"></script>
+    <script async src="~/Scripts/jquery.magnific-popup.min.js"></script>
+    <script async src="~/Scripts/Layout.js"></script>
+    <script async src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+        window.twttr = (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+              t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+
+            t._e = [];
+            t.ready = function (f) {
+                t._e.push(f);
+            };
+
+            return t;
+        }(document, "script", "twitter-wjs"));</script>
+</body>
+
+
+
+</html>

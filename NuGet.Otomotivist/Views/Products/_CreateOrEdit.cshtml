@@ -1,0 +1,92 @@
+@model NuGet.Otomotivist.Products
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Name)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Name)
+    @Html.ValidationMessageFor(model => model.Name)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Code)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Code)
+    @Html.ValidationMessageFor(model => model.Code)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Barcode)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Barcode)
+    @Html.ValidationMessageFor(model => model.Barcode)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Explanation)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Explanation)
+    @Html.ValidationMessageFor(model => model.Explanation)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.ImagePath)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.ImagePath)
+    @Html.ValidationMessageFor(model => model.ImagePath)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.OfferedPrice)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.OfferedPrice)
+    @Html.ValidationMessageFor(model => model.OfferedPrice)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.CurrentPrice)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.CurrentPrice)
+    @Html.ValidationMessageFor(model => model.CurrentPrice)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.RecordDate)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.RecordDate)
+    @Html.ValidationMessageFor(model => model.RecordDate)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.LastAccessDate)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.LastAccessDate)
+    @Html.ValidationMessageFor(model => model.LastAccessDate)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.SpecialCode)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.SpecialCode)
+    @Html.ValidationMessageFor(model => model.SpecialCode)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.IsActive)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.IsActive)
+    @Html.ValidationMessageFor(model => model.IsActive)
+</div>
+

@@ -1,0 +1,56 @@
+﻿@{
+    Page.Title = "Giriş sayfası partial";
+}
+
+@if (Request.IsAuthenticated)
+{
+    <text>
+        <b style="color:white;">Merhaba, @Html.ActionLink(User.Identity.Name, "Manage", "Account", null, new { @class = "username", title = "Manage" })!  </b>
+        @Html.ActionLink("Profil", "ProfileView", "otomobilvasita", null)
+
+        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <a href="javascript:document.getElementById('logoutForm').submit()">Çıkış</a>
+        }
+
+    </text>
+    @*if (@Session["UserMessages"] != null && (@Session["UserMessages"] as System.Collections.Generic.List<BusinessObjects.UserMessagesModel>).Count() > 0)
+    {
+
+        var mesajcount = (@Session["UserMessages"] as System.Collections.Generic.List<BusinessObjects.UserMessagesModel>).Count().ToString();
+
+        var uid = (@Session["UserMessages"] as System.Collections.Generic.List<BusinessObjects.UserMessagesModel>)[0].UserMessageses[0].ReceiverUserId;
+        <text>
+        <a href="/otomobilvasita/MessageSenderPartial?uid=@uid&pid=0">Mesajlar</a>
+        </text>
+    }
+    if (Session["UserFeedBacks"] != null && (@Session["UserFeedBacks"] as System.Collections.Generic.List<Dal.UserFeedbacks>).Count() > 0 && Model != null && Model.GetType().Name == "AccountInformation")
+    {
+        System.Collections.Generic.List<Dal.UserFeedbacks> items = (@Session["UserFeedBacks"] as System.Collections.Generic.List<Dal.UserFeedbacks>);
+        <li role="presentation"></li>
+        <br />
+        <a style="padding-right:10px;">Favorilerim:</a>
+        <span class="FormListBox" style="float:right;">
+            <select name="favorite" id="favorite">
+                <option value="" selected>Favorilerim</option>
+                @foreach (var item in items)
+                {
+                    <option value="prdcId=@item.AutoServiceId" selected="selected"> @item.AutoServiceId</option>
+                }
+            </select>
+        </span>
+
+    }*@
+
+}
+
+else
+{
+    <ul class="notLoginUl">
+        <li>@Html.ActionLink("Kaydol", "Register", "Account", null, new { id = "registerLink", @class = "ulink" })</li>
+        <li>@Html.ActionLink("Giriş Yap", "Login", "Account", null, new { id = "loginLink", @class = "ulink" })</li>
+    </ul>
+}
+
+

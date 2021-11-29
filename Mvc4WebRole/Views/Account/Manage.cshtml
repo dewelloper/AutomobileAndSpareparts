@@ -1,0 +1,32 @@
+﻿@model BusinessObjects.LocalPasswordModel
+@{
+    ViewBag.Title = "Hesabını Yönet";
+}
+    <h1>@ViewBag.Title.</h1>
+<p class="message-success">@ViewBag.StatusMessage</p>
+<p><strong>@User.Identity.Name</strong> olarak giriþ yaptýn.</p>
+
+@if (ViewBag.HasLocalPassword)
+{
+    @Html.Partial("_ChangePasswordPartial")
+}
+else
+{ 
+    @Html.Partial("_SetPasswordPartial")
+}
+<section id="externalLogins">
+    @Html.Action("RemoveExternalLogins")
+    <h3>Sosyal aðlar ile giriþ ekle</h3>
+    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+</section>
+@section Scripts { 
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<div id="deleteAccount">
+    @using (Html.BeginForm("DeleteAccount", "Account", FormMethod.Post))
+    { 
+        <h1>Sil</h1>
+    <input type="submit" value="Hesabý Sil" onclick="return confirm('Hesabınızı Silmek İstediğinizden Emin misiniz? Hesabınızı silmeniz eski üye avantajlarýndan yararlanmanızı olumsuz etkileyecektir!');" onkeypress="if (event.keyCode == 13) { return confirm('Hesabınızı Silmek İstediğinizden Emin misiniz? Hesabınızı silmeniz eski üye avantajlarýndan yararlanmanızı olumsuz etkileyecektir!'); }" />
+    }
+</div>
+ 

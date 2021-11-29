@@ -1,0 +1,113 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel='stylesheet' media='screen and (max-width: 459px)' href='~/Content/Site_min.css' />
+    <link rel='stylesheet' media='screen and (min-width: 460px) and (max-width: 780px)' href='~/Content/Site_mid.css' />
+    <link rel='stylesheet' media='screen and (min-width: 781px)' href='~/Content/Site.css' />
+    <title>Seda Makina Sipariş</title>
+</head>
+    <body>
+        <div style="width: 80%; margin: 0 auto;">
+            <h1 style="color:white;">Seda Makine 3D Güvenli Ödeme Sayfası</h1>
+            @using (Html.BeginForm("ConfirmOrder", "Seda", FormMethod.Post, new { id = "payForm" }))
+            {
+                <div class="billInfo" style="border-top-width: 0; margin-bottom: 10px;">
+                    @Html.Label("Ödenecek Tutar")
+
+                    <input name="" id="" type="number" min="0" />Lira 
+                    <input name="PriceKurus" id="PriceKurus" type="number" min="0" max="99" size="2" />Kuruş
+
+                    @Html.Label("Kredi Kartı Bilgileri", new { @class = "middleHeader" })
+                    @Html.Label("Kart üzerindeki isim")
+                    @Html.TextBox("txtCardOwnerName", "")
+
+                    @Html.Label("Kart Numarası")
+                    @Html.TextBox("txtCardNumber", "")
+
+                    @Html.Label("Kart Geçerlilik Tarihi")
+                    @{ var listMonth = new SelectList(new[]
+                       {
+                           new {ID="1",Name="01"},
+                           new{ID="2",Name="02"},
+                           new{ID="3",Name="03"},
+                           new{ID="4",Name="04"},
+                           new{ID="5",Name="05"},
+                           new{ID="6",Name="06"},
+                           new{ID="7",Name="07"},
+                           new{ID="8",Name="08"},
+                           new{ID="9",Name="09"},
+                           new{ID="10",Name="10"},
+                           new{ID="11",Name="11"},
+                           new{ID="12",Name="12"}
+                       }, "ID", "Name", 1);
+                    }
+                    @Html.DropDownList("drpLastUseMonth", listMonth)
+
+                    @{ var listYear = new SelectList(new[]
+                       {
+                           new {ID="2014",Name="2014"},
+                           new{ID="2015",Name="2015"},
+                           new{ID="2016",Name="2016"},
+                           new{ID="2017",Name="2017"},
+                           new{ID="2018",Name="2018"},
+                           new{ID="2019",Name="2019"},
+                           new{ID="2026",Name="2026"},
+                           new{ID="2021",Name="2021"},
+                           new{ID="2022",Name="2022"},
+                           new{ID="2023",Name="2023"},
+                           new{ID="2024",Name="2024"},
+                           new{ID="2025",Name="2025"}
+                       }, "ID", "Name", 1);
+                    }
+                    @Html.DropDownList("drpLastUseYear", listYear)
+
+                    @Html.Label("Güvenlik Kodu (CVV2)")
+                    @Html.TextBox("txtCVV2", "")
+
+                    @Html.Label("Taksit Seçenekleri")
+                    @Html.RadioButton("radioInstallment", 1) Tek Çekim
+                    @Html.RadioButton("radioInstallment", 2) 2+3 Taksit
+                    @Html.RadioButton("radioInstallment", 3) 3+3 Taksit
+                    @Html.RadioButton("radioInstallment", 4) 4+3 Taksit
+                    <br /><br />
+
+                    @Html.CheckBox("chkAgree") Ön bilgilendirme formu ve mesafeli satış sözleşmesini okudum, kabul ediyorum.
+
+                    @Html.Hidden("hdnSelectedMonth", "")
+                    @Html.Hidden("hdnSelectedYear", "")
+                    
+                    <input type="button" value="Öde" onclick="if (document.getElementById('chkAgree').checked == true) { document.getElementById('payForm').submit(); } else { alert('Mesafeli satış sözleşmesini onaylamanız gerekmektedir...'); }" onkeypress="    if (event.keycode == 13) { if (document.getElementById('chkAgree').checked == true) { document.getElementById('payForm').submit(); } else { alert('Mesafeli satış sözleşmesini onaylamanız gerekmektedir...'); } }" style="float: right; margin-top:-10px;" />
+                </div>
+            }
+            <div style="width: 100%; margin: 0 auto;">
+                <img src="~/Images/PageContentImages/Vakıfbankworldlogo.jpg" alt="Vakıfbank world logo" class="paymentPageImages" />
+                <img src="~/Images/PageContentImages/visalogo.jpg" alt="visa logo" class="paymentPageImages" />
+                <img src="~/Images/PageContentImages/mastercardlogo.jpg" alt="mastercard logo" class="paymentPageImages" />
+            </div>
+        </div>
+    
+        <script type="text/javascript">
+            document.getElementById("PriceKurus").oninput = function () {
+                if (this.value.length > 2)
+                    this.value = this.value.slice(0, 2);
+            }
+            window.Change
+            document.getElementById('drpLastUseMonth').change(function () {
+                document.getElementById("hdnSelectedMonth").val(document.getElementById('drpLastUseMonth').val());
+            });
+
+            document.getElementById('drpLastUseYear').onchange(function () {
+                document.getElementById("hdnSelectedYear").val(document.getElementById('drpLastUseYear').val());
+            });
+        </script>
+    </body>
+    <footer style="margin:0 auto; width: 100%;">
+        All rights reserved Seda Makina 2014
+    </footer>
+</html>

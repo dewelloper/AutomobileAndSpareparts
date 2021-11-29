@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="77558476b5ff476585bee8247eb915ca" Name="Diagram1">
+        <EntityTypeShape EntityType="otomotivist.comModel.AutosServices" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="otomotivist.comModel.Catagories" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="otomotivist.comModel.Denominations" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="otomotivist.comModel.Marks" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="otomotivist.comModel.ProductGroups" Width="1.5" PointX="3" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="otomotivist.comModel.ProductPlaces" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="otomotivist.comModel.Products" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="otomotivist.comModel.ProductStates" Width="1.5" PointX="3" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="otomotivist.comModel.Users" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="otomotivist.comModel.UserTypes" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="otomotivist.comModel.FK_ProductPlaces_AutosServices" ManuallyRouted="false" />
+        <AssociationConnector Association="otomotivist.comModel.FK_Products_Catagories" ManuallyRouted="false" />
+        <AssociationConnector Association="otomotivist.comModel.FK_Products_Denominations" ManuallyRouted="false" />
+        <AssociationConnector Association="otomotivist.comModel.FK_Products_Marks" ManuallyRouted="false" />
+        <AssociationConnector Association="otomotivist.comModel.FK_Products_ProductGroups" ManuallyRouted="false" />
+        <AssociationConnector Association="otomotivist.comModel.FK_Products_ProductPlaces" ManuallyRouted="false" />
+        <AssociationConnector Association="otomotivist.comModel.FK_Products_ProductStates" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

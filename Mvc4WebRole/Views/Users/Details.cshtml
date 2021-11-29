@@ -1,0 +1,41 @@
+@model BusinessObjects.User
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>User</legend>
+
+    <div class="display-label">Name</div>
+    <div class="display-field">@Model.Name</div>
+
+    <div class="display-label">Surname</div>
+    <div class="display-field">@Model.Surname</div>
+
+    <div class="display-label">Username</div>
+    <div class="display-field">@Model.Username</div>
+
+    <div class="display-label">Email</div>
+    <div class="display-field">@Model.Email</div>
+
+    <div class="display-label">Password</div>
+    <div class="display-field">@Model.Password</div>
+
+    <div class="display-label">ModifierDate</div>
+    <div class="display-field">@String.Format("{0:g}", Model.ModifierDate)</div>
+
+    <div class="display-label">RegistererDate</div>
+    <div class="display-field">@String.Format("{0:g}", Model.RegistererDate)</div>
+
+    <div class="display-label">IsActive</div>
+    <div class="display-field">@Model.IsActive</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

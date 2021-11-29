@@ -1,0 +1,50 @@
+﻿@model BusinessObjects.RegisterExternalLoginModel
+@{
+    ViewBag.Title = "Kaydol";
+}
+
+
+    <h1>@ViewBag.Title.</h1>
+    <h2>@ViewBag.ProviderDisplayName hesabını ilişkilendir.</h2>
+
+
+@using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>İlişkilendirme formu</legend>
+        <p>
+            Hesabın <strong>@ViewBag.ProviderDisplayName</strong> ile başarılı bir şekilde ilişkilendirildi.
+            Aşağıdaki alana bu site için bir kullanıcı adı girin ve bu hesapla giriş yapmak için Onayla butonuna basın.
+        </p>
+        <ol>
+            <li class="name">
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName)
+            </li>
+            <li class="mail">
+                @Html.LabelFor(m => m.Mail)
+                @Html.TextBoxFor(m => m.Mail)
+                @Html.ValidationMessageFor(m => m.Mail)
+            </li>
+            <li class="password">
+                @Html.LabelFor(m => m.Password)
+                @Html.TextBoxFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+            </li>
+            <li class="confirmpassword">
+                @Html.LabelFor(m => m.ConfirmPassword)
+                @Html.TextBoxFor(m => m.ConfirmPassword)
+                @Html.ValidationMessageFor(m => m.ConfirmPassword)
+            </li>
+        </ol>
+        @Html.HiddenFor(m => m.ExternalLoginData)
+        <input type="submit" value="Onayla" />
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

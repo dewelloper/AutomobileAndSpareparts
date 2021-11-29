@@ -1,0 +1,2860 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AuthTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="AutoServices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServiceName" Type="nvarchar(max)" />
+          <Property Name="AuthorizedName" Type="nvarchar(max)" />
+          <Property Name="AuthorizedSurname" Type="nvarchar(max)" />
+          <Property Name="AuthorizedEmail" Type="nvarchar(max)" />
+          <Property Name="AuthorizedPassword" Type="nvarchar(max)" />
+          <Property Name="AuthorizedPhone" Type="nvarchar(max)" />
+          <Property Name="Website" Type="nvarchar(max)" />
+          <Property Name="AddressDefinition" Type="nvarchar(max)" />
+          <Property Name="CountryId" Type="int" />
+          <Property Name="CityId" Type="int" />
+          <Property Name="RegionId" Type="int" />
+          <Property Name="RegistererId" Type="bigint" />
+          <Property Name="ModifierId" Type="bigint" />
+          <Property Name="MapURL" Type="nvarchar" MaxLength="255" />
+          <Property Name="FeedCount" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Mvc4WebRole.Models.Mvc4WebRoleContext.dbo.BankBins' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="BankBins">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BIN" Type="nvarchar" MaxLength="6" />
+          <Property Name="Location" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Bills">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IsCompany" Type="bit" />
+          <Property Name="TaxNumber" Type="nvarchar" MaxLength="11" />
+          <Property Name="TaxOffice" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdentityNumber" Type="nvarchar" MaxLength="11" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="150" />
+          <Property Name="CityId" Type="int" Nullable="false" />
+          <Property Name="TownId" Type="int" Nullable="false" />
+          <Property Name="SubDistrictId" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="15" />
+          <Property Name="GsmNumber" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="FaxNumber" Type="nvarchar" MaxLength="15" />
+          <Property Name="OrderNote" Type="nvarchar" MaxLength="255" />
+          <Property Name="Campaign" Type="decimal" Precision="17" Scale="2" />
+          <Property Name="OrderId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CaseTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RootLevel" Type="int" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ChatLogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SenderUserId" Type="int" Nullable="false" />
+          <Property Name="ReceiverUserId" Type="int" Nullable="false" />
+          <Property Name="Message" Type="nvarchar" MaxLength="255" />
+          <Property Name="Guid" Type="nvarchar" MaxLength="100" />
+          <Property Name="Ip" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="CityPlateCode" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Colors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Countries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CountryCode" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Credits">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="bigint" />
+          <Property Name="CustomerId" Type="bigint" />
+          <Property Name="Price" Type="decimal" Precision="17" Scale="2" />
+          <Property Name="CreditcardNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreditcardOwner" Type="nvarchar" MaxLength="255" />
+          <Property Name="SecureCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Month" Type="int" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Installments" Type="int" />
+          <Property Name="DateTime" Type="datetime" />
+          <Property Name="Ip" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Currencies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DamageStates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Denominations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="ShortName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Districts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="City_Id" Type="int" Nullable="false" />
+          <Property Name="Town_Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="PostCode" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="EnginePowers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EngineVolumes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="FuelTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Galleries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="WebAddress" Type="nvarchar" MaxLength="255" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="18" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="18" />
+          <Property Name="Address" Type="nvarchar" MaxLength="512" />
+          <Property Name="MapURL" Type="nvarchar" MaxLength="255" />
+          <Property Name="AuthorName" Type="nvarchar" MaxLength="50" />
+          <Property Name="AuthorSurname" Type="nvarchar" MaxLength="50" />
+          <Property Name="AuthorPhone" Type="nvarchar" MaxLength="18" />
+          <Property Name="AuthorEmail" Type="nvarchar" MaxLength="255" />
+          <Property Name="FeedCount" Type="int" />
+        </EntityType>
+        <EntityType Name="GearTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="GuarantySituations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Marks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MarkName" Type="nvarchar(max)" />
+          <Property Name="MarkCode" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ModelYears">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Value" Type="nchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="bigint" />
+          <Property Name="ProductId" Type="bigint" />
+          <Property Name="ProductPrice" Type="decimal" Precision="17" Scale="2" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="ProductGrupId" Type="int" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="17" Scale="2" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Explanation" Type="nvarchar" MaxLength="255" />
+          <Property Name="OrderStatusId" Type="int" />
+          <Property Name="PaymentTypeId" Type="int" />
+          <Property Name="TransportTypeId" Type="int" />
+          <Property Name="RequesterUserId" Type="int" />
+          <Property Name="RequesterAddressId" Type="int" />
+          <Property Name="ResponderUserId" Type="int" />
+          <Property Name="ResponderAddressId" Type="int" />
+          <Property Name="ResponderFirmTypeId" Type="int" />
+          <Property Name="ResponderFirmId" Type="int" />
+          <Property Name="Count" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsBilling" Type="bit" />
+          <Property Name="Discount" Type="int" />
+          <Property Name="IsTransportFree" Type="bit" />
+        </EntityType>
+        <EntityType Name="PaymentTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="PlateNationalities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PostComments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PostId" Type="bigint" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="PostLikes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PostId" Type="bigint" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PostShares">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PostId" Type="bigint" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductCategoryProvider">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OtomotivistCategoryId" Type="int" />
+          <Property Name="OtherSystemStockCode" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ProductGroupProvider">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OtomotivistProductGroupId" Type="int" />
+          <Property Name="OtherSystemProductGroupId" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ProductGroups">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="CatId" Type="int" />
+          <Property Name="ProductName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ProductPlaces">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="AutoServiceId" Type="int" />
+          <Property Name="IpAddress" Type="nvarchar(max)" />
+          <Property Name="AutoService_Id" Type="int" />
+          <Property Name="AutoService_Id1" Type="int" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EqualId" Type="bigint" />
+          <Property Name="SubProductId" Type="bigint" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="GroupId" Type="int" />
+          <Property Name="MarkId" Type="int" />
+          <Property Name="StatusId" Type="int" />
+          <Property Name="DenominationId" Type="int" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="PlaceId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="Code" Type="nvarchar" MaxLength="255" />
+          <Property Name="Barcode" Type="nvarchar" MaxLength="255" />
+          <Property Name="Explanation" Type="text" />
+          <Property Name="ImagePath0" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImagePath1" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImagePath2" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImagePath3" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImagePath4" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImagePath5" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImagePath6" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImagePath7" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImagePath8" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImagePath9" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImagePath10" Type="nvarchar" MaxLength="255" />
+          <Property Name="VideoPath" Type="nvarchar" MaxLength="255" />
+          <Property Name="OfferedPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CurrentPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PriceCurrencyId" Type="int" />
+          <Property Name="ModelYear" Type="int" />
+          <Property Name="RecordDate" Type="datetime" Nullable="false" />
+          <Property Name="LastAccessDate" Type="datetime" />
+          <Property Name="RegistererId" Type="int" />
+          <Property Name="ModifierId" Type="int" />
+          <Property Name="FeedCount" Type="int" />
+          <Property Name="SpecialCode" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="Category_Id" Type="int" />
+          <Property Name="ProductGroup_Id" Type="int" />
+          <Property Name="ProductPlace_Id" Type="int" />
+          <Property Name="ProductState_Id" Type="int" />
+          <Property Name="ProductType" Type="int" />
+          <Property Name="Km" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsExchangable" Type="bit" Nullable="false" />
+          <Property Name="AAS" Type="bit" Nullable="false" />
+          <Property Name="ASR" Type="bit" Nullable="false" />
+          <Property Name="HavaYastigiPerdeler" Type="bit" Nullable="false" />
+          <Property Name="Immobilizer" Type="bit" Nullable="false" />
+          <Property Name="ParkMesafeKontrol" Type="bit" Nullable="false" />
+          <Property Name="EDB" Type="bit" Nullable="false" />
+          <Property Name="HavaYastigiSurucu" Type="bit" Nullable="false" />
+          <Property Name="ABS" Type="bit" Nullable="false" />
+          <Property Name="Isofix" Type="bit" Nullable="false" />
+          <Property Name="Alarm" Type="bit" Nullable="false" />
+          <Property Name="EDL" Type="bit" Nullable="false" />
+          <Property Name="HavaYastigiYan" Type="bit" Nullable="false" />
+          <Property Name="LastikArizaGostergesi" Type="bit" Nullable="false" />
+          <Property Name="ArkaGorusKamerasi" Type="bit" Nullable="false" />
+          <Property Name="ESP" Type="bit" Nullable="false" />
+          <Property Name="HavaYastigiYolcu" Type="bit" Nullable="false" />
+          <Property Name="MerkeziKilit" Type="bit" Nullable="false" />
+          <Property Name="SeritTakipSistemi" Type="bit" Nullable="false" />
+          <Property Name="GeceGorus" Type="bit" Nullable="false" />
+          <Property Name="UzaktanKumanda" Type="bit" Nullable="false" />
+          <Property Name="Airmatic" Type="bit" Nullable="false" />
+          <Property Name="TCS" Type="bit" Nullable="false" />
+          <Property Name="YorgunlukTespitSistemi" Type="bit" Nullable="false" />
+          <Property Name="Bas" Type="bit" Nullable="false" />
+          <Property Name="AhsapDireksiyon" Type="bit" Nullable="false" />
+          <Property Name="DeriDireksiyon" Type="bit" Nullable="false" />
+          <Property Name="HafizaliKoltuklar" Type="bit" Nullable="false" />
+          <Property Name="Koltukisitma" Type="bit" Nullable="false" />
+          <Property Name="Sunroof" Type="bit" Nullable="false" />
+          <Property Name="AnahtarsizCalistirabilme" Type="bit" Nullable="false" />
+          <Property Name="DeriKoltuk" Type="bit" Nullable="false" />
+          <Property Name="HizSabitleyici" Type="bit" Nullable="false" />
+          <Property Name="Klima" Type="bit" Nullable="false" />
+          <Property Name="BlueTooth" Type="bit" Nullable="false" />
+          <Property Name="Telefon" Type="bit" Nullable="false" />
+          <Property Name="AyarlanabilirDireksiyon" Type="bit" Nullable="false" />
+          <Property Name="HidrolikDireksiyon" Type="bit" Nullable="false" />
+          <Property Name="YolBilgisayari" Type="bit" Nullable="false" />
+          <Property Name="ElektirikliIsitmaliCamlar" Type="bit" Nullable="false" />
+          <Property Name="IsitmaliDireksiyon" Type="bit" Nullable="false" />
+          <Property Name="SogutmaliTorpido" Type="bit" Nullable="false" />
+          <Property Name="HeadUpDisplay" Type="bit" Nullable="false" />
+          <Property Name="IleriGorusKamerasi" Type="bit" Nullable="false" />
+          <Property Name="GeriGorusKamerasi" Type="bit" Nullable="false" />
+          <Property Name="KolDayama" Type="bit" Nullable="false" />
+          <Property Name="IleriIleriVitesler" Type="bit" Nullable="false" />
+          <Property Name="AlasimJantlar" Type="bit" Nullable="false" />
+          <Property Name="FarYikama" Type="bit" Nullable="false" />
+          <Property Name="YagmurSensoru" Type="bit" Nullable="false" />
+          <Property Name="CamTavan" Type="bit" Nullable="false" />
+          <Property Name="Modifiyeli" Type="bit" Nullable="false" />
+          <Property Name="SisFari" Type="bit" Nullable="false" />
+          <Property Name="ElektirikliYanAynalar" Type="bit" Nullable="false" />
+          <Property Name="FarSensoru" Type="bit" Nullable="false" />
+          <Property Name="XenonFarlar" Type="bit" Nullable="false" />
+          <Property Name="ParkSensoru" Type="bit" Nullable="false" />
+          <Property Name="KatlanirAynalar" Type="bit" Nullable="false" />
+          <Property Name="GeceSensoru" Type="bit" Nullable="false" />
+          <Property Name="ArkaCamBuzCozucu" Type="bit" Nullable="false" />
+          <Property Name="PanoramikOnCam" Type="bit" Nullable="false" />
+          <Property Name="PanaromikCamTavan" Type="bit" Nullable="false" />
+          <Property Name="HardTop" Type="bit" Nullable="false" />
+          <Property Name="RadyoType" Type="bit" Nullable="false" />
+          <Property Name="RadyoCD" Type="bit" Nullable="false" />
+          <Property Name="Mp3Calabilme" Type="bit" Nullable="false" />
+          <Property Name="NavigasyonTV" Type="bit" Nullable="false" />
+          <Property Name="USBAUX" Type="bit" Nullable="false" />
+          <Property Name="AUX" Type="bit" Nullable="false" />
+          <Property Name="IPod" Type="bit" Nullable="false" />
+          <Property Name="Hoparlor6" Type="bit" Nullable="false" />
+          <Property Name="CDDVDDegistirici" Type="bit" Nullable="false" />
+          <Property Name="NotSmoked" Type="bit" Nullable="false" />
+          <Property Name="FromForeigner" Type="bit" Nullable="false" />
+          <Property Name="UrgentSale" Type="bit" Nullable="false" />
+          <Property Name="Maturity" Type="bit" Nullable="false" />
+          <Property Name="ProductSeller" Type="int" />
+          <Property Name="IsUsed" Type="bit" />
+          <Property Name="VehicleType" Type="int" />
+          <Property Name="DamageState" Type="int" />
+          <Property Name="GuarantySituation" Type="int" />
+          <Property Name="PublishDuration" Type="int" />
+          <Property Name="FuelType" Type="int" />
+          <Property Name="GearType" Type="int" />
+          <Property Name="Color" Type="int" />
+          <Property Name="CaseType" Type="int" />
+          <Property Name="EngineCapacity" Type="int" />
+          <Property Name="EnginePower" Type="int" />
+          <Property Name="Traction" Type="int" />
+          <Property Name="Warranty" Type="int" />
+          <Property Name="PlateNationality" Type="int" />
+          <Property Name="Country" Type="int" />
+          <Property Name="City" Type="int" />
+          <Property Name="Region" Type="int" />
+          <Property Name="District" Type="int" />
+          <Property Name="ServiceName" Type="nvarchar" MaxLength="255" />
+          <Property Name="ServiceAddress" Type="nvarchar" MaxLength="512" />
+          <Property Name="ServiceType" Type="nvarchar" MaxLength="512" />
+          <Property Name="ServiceTelephone" Type="nvarchar" MaxLength="20" />
+          <Property Name="ServiceAuthor" Type="nvarchar" MaxLength="50" />
+          <Property Name="ServiceProperties" Type="nvarchar" MaxLength="50" />
+          <Property Name="ServicePoint" Type="int" />
+        </EntityType>
+        <EntityType Name="ProductSeller">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ProductStates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ProductTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PublishDurations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Regions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="PostCode" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="512" />
+        </EntityType>
+        <EntityType Name="SpareParts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="WebAddress" Type="nvarchar" MaxLength="255" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="18" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="18" />
+          <Property Name="Address" Type="nvarchar" MaxLength="512" />
+          <Property Name="MapURL" Type="nvarchar" MaxLength="255" />
+          <Property Name="AuthorName" Type="nvarchar" MaxLength="50" />
+          <Property Name="AuthorSurname" Type="nvarchar" MaxLength="50" />
+          <Property Name="AuthorPhone" Type="nvarchar" MaxLength="18" />
+          <Property Name="AuthorEmail" Type="nvarchar" MaxLength="255" />
+          <Property Name="FeedCount" Type="int" />
+        </EntityType>
+        <EntityType Name="SubDistrict">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="CityId" Type="int" Nullable="false" />
+          <Property Name="TownId" Type="int" Nullable="false" />
+          <Property Name="DistrictId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Mvc4WebRole.Models.Mvc4WebRoleContext.dbo.TempExcelImport' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="TempExcelImport">
+          <Property Name="Code" Type="nvarchar" MaxLength="255" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="CurrentPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PriceCurrencyId" Type="int" />
+          <Property Name="CategoryId" Type="int" />
+        </EntityType>-->
+        <EntityType Name="Tokens">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Token" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Towns">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="City_Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TractionTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TransportTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="UserAdresses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="512" />
+          <Property Name="CountryId" Type="int" />
+          <Property Name="CityId" Type="int" />
+          <Property Name="RegionId" Type="int" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <EntityType Name="UserEducationLevel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EducationLevel" Type="nchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="UserFeedbacks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="AutoServiceId" Type="int" />
+          <Property Name="GalleryId" Type="int" />
+          <Property Name="PleasedCount" Type="int" />
+          <Property Name="UnpleasedCount" Type="int" />
+        </EntityType>
+        <EntityType Name="UserFriends">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="FriendUserId" Type="int" Nullable="false" />
+          <Property Name="AutherTypeId" Type="int" />
+          <Property Name="OtherSettings" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UserGender">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bit" Nullable="false" />
+          <Property Name="Gender" Type="nchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserJob">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Job" Type="nchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="UserMessages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SenderUserId" Type="int" Nullable="false" />
+          <Property Name="ReceiverUserId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="SendingDate" Type="datetime" Nullable="false" />
+          <Property Name="ReceiveDate" Type="datetime" />
+          <Property Name="AttachedFilePath" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsRead" Type="bit" />
+        </EntityType>
+        <EntityType Name="UserPosts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Content" Type="nvarchar" MaxLength="1000" />
+          <Property Name="UploadPath" Type="nvarchar" MaxLength="255" />
+          <Property Name="PostDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifyDate" Type="datetime" />
+          <Property Name="LikeCount" Type="int" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserTypeId" Type="int" />
+          <Property Name="eMail" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="HomePhone" Type="nvarchar" MaxLength="30" />
+          <Property Name="GSM" Type="nvarchar" MaxLength="30" />
+          <Property Name="WorkPhone" Type="nvarchar" MaxLength="30" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="30" />
+          <Property Name="DateOfBirth" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="bit" />
+          <Property Name="EducationLevel" Type="int" />
+          <Property Name="Job" Type="int" />
+          <Property Name="ProfilePhoto" Type="nvarchar(max)" />
+          <Property Name="TCid" Type="nvarchar" MaxLength="11" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="RoleId" Type="int" />
+        </EntityType>
+        <EntityType Name="UserTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="AutoServiceId" Type="int" />
+          <Property Name="GalleryId" Type="int" />
+          <Property Name="SparePartsId" Type="int" />
+        </EntityType>
+        <EntityType Name="VehicleTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="webpages_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="ConfirmationToken" Type="nvarchar" MaxLength="128" />
+          <Property Name="IsConfirmed" Type="bit" />
+          <Property Name="LastPasswordFailureDate" Type="datetime" />
+          <Property Name="PasswordFailuresSinceLastSuccess" Type="int" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PasswordChangedDate" Type="datetime" />
+          <Property Name="PasswordSalt" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PasswordVerificationToken" Type="nvarchar" MaxLength="128" />
+          <Property Name="PasswordVerificationTokenExpirationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="webpages_OAuthMembership">
+          <Key>
+            <PropertyRef Name="Provider" />
+            <PropertyRef Name="ProviderUserId" />
+          </Key>
+          <Property Name="Provider" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="ProviderUserId" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="webpages_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="webpages_UsersInRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_ProductPlaces_dbo_AutoServices_AutoService_Id1">
+          <End Role="AutoServices" Type="Self.AutoServices" Multiplicity="0..1" />
+          <End Role="ProductPlaces" Type="Self.ProductPlaces" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AutoServices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductPlaces">
+              <PropertyRef Name="AutoService_Id1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_webpages_OAuthMembership_dbo_webpages_Membership_UserId">
+          <End Role="webpages_Membership" Type="Self.webpages_Membership" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="webpages_OAuthMembership" Type="Self.webpages_OAuthMembership" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="webpages_Membership">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="webpages_OAuthMembership">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_webpages_UsersInRoles_dbo_webpages_Membership_UserId">
+          <End Role="webpages_Membership" Type="Self.webpages_Membership" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="webpages_UsersInRoles" Type="Self.webpages_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="webpages_Membership">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="webpages_UsersInRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_webpages_UsersInRoles_dbo_webpages_Roles_RoleId">
+          <End Role="webpages_Roles" Type="Self.webpages_Roles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="webpages_UsersInRoles" Type="Self.webpages_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="webpages_Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="webpages_UsersInRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_UserRole">
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="1" />
+          <End Role="UserRole1" Type="Self.UserRole" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRole1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="Insert_Ford_StockToOtomotivist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StockCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="CatId" Type="int" Mode="In" />
+          <Parameter Name="ModelYear" Type="nvarchar" Mode="In" />
+          <Parameter Name="SpecialCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="Price" Type="decimal" Mode="In" />
+          <Parameter Name="StockName" Type="nvarchar" Mode="In" />
+          <Parameter Name="GroupId" Type="int" Mode="In" />
+          <Parameter Name="MarkId" Type="int" Mode="In" />
+          <Parameter Name="ProductGroupName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="UpdateStockCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StockCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="CatId" Type="int" Mode="In" />
+          <Parameter Name="ModelYear" Type="nvarchar" Mode="In" />
+          <Parameter Name="SpecialCode" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="Mvc4WebRoleModelsMvc4WebRoleContextModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AuthTypes" EntityType="Self.AuthTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AutoServices" EntityType="Self.AutoServices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bills" EntityType="Self.Bills" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CaseTypes" EntityType="Self.CaseTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChatLogs" EntityType="Self.ChatLogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Colors" EntityType="Self.Colors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Credits" EntityType="Self.Credits" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Currencies" EntityType="Self.Currencies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DamageStates" EntityType="Self.DamageStates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Denominations" EntityType="Self.Denominations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Districts" EntityType="Self.Districts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EnginePowers" EntityType="Self.EnginePowers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EngineVolumes" EntityType="Self.EngineVolumes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FuelTypes" EntityType="Self.FuelTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Galleries" EntityType="Self.Galleries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GearTypes" EntityType="Self.GearTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GuarantySituations" EntityType="Self.GuarantySituations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Marks" EntityType="Self.Marks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ModelYears" EntityType="Self.ModelYears" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentTypes" EntityType="Self.PaymentTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlateNationalities" EntityType="Self.PlateNationalities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PostComments" EntityType="Self.PostComments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PostLikes" EntityType="Self.PostLikes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PostShares" EntityType="Self.PostShares" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductCategoryProvider" EntityType="Self.ProductCategoryProvider" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductGroupProvider" EntityType="Self.ProductGroupProvider" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductGroups" EntityType="Self.ProductGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductPlaces" EntityType="Self.ProductPlaces" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductSeller" EntityType="Self.ProductSeller" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductStates" EntityType="Self.ProductStates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductTypes" EntityType="Self.ProductTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PublishDurations" EntityType="Self.PublishDurations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Regions" EntityType="Self.Regions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpareParts" EntityType="Self.SpareParts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubDistrict" EntityType="Self.SubDistrict" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tokens" EntityType="Self.Tokens" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Towns" EntityType="Self.Towns" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TractionTypes" EntityType="Self.TractionTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransportTypes" EntityType="Self.TransportTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserAdresses" EntityType="Self.UserAdresses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserEducationLevel" EntityType="Self.UserEducationLevel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserFeedbacks" EntityType="Self.UserFeedbacks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserFriends" EntityType="Self.UserFriends" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserGender" EntityType="Self.UserGender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserJob" EntityType="Self.UserJob" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserMessages" EntityType="Self.UserMessages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserPosts" EntityType="Self.UserPosts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTypes" EntityType="Self.UserTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehicleTypes" EntityType="Self.VehicleTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="webpages_Membership" EntityType="Self.webpages_Membership" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="webpages_OAuthMembership" EntityType="Self.webpages_OAuthMembership" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="webpages_Roles" EntityType="Self.webpages_Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="webpages_UsersInRoles" EntityType="Self.webpages_UsersInRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BankBins" EntityType="Self.BankBins" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [BankBins].[Id] AS [Id], 
+    [BankBins].[BIN] AS [BIN], 
+    [BankBins].[Location] AS [Location], 
+    [BankBins].[Type] AS [Type], 
+    [BankBins].[Name] AS [Name]
+    FROM [dbo].[BankBins] AS [BankBins]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_dbo_ProductPlaces_dbo_AutoServices_AutoService_Id1" Association="Self.FK_dbo_ProductPlaces_dbo_AutoServices_AutoService_Id1">
+            <End Role="AutoServices" EntitySet="AutoServices" />
+            <End Role="ProductPlaces" EntitySet="ProductPlaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_webpages_OAuthMembership_dbo_webpages_Membership_UserId" Association="Self.FK_dbo_webpages_OAuthMembership_dbo_webpages_Membership_UserId">
+            <End Role="webpages_Membership" EntitySet="webpages_Membership" />
+            <End Role="webpages_OAuthMembership" EntitySet="webpages_OAuthMembership" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_webpages_UsersInRoles_dbo_webpages_Membership_UserId" Association="Self.FK_dbo_webpages_UsersInRoles_dbo_webpages_Membership_UserId">
+            <End Role="webpages_Membership" EntitySet="webpages_Membership" />
+            <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_webpages_UsersInRoles_dbo_webpages_Roles_RoleId" Association="Self.FK_dbo_webpages_UsersInRoles_dbo_webpages_Roles_RoleId">
+            <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+            <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_UserRole" Association="Self.FK_UserRole_UserRole">
+            <End Role="UserRole" EntitySet="UserRole" />
+            <End Role="UserRole1" EntitySet="UserRole" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Mvc4WebRole.Models.Mvc4WebRoleContextModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="Insert_Ford_StockToOtomotivist">
+            <Parameter Name="StockCode" Mode="In" Type="String" />
+            <Parameter Name="CatId" Mode="In" Type="Int32" />
+            <Parameter Name="ModelYear" Mode="In" Type="String" />
+            <Parameter Name="SpecialCode" Mode="In" Type="String" />
+            <Parameter Name="Price" Mode="In" Type="Decimal" />
+            <Parameter Name="StockName" Mode="In" Type="String" />
+            <Parameter Name="GroupId" Mode="In" Type="Int32" />
+            <Parameter Name="MarkId" Mode="In" Type="Int32" />
+            <Parameter Name="ProductGroupName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Mvc4WebRole.Models.Mvc4WebRoleContextModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Mvc4WebRole.Models.Mvc4WebRoleContextModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="UpdateStockCategory">
+            <Parameter Name="StockCode" Mode="In" Type="String" />
+            <Parameter Name="CatId" Mode="In" Type="Int32" />
+            <Parameter Name="ModelYear" Mode="In" Type="String" />
+            <Parameter Name="SpecialCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="C__MigrationHistory" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.C__MigrationHistory" />
+          <EntitySet Name="AuthTypes" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.AuthTypes" />
+          <EntitySet Name="AutoServices" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.AutoServices" />
+          <EntitySet Name="Bills" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Bills" />
+          <EntitySet Name="CaseTypes" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.CaseTypes" />
+          <EntitySet Name="Categories" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Categories" />
+          <EntitySet Name="ChatLogs" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.ChatLogs" />
+          <EntitySet Name="Cities" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Cities" />
+          <EntitySet Name="Colors" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Colors" />
+          <EntitySet Name="Countries" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Countries" />
+          <EntitySet Name="Credits" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Credits" />
+          <EntitySet Name="Currencies" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Currencies" />
+          <EntitySet Name="DamageStates" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.DamageStates" />
+          <EntitySet Name="Denominations" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Denominations" />
+          <EntitySet Name="Districts" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Districts" />
+          <EntitySet Name="EnginePowers" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.EnginePowers" />
+          <EntitySet Name="EngineVolumes" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.EngineVolumes" />
+          <EntitySet Name="FuelTypes" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.FuelTypes" />
+          <EntitySet Name="Galleries" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Galleries" />
+          <EntitySet Name="GearTypes" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.GearTypes" />
+          <EntitySet Name="GuarantySituations" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.GuarantySituations" />
+          <EntitySet Name="Marks" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Marks" />
+          <EntitySet Name="ModelYears" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.ModelYears" />
+          <EntitySet Name="OrderDetails" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.OrderDetails" />
+          <EntitySet Name="Orders" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Orders" />
+          <EntitySet Name="PaymentTypes" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.PaymentTypes" />
+          <EntitySet Name="PlateNationalities" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.PlateNationalities" />
+          <EntitySet Name="PostComments" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.PostComments" />
+          <EntitySet Name="PostLikes" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.PostLikes" />
+          <EntitySet Name="PostShares" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.PostShares" />
+          <EntitySet Name="ProductCategoryProvider" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.ProductCategoryProvider" />
+          <EntitySet Name="ProductGroupProvider" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.ProductGroupProvider" />
+          <EntitySet Name="ProductGroups" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.ProductGroups" />
+          <EntitySet Name="ProductPlaces" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.ProductPlaces" />
+          <EntitySet Name="Products" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Products" />
+          <EntitySet Name="ProductSeller" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.ProductSeller" />
+          <EntitySet Name="ProductStates" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.ProductStates" />
+          <EntitySet Name="ProductTypes" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.ProductTypes" />
+          <EntitySet Name="PublishDurations" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.PublishDurations" />
+          <EntitySet Name="Regions" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Regions" />
+          <EntitySet Name="Roles" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Roles" />
+          <EntitySet Name="SpareParts" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.SpareParts" />
+          <EntitySet Name="SubDistrict" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.SubDistrict" />
+          <EntitySet Name="sysdiagrams" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.sysdiagrams" />
+          <EntitySet Name="Towns" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Towns" />
+          <EntitySet Name="TractionTypes" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.TractionTypes" />
+          <EntitySet Name="TransportTypes" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.TransportTypes" />
+          <EntitySet Name="UserAdresses" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserAdresses" />
+          <EntitySet Name="UserEducationLevel" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserEducationLevel" />
+          <EntitySet Name="UserFeedbacks" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserFeedbacks" />
+          <EntitySet Name="UserFriends" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserFriends" />
+          <EntitySet Name="UserGender" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserGender" />
+          <EntitySet Name="UserJob" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserJob" />
+          <EntitySet Name="UserMessages" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserMessages" />
+          <EntitySet Name="UserPosts" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserPosts" />
+          <EntitySet Name="UserProfile" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserProfile" />
+          <EntitySet Name="UserRole" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserRole" />
+          <EntitySet Name="UserTypes" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserTypes" />
+          <EntitySet Name="VehicleTypes" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.VehicleTypes" />
+          <EntitySet Name="webpages_Membership" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.webpages_Membership" />
+          <EntitySet Name="webpages_OAuthMembership" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.webpages_OAuthMembership" />
+          <EntitySet Name="webpages_Roles" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.webpages_Roles" />
+          <EntitySet Name="BankBins" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.BankBins" />
+          <AssociationSet Name="FK_dbo_ProductPlaces_dbo_AutoServices_AutoService_Id1" Association="Mvc4WebRole.Models.Mvc4WebRoleContextModel.FK_dbo_ProductPlaces_dbo_AutoServices_AutoService_Id1">
+            <End Role="AutoServices" EntitySet="AutoServices" />
+            <End Role="ProductPlaces" EntitySet="ProductPlaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_UserRole" Association="Mvc4WebRole.Models.Mvc4WebRoleContextModel.FK_UserRole_UserRole">
+            <End Role="UserRole" EntitySet="UserRole" />
+            <End Role="UserRole1" EntitySet="UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_webpages_OAuthMembership_dbo_webpages_Membership_UserId" Association="Mvc4WebRole.Models.Mvc4WebRoleContextModel.FK_dbo_webpages_OAuthMembership_dbo_webpages_Membership_UserId">
+            <End Role="webpages_Membership" EntitySet="webpages_Membership" />
+            <End Role="webpages_OAuthMembership" EntitySet="webpages_OAuthMembership" />
+          </AssociationSet>
+          <AssociationSet Name="webpages_UsersInRoles" Association="Mvc4WebRole.Models.Mvc4WebRoleContextModel.webpages_UsersInRoles">
+            <End Role="webpages_Membership" EntitySet="webpages_Membership" />
+            <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+          </AssociationSet>
+          <EntitySet Name="Tokens" EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Tokens" />
+          </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AuthTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AutoServices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AuthorizedName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AuthorizedSurname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AuthorizedEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AuthorizedPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AuthorizedPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddressDefinition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CountryId" Type="Int32" />
+          <Property Name="CityId" Type="Int32" />
+          <Property Name="RegionId" Type="Int32" />
+          <Property Name="RegistererId" Type="Int64" />
+          <Property Name="ModifierId" Type="Int64" />
+          <Property Name="MapURL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="FeedCount" Type="Int32" />
+          <NavigationProperty Name="ProductPlaces" Relationship="Mvc4WebRole.Models.Mvc4WebRoleContextModel.FK_dbo_ProductPlaces_dbo_AutoServices_AutoService_Id1" FromRole="AutoServices" ToRole="ProductPlaces" />
+        </EntityType>
+        <EntityType Name="Bills">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="IsCompany" Type="Boolean" />
+          <Property Name="TaxNumber" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="TaxOffice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdentityNumber" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CityId" Type="Int32" Nullable="false" />
+          <Property Name="TownId" Type="Int32" Nullable="false" />
+          <Property Name="SubDistrictId" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="GsmNumber" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="FaxNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="OrderNote" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Campaign" Type="Decimal" Precision="17" Scale="2" />
+          <Property Name="OrderId" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CaseTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RootLevel" Type="Int32" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ChatLogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SenderUserId" Type="Int32" Nullable="false" />
+          <Property Name="ReceiverUserId" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Guid" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Ip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="CityPlateCode" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Colors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Countries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CountryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Credits">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int64" />
+          <Property Name="CustomerId" Type="Int64" />
+          <Property Name="Price" Type="Decimal" Precision="17" Scale="2" />
+          <Property Name="CreditcardNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreditcardOwner" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SecureCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Month" Type="Int32" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Installments" Type="Int32" />
+          <Property Name="DateTime" Type="DateTime" Precision="3" />
+          <Property Name="Ip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Currencies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DamageStates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Denominations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShortName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Districts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="City_Id" Type="Int32" Nullable="false" />
+          <Property Name="Town_Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="PostCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EnginePowers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EngineVolumes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="FuelTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Galleries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="WebAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="18" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="18" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="MapURL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AuthorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AuthorSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AuthorPhone" Type="String" MaxLength="18" FixedLength="false" Unicode="true" />
+          <Property Name="AuthorEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="FeedCount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="GearTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="GuarantySituations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Marks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MarkName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MarkCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ModelYears">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int64" />
+          <Property Name="ProductId" Type="Int64" />
+          <Property Name="ProductPrice" Type="Decimal" Precision="17" Scale="2" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="ProductGrupId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Price" Type="Decimal" Precision="17" Scale="2" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Explanation" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="OrderStatusId" Type="Int32" />
+          <Property Name="PaymentTypeId" Type="Int32" />
+          <Property Name="TransportTypeId" Type="Int32" />
+          <Property Name="RequesterUserId" Type="Int32" />
+          <Property Name="RequesterAddressId" Type="Int32" />
+          <Property Name="ResponderUserId" Type="Int32" />
+          <Property Name="ResponderAddressId" Type="Int32" />
+          <Property Name="ResponderFirmTypeId" Type="Int32" />
+          <Property Name="ResponderFirmId" Type="Int32" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsBilling" Type="Boolean" />
+          <Property Name="Discount" Type="Int32" />
+          <Property Name="IsTransportFree" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="PaymentTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PlateNationalities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PostComments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PostId" Type="Int64" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PostLikes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PostId" Type="Int64" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PostShares">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PostId" Type="Int64" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductCategoryProvider">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OtomotivistCategoryId" Type="Int32" />
+          <Property Name="OtherSystemStockCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProductGroupProvider">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OtomotivistProductGroupId" Type="Int32" />
+          <Property Name="OtherSystemProductGroupId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProductGroups">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="CatId" Type="Int32" />
+          <Property Name="ProductName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProductPlaces">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AutoServiceId" Type="Int32" />
+          <Property Name="IpAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AutoService_Id" Type="Int32" />
+          <Property Name="AutoService_Id1" Type="Int32" />
+          <NavigationProperty Name="AutoServices" Relationship="Mvc4WebRole.Models.Mvc4WebRoleContextModel.FK_dbo_ProductPlaces_dbo_AutoServices_AutoService_Id1" FromRole="ProductPlaces" ToRole="AutoServices" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EqualId" Type="Int64" />
+          <Property Name="SubProductId" Type="Int64" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="GroupId" Type="Int32" />
+          <Property Name="MarkId" Type="Int32" />
+          <Property Name="StatusId" Type="Int32" />
+          <Property Name="DenominationId" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="PlaceId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Barcode" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Explanation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ImagePath0" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath3" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath4" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath5" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath6" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath7" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath8" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath9" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath10" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="VideoPath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="OfferedPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CurrentPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PriceCurrencyId" Type="Int32" />
+          <Property Name="ModelYear" Type="Int32" />
+          <Property Name="RecordDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastAccessDate" Type="DateTime" Precision="3" />
+          <Property Name="RegistererId" Type="Int32" />
+          <Property Name="ModifierId" Type="Int32" />
+          <Property Name="FeedCount" Type="Int32" />
+          <Property Name="SpecialCode" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="Category_Id" Type="Int32" />
+          <Property Name="ProductGroup_Id" Type="Int32" />
+          <Property Name="ProductPlace_Id" Type="Int32" />
+          <Property Name="ProductState_Id" Type="Int32" />
+          <Property Name="ProductType" Type="Int32" />
+          <Property Name="Km" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsExchangable" Type="Boolean" Nullable="false" />
+          <Property Name="AAS" Type="Boolean" Nullable="false" />
+          <Property Name="ASR" Type="Boolean" Nullable="false" />
+          <Property Name="HavaYastigiPerdeler" Type="Boolean" Nullable="false" />
+          <Property Name="Immobilizer" Type="Boolean" Nullable="false" />
+          <Property Name="ParkMesafeKontrol" Type="Boolean" Nullable="false" />
+          <Property Name="EDB" Type="Boolean" Nullable="false" />
+          <Property Name="HavaYastigiSurucu" Type="Boolean" Nullable="false" />
+          <Property Name="ABS" Type="Boolean" Nullable="false" />
+          <Property Name="Isofix" Type="Boolean" Nullable="false" />
+          <Property Name="Alarm" Type="Boolean" Nullable="false" />
+          <Property Name="EDL" Type="Boolean" Nullable="false" />
+          <Property Name="HavaYastigiYan" Type="Boolean" Nullable="false" />
+          <Property Name="LastikArizaGostergesi" Type="Boolean" Nullable="false" />
+          <Property Name="ArkaGorusKamerasi" Type="Boolean" Nullable="false" />
+          <Property Name="ESP" Type="Boolean" Nullable="false" />
+          <Property Name="HavaYastigiYolcu" Type="Boolean" Nullable="false" />
+          <Property Name="MerkeziKilit" Type="Boolean" Nullable="false" />
+          <Property Name="SeritTakipSistemi" Type="Boolean" Nullable="false" />
+          <Property Name="GeceGorus" Type="Boolean" Nullable="false" />
+          <Property Name="UzaktanKumanda" Type="Boolean" Nullable="false" />
+          <Property Name="Airmatic" Type="Boolean" Nullable="false" />
+          <Property Name="TCS" Type="Boolean" Nullable="false" />
+          <Property Name="YorgunlukTespitSistemi" Type="Boolean" Nullable="false" />
+          <Property Name="Bas" Type="Boolean" Nullable="false" />
+          <Property Name="AhsapDireksiyon" Type="Boolean" Nullable="false" />
+          <Property Name="DeriDireksiyon" Type="Boolean" Nullable="false" />
+          <Property Name="HafizaliKoltuklar" Type="Boolean" Nullable="false" />
+          <Property Name="Koltukisitma" Type="Boolean" Nullable="false" />
+          <Property Name="Sunroof" Type="Boolean" Nullable="false" />
+          <Property Name="AnahtarsizCalistirabilme" Type="Boolean" Nullable="false" />
+          <Property Name="DeriKoltuk" Type="Boolean" Nullable="false" />
+          <Property Name="HizSabitleyici" Type="Boolean" Nullable="false" />
+          <Property Name="Klima" Type="Boolean" Nullable="false" />
+          <Property Name="BlueTooth" Type="Boolean" Nullable="false" />
+          <Property Name="Telefon" Type="Boolean" Nullable="false" />
+          <Property Name="AyarlanabilirDireksiyon" Type="Boolean" Nullable="false" />
+          <Property Name="HidrolikDireksiyon" Type="Boolean" Nullable="false" />
+          <Property Name="YolBilgisayari" Type="Boolean" Nullable="false" />
+          <Property Name="ElektirikliIsitmaliCamlar" Type="Boolean" Nullable="false" />
+          <Property Name="IsitmaliDireksiyon" Type="Boolean" Nullable="false" />
+          <Property Name="SogutmaliTorpido" Type="Boolean" Nullable="false" />
+          <Property Name="HeadUpDisplay" Type="Boolean" Nullable="false" />
+          <Property Name="IleriGorusKamerasi" Type="Boolean" Nullable="false" />
+          <Property Name="GeriGorusKamerasi" Type="Boolean" Nullable="false" />
+          <Property Name="KolDayama" Type="Boolean" Nullable="false" />
+          <Property Name="IleriIleriVitesler" Type="Boolean" Nullable="false" />
+          <Property Name="AlasimJantlar" Type="Boolean" Nullable="false" />
+          <Property Name="FarYikama" Type="Boolean" Nullable="false" />
+          <Property Name="YagmurSensoru" Type="Boolean" Nullable="false" />
+          <Property Name="CamTavan" Type="Boolean" Nullable="false" />
+          <Property Name="Modifiyeli" Type="Boolean" Nullable="false" />
+          <Property Name="SisFari" Type="Boolean" Nullable="false" />
+          <Property Name="ElektirikliYanAynalar" Type="Boolean" Nullable="false" />
+          <Property Name="FarSensoru" Type="Boolean" Nullable="false" />
+          <Property Name="XenonFarlar" Type="Boolean" Nullable="false" />
+          <Property Name="ParkSensoru" Type="Boolean" Nullable="false" />
+          <Property Name="KatlanirAynalar" Type="Boolean" Nullable="false" />
+          <Property Name="GeceSensoru" Type="Boolean" Nullable="false" />
+          <Property Name="ArkaCamBuzCozucu" Type="Boolean" Nullable="false" />
+          <Property Name="PanoramikOnCam" Type="Boolean" Nullable="false" />
+          <Property Name="PanaromikCamTavan" Type="Boolean" Nullable="false" />
+          <Property Name="HardTop" Type="Boolean" Nullable="false" />
+          <Property Name="RadyoType" Type="Boolean" Nullable="false" />
+          <Property Name="RadyoCD" Type="Boolean" Nullable="false" />
+          <Property Name="Mp3Calabilme" Type="Boolean" Nullable="false" />
+          <Property Name="NavigasyonTV" Type="Boolean" Nullable="false" />
+          <Property Name="USBAUX" Type="Boolean" Nullable="false" />
+          <Property Name="AUX" Type="Boolean" Nullable="false" />
+          <Property Name="IPod" Type="Boolean" Nullable="false" />
+          <Property Name="Hoparlor6" Type="Boolean" Nullable="false" />
+          <Property Name="CDDVDDegistirici" Type="Boolean" Nullable="false" />
+          <Property Name="NotSmoked" Type="Boolean" Nullable="false" />
+          <Property Name="FromForeigner" Type="Boolean" Nullable="false" />
+          <Property Name="UrgentSale" Type="Boolean" Nullable="false" />
+          <Property Name="Maturity" Type="Boolean" Nullable="false" />
+          <Property Name="ProductSeller" Type="Int32" />
+          <Property Name="IsUsed" Type="Boolean" />
+          <Property Name="VehicleType" Type="Int32" />
+          <Property Name="DamageState" Type="Int32" />
+          <Property Name="GuarantySituation" Type="Int32" />
+          <Property Name="PublishDuration" Type="Int32" />
+          <Property Name="FuelType" Type="Int32" />
+          <Property Name="GearType" Type="Int32" />
+          <Property Name="Color" Type="Int32" />
+          <Property Name="CaseType" Type="Int32" />
+          <Property Name="EngineCapacity" Type="Int32" />
+          <Property Name="EnginePower" Type="Int32" />
+          <Property Name="Traction" Type="Int32" />
+          <Property Name="Warranty" Type="Int32" />
+          <Property Name="PlateNationality" Type="Int32" />
+          <Property Name="Country" Type="Int32" />
+          <Property Name="City" Type="Int32" />
+          <Property Name="Region" Type="Int32" />
+          <Property Name="District" Type="Int32" />
+          <Property Name="ServiceName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ServiceAddress" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="ServiceType" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="ServiceTelephone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ServiceAuthor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ServiceProperties" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ServicePoint" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ProductSeller">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProductStates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProductTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PublishDurations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Regions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PostCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SpareParts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="WebAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="18" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="18" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="MapURL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AuthorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AuthorSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AuthorPhone" Type="String" MaxLength="18" FixedLength="false" Unicode="true" />
+          <Property Name="AuthorEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="FeedCount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SubDistrict">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="CityId" Type="Int32" Nullable="false" />
+          <Property Name="TownId" Type="Int32" Nullable="false" />
+          <Property Name="DistrictId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Towns">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="City_Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TractionTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TransportTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserAdresses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="CountryId" Type="Int32" />
+          <Property Name="CityId" Type="Int32" />
+          <Property Name="RegionId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="UserEducationLevel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EducationLevel" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserFeedbacks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="AutoServiceId" Type="Int32" />
+          <Property Name="GalleryId" Type="Int32" />
+          <Property Name="PleasedCount" Type="Int32" />
+          <Property Name="UnpleasedCount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="UserFriends">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="FriendUserId" Type="Int32" Nullable="false" />
+          <Property Name="AutherTypeId" Type="Int32" />
+          <Property Name="OtherSettings" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserGender">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Boolean" Nullable="false" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserJob">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Job" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserMessages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SenderUserId" Type="Int32" Nullable="false" />
+          <Property Name="ReceiverUserId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SendingDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ReceiveDate" Type="DateTime" Precision="3" />
+          <Property Name="AttachedFilePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsRead" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="UserPosts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Content" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="UploadPath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PostDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <Property Name="LikeCount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserTypeId" Type="Int32" />
+          <Property Name="eMail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HomePhone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="GSM" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="WorkPhone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="Boolean" />
+          <Property Name="EducationLevel" Type="Int32" />
+          <Property Name="Job" Type="Int32" />
+          <Property Name="ProfilePhoto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TCid" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="RoleId" Type="Int32" />
+          <NavigationProperty Name="UserRole1" Relationship="Mvc4WebRole.Models.Mvc4WebRoleContextModel.FK_UserRole_UserRole" FromRole="UserRole" ToRole="UserRole1" />
+          <NavigationProperty Name="UserRole2" Relationship="Mvc4WebRole.Models.Mvc4WebRoleContextModel.FK_UserRole_UserRole" FromRole="UserRole1" ToRole="UserRole" />
+        </EntityType>
+        <EntityType Name="UserTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="AutoServiceId" Type="Int32" />
+          <Property Name="GalleryId" Type="Int32" />
+          <Property Name="SparePartsId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="VehicleTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="webpages_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="ConfirmationToken" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IsConfirmed" Type="Boolean" />
+          <Property Name="LastPasswordFailureDate" Type="DateTime" Precision="3" />
+          <Property Name="PasswordFailuresSinceLastSuccess" Type="Int32" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordChangedDate" Type="DateTime" Precision="3" />
+          <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordVerificationToken" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordVerificationTokenExpirationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="webpages_OAuthMembership" Relationship="Mvc4WebRole.Models.Mvc4WebRoleContextModel.FK_dbo_webpages_OAuthMembership_dbo_webpages_Membership_UserId" FromRole="webpages_Membership" ToRole="webpages_OAuthMembership" />
+          <NavigationProperty Name="webpages_Roles" Relationship="Mvc4WebRole.Models.Mvc4WebRoleContextModel.webpages_UsersInRoles" FromRole="webpages_Membership" ToRole="webpages_Roles" />
+        </EntityType>
+        <EntityType Name="webpages_OAuthMembership">
+          <Key>
+            <PropertyRef Name="Provider" />
+            <PropertyRef Name="ProviderUserId" />
+          </Key>
+          <Property Name="Provider" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderUserId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="webpages_Membership" Relationship="Mvc4WebRole.Models.Mvc4WebRoleContextModel.FK_dbo_webpages_OAuthMembership_dbo_webpages_Membership_UserId" FromRole="webpages_OAuthMembership" ToRole="webpages_Membership" />
+        </EntityType>
+        <EntityType Name="webpages_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="webpages_Membership" Relationship="Mvc4WebRole.Models.Mvc4WebRoleContextModel.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="webpages_Membership" />
+        </EntityType>
+        <EntityType Name="BankBins">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BIN" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_dbo_ProductPlaces_dbo_AutoServices_AutoService_Id1">
+          <End Type="Mvc4WebRole.Models.Mvc4WebRoleContextModel.AutoServices" Role="AutoServices" Multiplicity="0..1" />
+          <End Type="Mvc4WebRole.Models.Mvc4WebRoleContextModel.ProductPlaces" Role="ProductPlaces" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AutoServices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductPlaces">
+              <PropertyRef Name="AutoService_Id1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_UserRole">
+          <End Type="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserRole" Role="UserRole" Multiplicity="1" />
+          <End Type="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserRole" Role="UserRole1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRole1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_webpages_OAuthMembership_dbo_webpages_Membership_UserId">
+          <End Type="Mvc4WebRole.Models.Mvc4WebRoleContextModel.webpages_Membership" Role="webpages_Membership" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Mvc4WebRole.Models.Mvc4WebRoleContextModel.webpages_OAuthMembership" Role="webpages_OAuthMembership" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="webpages_Membership">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="webpages_OAuthMembership">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="webpages_UsersInRoles">
+          <End Type="Mvc4WebRole.Models.Mvc4WebRoleContextModel.webpages_Membership" Role="webpages_Membership" Multiplicity="*" />
+          <End Type="Mvc4WebRole.Models.Mvc4WebRoleContextModel.webpages_Roles" Role="webpages_Roles" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Tokens">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Token" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Mvc4WebRoleModelsMvc4WebRoleContextModelStoreContainer" CdmEntityContainer="Entities">
+          <FunctionImportMapping FunctionImportName="Insert_Ford_StockToOtomotivist" FunctionName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Store.Insert_Ford_StockToOtomotivist" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="UpdateStockCategory" FunctionName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Store.UpdateStockCategory" />
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AuthTypes">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.AuthTypes">
+              <MappingFragment StoreEntitySet="AuthTypes">
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AutoServices">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.AutoServices">
+              <MappingFragment StoreEntitySet="AutoServices">
+                <ScalarProperty Name="FeedCount" ColumnName="FeedCount" />
+                <ScalarProperty Name="MapURL" ColumnName="MapURL" />
+                <ScalarProperty Name="ModifierId" ColumnName="ModifierId" />
+                <ScalarProperty Name="RegistererId" ColumnName="RegistererId" />
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="AddressDefinition" ColumnName="AddressDefinition" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="AuthorizedPhone" ColumnName="AuthorizedPhone" />
+                <ScalarProperty Name="AuthorizedPassword" ColumnName="AuthorizedPassword" />
+                <ScalarProperty Name="AuthorizedEmail" ColumnName="AuthorizedEmail" />
+                <ScalarProperty Name="AuthorizedSurname" ColumnName="AuthorizedSurname" />
+                <ScalarProperty Name="AuthorizedName" ColumnName="AuthorizedName" />
+                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bills">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Bills">
+              <MappingFragment StoreEntitySet="Bills">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="Campaign" ColumnName="Campaign" />
+                <ScalarProperty Name="OrderNote" ColumnName="OrderNote" />
+                <ScalarProperty Name="FaxNumber" ColumnName="FaxNumber" />
+                <ScalarProperty Name="GsmNumber" ColumnName="GsmNumber" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="SubDistrictId" ColumnName="SubDistrictId" />
+                <ScalarProperty Name="TownId" ColumnName="TownId" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdentityNumber" ColumnName="IdentityNumber" />
+                <ScalarProperty Name="TaxOffice" ColumnName="TaxOffice" />
+                <ScalarProperty Name="TaxNumber" ColumnName="TaxNumber" />
+                <ScalarProperty Name="IsCompany" ColumnName="IsCompany" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CaseTypes">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.CaseTypes">
+              <MappingFragment StoreEntitySet="CaseTypes">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Categories">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="RootLevel" ColumnName="RootLevel" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChatLogs">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.ChatLogs">
+              <MappingFragment StoreEntitySet="ChatLogs">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Ip" ColumnName="Ip" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="ReceiverUserId" ColumnName="ReceiverUserId" />
+                <ScalarProperty Name="SenderUserId" ColumnName="SenderUserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Cities">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CityPlateCode" ColumnName="CityPlateCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Colors">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Colors">
+              <MappingFragment StoreEntitySet="Colors">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Countries">
+              <MappingFragment StoreEntitySet="Countries">
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Credits">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Credits">
+              <MappingFragment StoreEntitySet="Credits">
+                <ScalarProperty Name="Ip" ColumnName="Ip" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="Installments" ColumnName="Installments" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="SecureCode" ColumnName="SecureCode" />
+                <ScalarProperty Name="CreditcardOwner" ColumnName="CreditcardOwner" />
+                <ScalarProperty Name="CreditcardNumber" ColumnName="CreditcardNumber" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Currencies">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Currencies">
+              <MappingFragment StoreEntitySet="Currencies">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DamageStates">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.DamageStates">
+              <MappingFragment StoreEntitySet="DamageStates">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Denominations">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Denominations">
+              <MappingFragment StoreEntitySet="Denominations">
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Districts">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Districts">
+              <MappingFragment StoreEntitySet="Districts">
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Town_Id" ColumnName="Town_Id" />
+                <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EnginePowers">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.EnginePowers">
+              <MappingFragment StoreEntitySet="EnginePowers">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EngineVolumes">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.EngineVolumes">
+              <MappingFragment StoreEntitySet="EngineVolumes">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FuelTypes">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.FuelTypes">
+              <MappingFragment StoreEntitySet="FuelTypes">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Galleries">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Galleries">
+              <MappingFragment StoreEntitySet="Galleries">
+                <ScalarProperty Name="FeedCount" ColumnName="FeedCount" />
+                <ScalarProperty Name="AuthorEmail" ColumnName="AuthorEmail" />
+                <ScalarProperty Name="AuthorPhone" ColumnName="AuthorPhone" />
+                <ScalarProperty Name="AuthorSurname" ColumnName="AuthorSurname" />
+                <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
+                <ScalarProperty Name="MapURL" ColumnName="MapURL" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="WebAddress" ColumnName="WebAddress" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GearTypes">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.GearTypes">
+              <MappingFragment StoreEntitySet="GearTypes">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GuarantySituations">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.GuarantySituations">
+              <MappingFragment StoreEntitySet="GuarantySituations">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marks">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Marks">
+              <MappingFragment StoreEntitySet="Marks">
+                <ScalarProperty Name="MarkCode" ColumnName="MarkCode" />
+                <ScalarProperty Name="MarkName" ColumnName="MarkName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ModelYears">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.ModelYears">
+              <MappingFragment StoreEntitySet="ModelYears">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.OrderDetails">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="ProductGrupId" ColumnName="ProductGrupId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="IsTransportFree" ColumnName="IsTransportFree" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="IsBilling" ColumnName="IsBilling" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="ResponderFirmId" ColumnName="ResponderFirmId" />
+                <ScalarProperty Name="ResponderFirmTypeId" ColumnName="ResponderFirmTypeId" />
+                <ScalarProperty Name="ResponderAddressId" ColumnName="ResponderAddressId" />
+                <ScalarProperty Name="ResponderUserId" ColumnName="ResponderUserId" />
+                <ScalarProperty Name="RequesterAddressId" ColumnName="RequesterAddressId" />
+                <ScalarProperty Name="RequesterUserId" ColumnName="RequesterUserId" />
+                <ScalarProperty Name="TransportTypeId" ColumnName="TransportTypeId" />
+                <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
+                <ScalarProperty Name="OrderStatusId" ColumnName="OrderStatusId" />
+                <ScalarProperty Name="Explanation" ColumnName="Explanation" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentTypes">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.PaymentTypes">
+              <MappingFragment StoreEntitySet="PaymentTypes">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlateNationalities">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.PlateNationalities">
+              <MappingFragment StoreEntitySet="PlateNationalities">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PostComments">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.PostComments">
+              <MappingFragment StoreEntitySet="PostComments">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PostLikes">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.PostLikes">
+              <MappingFragment StoreEntitySet="PostLikes">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PostShares">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.PostShares">
+              <MappingFragment StoreEntitySet="PostShares">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductCategoryProvider">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.ProductCategoryProvider">
+              <MappingFragment StoreEntitySet="ProductCategoryProvider">
+                <ScalarProperty Name="OtherSystemStockCode" ColumnName="OtherSystemStockCode" />
+                <ScalarProperty Name="OtomotivistCategoryId" ColumnName="OtomotivistCategoryId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductGroupProvider">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.ProductGroupProvider">
+              <MappingFragment StoreEntitySet="ProductGroupProvider">
+                <ScalarProperty Name="OtherSystemProductGroupId" ColumnName="OtherSystemProductGroupId" />
+                <ScalarProperty Name="OtomotivistProductGroupId" ColumnName="OtomotivistProductGroupId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductGroups">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.ProductGroups">
+              <MappingFragment StoreEntitySet="ProductGroups">
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="CatId" ColumnName="CatId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductPlaces">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.ProductPlaces">
+              <MappingFragment StoreEntitySet="ProductPlaces">
+                <ScalarProperty Name="AutoService_Id1" ColumnName="AutoService_Id1" />
+                <ScalarProperty Name="AutoService_Id" ColumnName="AutoService_Id" />
+                <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+                <ScalarProperty Name="AutoServiceId" ColumnName="AutoServiceId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Products">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="ServicePoint" ColumnName="ServicePoint" />
+                <ScalarProperty Name="ServiceProperties" ColumnName="ServiceProperties" />
+                <ScalarProperty Name="ServiceAuthor" ColumnName="ServiceAuthor" />
+                <ScalarProperty Name="ServiceTelephone" ColumnName="ServiceTelephone" />
+                <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
+                <ScalarProperty Name="ServiceAddress" ColumnName="ServiceAddress" />
+                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="PlateNationality" ColumnName="PlateNationality" />
+                <ScalarProperty Name="Warranty" ColumnName="Warranty" />
+                <ScalarProperty Name="Traction" ColumnName="Traction" />
+                <ScalarProperty Name="EnginePower" ColumnName="EnginePower" />
+                <ScalarProperty Name="EngineCapacity" ColumnName="EngineCapacity" />
+                <ScalarProperty Name="CaseType" ColumnName="CaseType" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="GearType" ColumnName="GearType" />
+                <ScalarProperty Name="FuelType" ColumnName="FuelType" />
+                <ScalarProperty Name="PublishDuration" ColumnName="PublishDuration" />
+                <ScalarProperty Name="GuarantySituation" ColumnName="GuarantySituation" />
+                <ScalarProperty Name="DamageState" ColumnName="DamageState" />
+                <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+                <ScalarProperty Name="IsUsed" ColumnName="IsUsed" />
+                <ScalarProperty Name="ProductSeller" ColumnName="ProductSeller" />
+                <ScalarProperty Name="Maturity" ColumnName="Maturity" />
+                <ScalarProperty Name="UrgentSale" ColumnName="UrgentSale" />
+                <ScalarProperty Name="FromForeigner" ColumnName="FromForeigner" />
+                <ScalarProperty Name="NotSmoked" ColumnName="NotSmoked" />
+                <ScalarProperty Name="CDDVDDegistirici" ColumnName="CDDVDDegistirici" />
+                <ScalarProperty Name="Hoparlor6" ColumnName="Hoparlor6" />
+                <ScalarProperty Name="IPod" ColumnName="IPod" />
+                <ScalarProperty Name="AUX" ColumnName="AUX" />
+                <ScalarProperty Name="USBAUX" ColumnName="USBAUX" />
+                <ScalarProperty Name="NavigasyonTV" ColumnName="NavigasyonTV" />
+                <ScalarProperty Name="Mp3Calabilme" ColumnName="Mp3Calabilme" />
+                <ScalarProperty Name="RadyoCD" ColumnName="RadyoCD" />
+                <ScalarProperty Name="RadyoType" ColumnName="RadyoType" />
+                <ScalarProperty Name="HardTop" ColumnName="HardTop" />
+                <ScalarProperty Name="PanaromikCamTavan" ColumnName="PanaromikCamTavan" />
+                <ScalarProperty Name="PanoramikOnCam" ColumnName="PanoramikOnCam" />
+                <ScalarProperty Name="ArkaCamBuzCozucu" ColumnName="ArkaCamBuzCozucu" />
+                <ScalarProperty Name="GeceSensoru" ColumnName="GeceSensoru" />
+                <ScalarProperty Name="KatlanirAynalar" ColumnName="KatlanirAynalar" />
+                <ScalarProperty Name="ParkSensoru" ColumnName="ParkSensoru" />
+                <ScalarProperty Name="XenonFarlar" ColumnName="XenonFarlar" />
+                <ScalarProperty Name="FarSensoru" ColumnName="FarSensoru" />
+                <ScalarProperty Name="ElektirikliYanAynalar" ColumnName="ElektirikliYanAynalar" />
+                <ScalarProperty Name="SisFari" ColumnName="SisFari" />
+                <ScalarProperty Name="Modifiyeli" ColumnName="Modifiyeli" />
+                <ScalarProperty Name="CamTavan" ColumnName="CamTavan" />
+                <ScalarProperty Name="YagmurSensoru" ColumnName="YagmurSensoru" />
+                <ScalarProperty Name="FarYikama" ColumnName="FarYikama" />
+                <ScalarProperty Name="AlasimJantlar" ColumnName="AlasimJantlar" />
+                <ScalarProperty Name="IleriIleriVitesler" ColumnName="IleriIleriVitesler" />
+                <ScalarProperty Name="KolDayama" ColumnName="KolDayama" />
+                <ScalarProperty Name="GeriGorusKamerasi" ColumnName="GeriGorusKamerasi" />
+                <ScalarProperty Name="IleriGorusKamerasi" ColumnName="IleriGorusKamerasi" />
+                <ScalarProperty Name="HeadUpDisplay" ColumnName="HeadUpDisplay" />
+                <ScalarProperty Name="SogutmaliTorpido" ColumnName="SogutmaliTorpido" />
+                <ScalarProperty Name="IsitmaliDireksiyon" ColumnName="IsitmaliDireksiyon" />
+                <ScalarProperty Name="ElektirikliIsitmaliCamlar" ColumnName="ElektirikliIsitmaliCamlar" />
+                <ScalarProperty Name="YolBilgisayari" ColumnName="YolBilgisayari" />
+                <ScalarProperty Name="HidrolikDireksiyon" ColumnName="HidrolikDireksiyon" />
+                <ScalarProperty Name="AyarlanabilirDireksiyon" ColumnName="AyarlanabilirDireksiyon" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="BlueTooth" ColumnName="BlueTooth" />
+                <ScalarProperty Name="Klima" ColumnName="Klima" />
+                <ScalarProperty Name="HizSabitleyici" ColumnName="HizSabitleyici" />
+                <ScalarProperty Name="DeriKoltuk" ColumnName="DeriKoltuk" />
+                <ScalarProperty Name="AnahtarsizCalistirabilme" ColumnName="AnahtarsizCalistirabilme" />
+                <ScalarProperty Name="Sunroof" ColumnName="Sunroof" />
+                <ScalarProperty Name="Koltukisitma" ColumnName="Koltukisitma" />
+                <ScalarProperty Name="HafizaliKoltuklar" ColumnName="HafizaliKoltuklar" />
+                <ScalarProperty Name="DeriDireksiyon" ColumnName="DeriDireksiyon" />
+                <ScalarProperty Name="AhsapDireksiyon" ColumnName="AhsapDireksiyon" />
+                <ScalarProperty Name="Bas" ColumnName="Bas" />
+                <ScalarProperty Name="YorgunlukTespitSistemi" ColumnName="YorgunlukTespitSistemi" />
+                <ScalarProperty Name="TCS" ColumnName="TCS" />
+                <ScalarProperty Name="Airmatic" ColumnName="Airmatic" />
+                <ScalarProperty Name="UzaktanKumanda" ColumnName="UzaktanKumanda" />
+                <ScalarProperty Name="GeceGorus" ColumnName="GeceGorus" />
+                <ScalarProperty Name="SeritTakipSistemi" ColumnName="SeritTakipSistemi" />
+                <ScalarProperty Name="MerkeziKilit" ColumnName="MerkeziKilit" />
+                <ScalarProperty Name="HavaYastigiYolcu" ColumnName="HavaYastigiYolcu" />
+                <ScalarProperty Name="ESP" ColumnName="ESP" />
+                <ScalarProperty Name="ArkaGorusKamerasi" ColumnName="ArkaGorusKamerasi" />
+                <ScalarProperty Name="LastikArizaGostergesi" ColumnName="LastikArizaGostergesi" />
+                <ScalarProperty Name="HavaYastigiYan" ColumnName="HavaYastigiYan" />
+                <ScalarProperty Name="EDL" ColumnName="EDL" />
+                <ScalarProperty Name="Alarm" ColumnName="Alarm" />
+                <ScalarProperty Name="Isofix" ColumnName="Isofix" />
+                <ScalarProperty Name="ABS" ColumnName="ABS" />
+                <ScalarProperty Name="HavaYastigiSurucu" ColumnName="HavaYastigiSurucu" />
+                <ScalarProperty Name="EDB" ColumnName="EDB" />
+                <ScalarProperty Name="ParkMesafeKontrol" ColumnName="ParkMesafeKontrol" />
+                <ScalarProperty Name="Immobilizer" ColumnName="Immobilizer" />
+                <ScalarProperty Name="HavaYastigiPerdeler" ColumnName="HavaYastigiPerdeler" />
+                <ScalarProperty Name="ASR" ColumnName="ASR" />
+                <ScalarProperty Name="AAS" ColumnName="AAS" />
+                <ScalarProperty Name="IsExchangable" ColumnName="IsExchangable" />
+                <ScalarProperty Name="Km" ColumnName="Km" />
+                <ScalarProperty Name="ProductType" ColumnName="ProductType" />
+                <ScalarProperty Name="ProductState_Id" ColumnName="ProductState_Id" />
+                <ScalarProperty Name="ProductPlace_Id" ColumnName="ProductPlace_Id" />
+                <ScalarProperty Name="ProductGroup_Id" ColumnName="ProductGroup_Id" />
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="SpecialCode" ColumnName="SpecialCode" />
+                <ScalarProperty Name="FeedCount" ColumnName="FeedCount" />
+                <ScalarProperty Name="ModifierId" ColumnName="ModifierId" />
+                <ScalarProperty Name="RegistererId" ColumnName="RegistererId" />
+                <ScalarProperty Name="LastAccessDate" ColumnName="LastAccessDate" />
+                <ScalarProperty Name="RecordDate" ColumnName="RecordDate" />
+                <ScalarProperty Name="ModelYear" ColumnName="ModelYear" />
+                <ScalarProperty Name="PriceCurrencyId" ColumnName="PriceCurrencyId" />
+                <ScalarProperty Name="CurrentPrice" ColumnName="CurrentPrice" />
+                <ScalarProperty Name="OfferedPrice" ColumnName="OfferedPrice" />
+                <ScalarProperty Name="VideoPath" ColumnName="VideoPath" />
+                <ScalarProperty Name="ImagePath10" ColumnName="ImagePath10" />
+                <ScalarProperty Name="ImagePath9" ColumnName="ImagePath9" />
+                <ScalarProperty Name="ImagePath8" ColumnName="ImagePath8" />
+                <ScalarProperty Name="ImagePath7" ColumnName="ImagePath7" />
+                <ScalarProperty Name="ImagePath6" ColumnName="ImagePath6" />
+                <ScalarProperty Name="ImagePath5" ColumnName="ImagePath5" />
+                <ScalarProperty Name="ImagePath4" ColumnName="ImagePath4" />
+                <ScalarProperty Name="ImagePath3" ColumnName="ImagePath3" />
+                <ScalarProperty Name="ImagePath2" ColumnName="ImagePath2" />
+                <ScalarProperty Name="ImagePath1" ColumnName="ImagePath1" />
+                <ScalarProperty Name="ImagePath0" ColumnName="ImagePath0" />
+                <ScalarProperty Name="Explanation" ColumnName="Explanation" />
+                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PlaceId" ColumnName="PlaceId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="DenominationId" ColumnName="DenominationId" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="MarkId" ColumnName="MarkId" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="SubProductId" ColumnName="SubProductId" />
+                <ScalarProperty Name="EqualId" ColumnName="EqualId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductSeller">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.ProductSeller">
+              <MappingFragment StoreEntitySet="ProductSeller">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductStates">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.ProductStates">
+              <MappingFragment StoreEntitySet="ProductStates">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductTypes">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.ProductTypes">
+              <MappingFragment StoreEntitySet="ProductTypes">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PublishDurations">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.PublishDurations">
+              <MappingFragment StoreEntitySet="PublishDurations">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Regions">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Regions">
+              <MappingFragment StoreEntitySet="Regions">
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpareParts">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.SpareParts">
+              <MappingFragment StoreEntitySet="SpareParts">
+                <ScalarProperty Name="FeedCount" ColumnName="FeedCount" />
+                <ScalarProperty Name="AuthorEmail" ColumnName="AuthorEmail" />
+                <ScalarProperty Name="AuthorPhone" ColumnName="AuthorPhone" />
+                <ScalarProperty Name="AuthorSurname" ColumnName="AuthorSurname" />
+                <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
+                <ScalarProperty Name="MapURL" ColumnName="MapURL" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="WebAddress" ColumnName="WebAddress" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubDistrict">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.SubDistrict">
+              <MappingFragment StoreEntitySet="SubDistrict">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="TownId" ColumnName="TownId" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Towns">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Towns">
+              <MappingFragment StoreEntitySet="Towns">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TractionTypes">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.TractionTypes">
+              <MappingFragment StoreEntitySet="TractionTypes">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransportTypes">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.TransportTypes">
+              <MappingFragment StoreEntitySet="TransportTypes">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAdresses">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserAdresses">
+              <MappingFragment StoreEntitySet="UserAdresses">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserEducationLevel">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserEducationLevel">
+              <MappingFragment StoreEntitySet="UserEducationLevel">
+                <ScalarProperty Name="EducationLevel" ColumnName="EducationLevel" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserFeedbacks">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserFeedbacks">
+              <MappingFragment StoreEntitySet="UserFeedbacks">
+                <ScalarProperty Name="UnpleasedCount" ColumnName="UnpleasedCount" />
+                <ScalarProperty Name="PleasedCount" ColumnName="PleasedCount" />
+                <ScalarProperty Name="GalleryId" ColumnName="GalleryId" />
+                <ScalarProperty Name="AutoServiceId" ColumnName="AutoServiceId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserFriends">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserFriends">
+              <MappingFragment StoreEntitySet="UserFriends">
+                <ScalarProperty Name="OtherSettings" ColumnName="OtherSettings" />
+                <ScalarProperty Name="AutherTypeId" ColumnName="AutherTypeId" />
+                <ScalarProperty Name="FriendUserId" ColumnName="FriendUserId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserGender">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserGender">
+              <MappingFragment StoreEntitySet="UserGender">
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserJob">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserJob">
+              <MappingFragment StoreEntitySet="UserJob">
+                <ScalarProperty Name="Job" ColumnName="Job" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserMessages">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserMessages">
+              <MappingFragment StoreEntitySet="UserMessages">
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+                <ScalarProperty Name="AttachedFilePath" ColumnName="AttachedFilePath" />
+                <ScalarProperty Name="ReceiveDate" ColumnName="ReceiveDate" />
+                <ScalarProperty Name="SendingDate" ColumnName="SendingDate" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ReceiverUserId" ColumnName="ReceiverUserId" />
+                <ScalarProperty Name="SenderUserId" ColumnName="SenderUserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserPosts">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserPosts">
+              <MappingFragment StoreEntitySet="UserPosts">
+                <ScalarProperty Name="LikeCount" ColumnName="LikeCount" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="PostDate" ColumnName="PostDate" />
+                <ScalarProperty Name="UploadPath" ColumnName="UploadPath" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfile">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="TCid" ColumnName="TCid" />
+                <ScalarProperty Name="ProfilePhoto" ColumnName="ProfilePhoto" />
+                <ScalarProperty Name="Job" ColumnName="Job" />
+                <ScalarProperty Name="EducationLevel" ColumnName="EducationLevel" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
+                <ScalarProperty Name="GSM" ColumnName="GSM" />
+                <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="eMail" ColumnName="eMail" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRole">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserRole">
+              <MappingFragment StoreEntitySet="UserRole">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTypes">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserTypes">
+              <MappingFragment StoreEntitySet="UserTypes">
+                <ScalarProperty Name="SparePartsId" ColumnName="SparePartsId" />
+                <ScalarProperty Name="GalleryId" ColumnName="GalleryId" />
+                <ScalarProperty Name="AutoServiceId" ColumnName="AutoServiceId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehicleTypes">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.VehicleTypes">
+              <MappingFragment StoreEntitySet="VehicleTypes">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_Membership">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.webpages_Membership">
+              <MappingFragment StoreEntitySet="webpages_Membership">
+                <ScalarProperty Name="PasswordVerificationTokenExpirationDate" ColumnName="PasswordVerificationTokenExpirationDate" />
+                <ScalarProperty Name="PasswordVerificationToken" ColumnName="PasswordVerificationToken" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="PasswordChangedDate" ColumnName="PasswordChangedDate" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PasswordFailuresSinceLastSuccess" ColumnName="PasswordFailuresSinceLastSuccess" />
+                <ScalarProperty Name="LastPasswordFailureDate" ColumnName="LastPasswordFailureDate" />
+                <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+                <ScalarProperty Name="ConfirmationToken" ColumnName="ConfirmationToken" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_OAuthMembership">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.webpages_OAuthMembership">
+              <MappingFragment StoreEntitySet="webpages_OAuthMembership">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderUserId" ColumnName="ProviderUserId" />
+                <ScalarProperty Name="Provider" ColumnName="Provider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="webpages_Roles">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.webpages_Roles">
+              <MappingFragment StoreEntitySet="webpages_Roles">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BankBins">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.BankBins">
+              <MappingFragment StoreEntitySet="BankBins">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="BIN" ColumnName="BIN" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="webpages_UsersInRoles" TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.webpages_UsersInRoles" StoreEntitySet="webpages_UsersInRoles">
+            <EndProperty Name="webpages_Roles">
+              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="webpages_Membership">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Tokens">
+            <EntityTypeMapping TypeName="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Tokens">
+              <MappingFragment StoreEntitySet="Tokens">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

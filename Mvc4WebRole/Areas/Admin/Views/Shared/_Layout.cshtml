@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "_Layout";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - otomotivist Admin Panel</title>
+    <link href="~/favicon.ico"
+          rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet"
+          href="@Url.Content("~/Content/Site.css")" />
+    <link href="~/Areas/Admin/Content/AdminLayoutMenu.css" rel="stylesheet" />
+
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+    <link href="~/Content/DataTables/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../../css/editor.dataTables.min.css">
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.11.3.min.js">
+    </script>
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/ui/1.11.3/jquery-ui.js">
+    </script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js">
+    </script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.1.0/js/dataTables.buttons.min.js">
+    </script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/select/1.1.0/js/dataTables.select.min.js">
+    </script>
+    <script src="~/Scripts/web/js/dataTables.editor.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="content-wrapper">
+            <div class="menu_container">
+                <ul class="menu">
+                    <li>
+                        <a href="/Administration">İlan Yönetimi</a>
+                        <ul>
+                            <li class="submenu">
+                                <a href="/Admin">İlanlar</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/UserManagement">Kullanıcı Yönetimi</a>
+                        <ul>
+                            <li class="submenu"><a href="/Admin/UserManagement">Kullanıcılar</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div style="clear: both">
+                </div>
+            </div>
+        </div>
+    </header>
+    <div id="body">
+        @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>&copy; @DateTime.Now.Year  otomotivist</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+

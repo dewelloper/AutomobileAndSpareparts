@@ -1,0 +1,187 @@
+@using BusinessObjects
+@model BusinessObjects.Product
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.EqualId)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.EqualId)
+    @Html.ValidationMessageFor(model => model.EqualId)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.SubProductId)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.SubProductId)
+    @Html.ValidationMessageFor(model => model.SubProductId)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.CategoryId)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.CategoryId)
+    @Html.ValidationMessageFor(model => model.CategoryId)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.GroupId)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.GroupId)
+    @Html.ValidationMessageFor(model => model.GroupId)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.StatusId)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.StatusId)
+    @Html.ValidationMessageFor(model => model.StatusId)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.PlaceId)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.PlaceId)
+    @Html.ValidationMessageFor(model => model.PlaceId)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Name)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Name)
+    @Html.ValidationMessageFor(model => model.Name)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Code)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Code)
+    @Html.ValidationMessageFor(model => model.Code)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Barcode)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Barcode)
+    @Html.ValidationMessageFor(model => model.Barcode)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Explanation)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Explanation)
+    @Html.ValidationMessageFor(model => model.Explanation)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.ImagePath0)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.ImagePath0)
+    @Html.ValidationMessageFor(model => model.ImagePath0)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.OfferedPrice)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.OfferedPrice)
+    @Html.ValidationMessageFor(model => model.OfferedPrice)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.CurrentPrice)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.CurrentPrice)
+    @Html.ValidationMessageFor(model => model.CurrentPrice)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.RecordDate)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.RecordDate)
+    @Html.ValidationMessageFor(model => model.RecordDate)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.LastAccessDate)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.LastAccessDate)
+    @Html.ValidationMessageFor(model => model.LastAccessDate)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.RegistererId)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.RegistererId)
+    @Html.ValidationMessageFor(model => model.RegistererId)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.ModifierId)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.ModifierId)
+    @Html.ValidationMessageFor(model => model.ModifierId)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.FeedCount)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.FeedCount)
+    @Html.ValidationMessageFor(model => model.FeedCount)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.SpecialCode)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.SpecialCode)
+    @Html.ValidationMessageFor(model => model.SpecialCode)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.IsActive)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.IsActive)
+    @Html.ValidationMessageFor(model => model.IsActive)
+</div>
+
+<div class="editor-label">
+    Mark
+</div>
+<div class="editor-field">
+    @Html.DropDownListFor(model => model.MarkId, ((IEnumerable<Mark>)ViewBag.PossibleMarks).Select(option => new SelectListItem {
+        Text = Html.DisplayTextFor(_ => option).ToString(), 
+        Value = option.Id.ToString(),
+        Selected = (Model != null) && (option.Id == Model.MarkId)
+    }), "Choose...")
+    @Html.ValidationMessageFor(model => model.MarkId)
+</div>
+<div class="editor-label">
+    Denomination
+</div>
+<div class="editor-field">
+    @Html.DropDownListFor(model => model.DenominationId, ((IEnumerable<Denomination>)ViewBag.PossibleDenominations).Select(option => new SelectListItem {
+        Text = (option == null ? "None" : option.Name), 
+        Value = option.Id.ToString(),
+        Selected = (Model != null) && (option.Id == Model.DenominationId)
+    }), "Choose...")
+    @Html.ValidationMessageFor(model => model.DenominationId)
+</div>

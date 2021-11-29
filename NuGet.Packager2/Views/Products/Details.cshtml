@@ -1,0 +1,101 @@
+@model NuGet.Packager2.Products
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Products</legend>
+
+    <div class="display-label">EqualId</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.EqualId).ToString()</div>
+
+    <div class="display-label">SubProductId</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.SubProductId).ToString()</div>
+
+    <div class="display-label">Name</div>
+    <div class="display-field">@Model.Name</div>
+
+    <div class="display-label">Code</div>
+    <div class="display-field">@Model.Code</div>
+
+    <div class="display-label">Barcode</div>
+    <div class="display-field">@Model.Barcode</div>
+
+    <div class="display-label">Explanation</div>
+    <div class="display-field">@Model.Explanation</div>
+
+    <div class="display-label">ImagePath</div>
+    <div class="display-field">@Model.ImagePath</div>
+
+    <div class="display-label">OfferedPrice</div>
+    <div class="display-field">@String.Format("{0:F}", Model.OfferedPrice)</div>
+
+    <div class="display-label">CurrentPrice</div>
+    <div class="display-field">@String.Format("{0:F}", Model.CurrentPrice)</div>
+
+    <div class="display-label">RecordDate</div>
+    <div class="display-field">@String.Format("{0:g}", Model.RecordDate)</div>
+
+    <div class="display-label">LastAccessDate</div>
+    <div class="display-field">@String.Format("{0:g}", Model.LastAccessDate)</div>
+
+    <div class="display-label">RegistererId</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.RegistererId).ToString()</div>
+
+    <div class="display-label">ModifierId</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.ModifierId).ToString()</div>
+
+    <div class="display-label">FeedCount</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.FeedCount).ToString()</div>
+
+    <div class="display-label">SpecialCode</div>
+    <div class="display-field">@Model.SpecialCode</div>
+
+    <div class="display-label">IsActive</div>
+    <div class="display-field">@Model.IsActive</div>
+
+    <div class="display-label">Catagories</div>
+    <div class="display-field">@(Model.Catagories == null ? "None" : Model.Catagories.Name)</div>
+
+    <div class="display-label">CatagoriesReference</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.CatagoriesReference).ToString()</div>
+
+    <div class="display-label">Denominations</div>
+    <div class="display-field">@(Model.Denominations == null ? "None" : Model.Denominations.Name)</div>
+
+    <div class="display-label">DenominationsReference</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.DenominationsReference).ToString()</div>
+
+    <div class="display-label">Marks</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.Marks).ToString()</div>
+
+    <div class="display-label">MarksReference</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.MarksReference).ToString()</div>
+
+    <div class="display-label">ProductGroups</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.ProductGroups).ToString()</div>
+
+    <div class="display-label">ProductGroupsReference</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.ProductGroupsReference).ToString()</div>
+
+    <div class="display-label">ProductPlaces</div>
+    <div class="display-field">@(Model.ProductPlaces == null ? "None" : Model.ProductPlaces.Name)</div>
+
+    <div class="display-label">ProductPlacesReference</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.ProductPlacesReference).ToString()</div>
+
+    <div class="display-label">ProductStates</div>
+    <div class="display-field">@(Model.ProductStates == null ? "None" : Model.ProductStates.Name)</div>
+
+    <div class="display-label">ProductStatesReference</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.ProductStatesReference).ToString()</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

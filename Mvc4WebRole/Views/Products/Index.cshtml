@@ -1,0 +1,186 @@
+@model IEnumerable<BusinessObjects.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table role="presentation">
+    <tbody>
+        <tr>
+            <th></th>
+            <th>
+                EqualId
+            </th>
+            <th>
+                SubProductId
+            </th>
+            <th>
+                CategoryId
+            </th>
+            <th>
+                GroupId
+            </th>
+            <th>
+                StatusId
+            </th>
+            <th>
+                PlaceId
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Code
+            </th>
+            <th>
+                Barcode
+            </th>
+            <th>
+                Explanation
+            </th>
+            <th>
+                ImagePath
+            </th>
+            <th>
+                OfferedPrice
+            </th>
+            <th>
+                CurrentPrice
+            </th>
+            <th>
+                RecordDate
+            </th>
+            <th>
+                LastAccessDate
+            </th>
+            <th>
+                RegistererId
+            </th>
+            <th>
+                ModifierId
+            </th>
+            <th>
+                FeedCount
+            </th>
+            <th>
+                SpecialCode
+            </th>
+            <th>
+                IsActive
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Denomination
+            </th>
+            <th>
+                Mark
+            </th>
+            <th>
+                ProductGroup
+            </th>
+            <th>
+                ProductPlace
+            </th>
+            <th>
+                ProductState
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+                <td>
+                    @item.EqualId
+                </td>
+                <td>
+                    @item.SubProductId
+                </td>
+                <td>
+                    @item.CategoryId
+                </td>
+                <td>
+                    @item.GroupId
+                </td>
+                <td>
+                    @item.StatusId
+                </td>
+                <td>
+                    @item.PlaceId
+                </td>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Code
+                </td>
+                <td>
+                    @item.Barcode
+                </td>
+                <td>
+                    @item.Explanation
+                </td>
+                <td>
+                    @item.ImagePath0
+                </td>
+                <td>
+                    @String.Format("{0:F}", item.OfferedPrice)
+                </td>
+                <td>
+                    @String.Format("{0:F}", item.CurrentPrice)
+                </td>
+                <td>
+                    @String.Format("{0:g}", item.RecordDate)
+                </td>
+                <td>
+                    @String.Format("{0:g}", item.LastAccessDate)
+                </td>
+                <td>
+                    @item.RegistererId
+                </td>
+                <td>
+                    @item.ModifierId
+                </td>
+                <td>
+                    @item.FeedCount
+                </td>
+                <td>
+                    @item.SpecialCode
+                </td>
+                <td>
+                    @item.IsActive
+                </td>
+                <td>
+                    @(item.Category == null ? "None" : item.Category.Name)
+                </td>
+                <td>
+                    @(item.Denomination == null ? "None" : item.Denomination.Name)
+                </td>
+                <td>
+                    @Html.DisplayTextFor(_ => item.Mark).ToString()
+                </td>
+                <td>
+                    @Html.DisplayTextFor(_ => item.ProductGroup).ToString()
+                </td>
+                <td>
+                    @(item.ProductPlace == null ? "None" : item.ProductPlace.Name)
+                </td>
+                <td>
+                    @(item.ProductState == null ? "None" : item.ProductState.Name)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

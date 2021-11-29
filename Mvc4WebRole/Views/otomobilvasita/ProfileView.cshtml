@@ -1,0 +1,420 @@
+@using System.Globalization
+
+@model BusinessObjects.AccountInformation
+
+@{
+    Page.Title = "Oto Galeri";
+}
+
+@{
+    <div id="profilViewUp">
+
+        @if (File.Exists(Server.MapPath(Model.UserProfilePhoto)))
+        {
+            <img src="@Model.UserProfilePhoto" class="UserProfileImg" alt="@Model.UserRealName @Model.UserSurname" />
+        }
+        else
+        {
+            <img src="\Images\UserProfileImages\default_profile.jpg" class="UserProfileImg" alt="@Model.UserRealName @Model.UserSurname" />
+        }
+
+        <div id="UserProfileDetails" itemscope itemtype="http://schema.org/Persson">
+            <table style="float: left;" role="presentation">
+                <tbody>
+                    <tr>
+                        <td><b>Adý Soyadý : </b></td>
+                        <td>@Model.UserRealName @Model.UserSurname</td>
+                    </tr>
+                    <tr>
+                        <td><b>Cinsiyet : </b></td>
+                        <td>
+                            @if (Model.UserGender != null)
+                            {
+                                if (Model.UserGender == true)
+                                {<text>Bayan</text>}
+                            else
+                            {<text>Bay</text>}
+                    }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Eðitim Seviyesi : </b></td>
+                        <td>@Model.UserEducationLevel</td>
+                    </tr>
+                    <tr>
+                        <td><b>Meslek: </b></td>
+                        <td>@Model.UserJob</td>
+                    </tr>
+                    <tr>
+                        <td><b>E-mail : </b></td>
+                        <td>@Model.UserEmail</td>
+                    </tr>
+                    <tr>
+                        <td><b>Cep Telefonu : </b></td>
+                        <td>@Model.UserCellPhone</td>
+                    </tr>
+                    <tr>
+                        <td><b>Adresi : </b></td>
+                        <td>@Model.Adress[0].Address</td>
+                    </tr>
+                    <tr>
+                        <td><b>Ev Telefonu : </b></td>
+                        <td>@Model.UserHomePhone</td>
+                    </tr>
+                    <tr>
+                        <td><b>Ýþ Telefonu : </b></td>
+                        <td>@Model.UserWorkPhone</td>
+                    </tr>
+                    <tr>
+                        <td><b>Fax : </b></td>
+                        <td>@Model.UserFaxNumber</td>
+                    </tr>
+                    <tr>
+                        <td><b>TC Kimkik No : </b></td>
+                        <td>@Model.UserTcId</td>
+                    </tr>
+                    <tr>
+                        <td><b>Doðum Tarihi : </b></td>
+                        <td>@Model.UserBirthDate.ToShortDateString()</td>
+                    </tr>
+                    <tr>
+                        <td><b>Kullanýcý Adý : </b></td>
+                        <td>@Model.UserName</td>
+                        <td>
+                            @{
+                                if (@Model.UserCellPhone != "05...")
+                                {
+                                    <button id="ProfileButtonEdit" style="background-color:green;" onclick="ProfileButtonEditClick();" onkeypress="    if (event.keycode == 13) { ProfileButtonEditClick(); }" class="float-right selectedTab">Düzenle</button>
+                                }
+                            }
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        @using (Html.BeginForm("EditUserProfile", "otomobilvasita", FormMethod.Post, new { id = "submitForm", enctype = "multipart/form-data" }))
+        {
+            <div id="UserProfileDetailsEdit">
+                <table role="presentation" style="float: left;">
+                    <tbody>
+                        <tr>
+                            <td style="width: auto;"><b>Kullanýcý Adý : </b></td>
+                            <td>@Model.UserName</td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Adý Soyadý : </b></td>
+                            <td>@Html.TextBoxFor(k => k.UserRealName, new { id = "Name", Name = "Name" }) @Html.TextBox("Surname", Model.UserSurname) </td>
+                        </tr>
+                        <tr>
+                            <td><b>Cinsiyet : </b></td>
+                            <td>
+                                <span class="FormListBox">
+                                    @Html.DropDownListFor(k => k.UserGenderList.FirstOrDefault().Id, Model.UserGenderList.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Gender.ToString(), Selected = x.Gender == Model.UserGender.ToString() }), new { Name = "Gender" })
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Eðitim Seviyesi : </b></td>
+                            <td>
+                                <span class="FormListBox">
+                                    @Html.DropDownListFor(k => k.UserEducationLevelList.FirstOrDefault().Id, Model.UserEducationLevelList.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.EducationLevel.ToString(), Selected = x.EducationLevel == Model.UserEducationLevel }), new { Name = "EducationLevel" })
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Meslek: </b></td>
+                            <td>
+                                <span class="FormListBox">
+                                    @Html.DropDownListFor(k => k.UserJobList.FirstOrDefault().Id, Model.UserJobList.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Job.ToString(), Selected = x.Job == Model.UserJob }), new { Name = "Job" })
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>E-mail : </b></td>
+                            <td>@Html.TextBox("eMail", Model.UserEmail)</td>
+                        </tr>
+                        <tr>
+                            <td><b>Cep Telefonu : </b></td>
+                            <td>@Html.TextBox("GSM", Model.UserCellPhone)</td>
+                        </tr>
+                        <tr>
+                            <td><b>Adres : </b></td>
+                            <td>@Html.TextBox("Address", Model.Adress[0].Address)</td>
+                        </tr>
+                        <tr>
+                            <td><b>Ev Telefonu : </b></td>
+                            <td>@Html.TextBox("HomePhone", Model.UserHomePhone)</td>
+                        </tr>
+                        <tr>
+                            <td><b>Ýþ Telefonu : </b></td>
+                            <td>@Html.TextBox("WorkPhone", Model.UserWorkPhone)</td>
+                        </tr>
+                        <tr>
+                            <td><b>Fax : </b></td>
+                            <td>@Html.TextBox("Fax", Model.UserFaxNumber)</td>
+                        </tr>
+                        <tr>
+                            <td><b>TC Kimkik No : </b></td>
+                            <td>@Html.TextBox("TCid", Model.UserTcId)</td>
+                        </tr>
+                        <tr>
+                            <td><b>Doðum Tarihi : </b></td>
+                            <td>
+                                <input type="text" id="DateOfBirth" name="DateOfBirth" value="@Model.UserBirthDate">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Profil Resmi : </b></td>
+                            <td>
+                                <input type="file" id="ProfilePhoto" name="ProfilePhoto" accept="image/*" value="@Model.UserProfilePhoto" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Önizleme : </b></td>
+                            <td>
+                                <img id="UserProfileImgPre" src="#" alt="@Model.UserRealName @Model.UserSurname" />
+                            </td>
+                        </tr>
+                        @{const bool removeProfilePhoto = false;
+                            <tr>
+                                <td><b>Profil Resmimi Kaldýr </b></td>
+                                <td>@Html.CheckBox("RemoveProfilePhoto", removeProfilePhoto)</td>
+                            </tr>
+                        }
+                        <tr>
+                            <td></td>
+                            <td>
+                                <button class="float-right btn-success" type="submit" name="profileSaveBtn">Kaydet</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        }
+    </div>
+
+
+    <div id="profilViewDown">
+        <div>
+            @if (@Model.UserGalleries.Count() > 0)
+            {
+                <div>
+                    @Html.Label("Galerisindeki Araçlar")
+                    <br />
+                    @{
+                        var gridVehicle = new WebGrid(Model.UserProducts.Where(m => m.ProductType == 1), canPage: true, canSort: true, rowsPerPage: 10,
+                        selectionFieldName: "selectedRow", ajaxUpdateContainerId: "profileVehicleGrid");
+                        gridVehicle.Pager(WebGridPagerModes.NextPrevious);
+                        <div id="profileVehicleDiv">
+                            @gridVehicle.GetHtml(htmlAttributes: new { id = "profileVehicleGrid" },
+                        tableStyle: "zebra",
+                        alternatingRowStyle: "alternate",
+                        selectedRowStyle: "select",
+                        columns: gridVehicle.Columns(
+                        gridVehicle.Column(header: "Görsel", format: @<text><div style="text-align: center;">
+                                    <img src="@item.ImagePath0" alt="@item.Name" />
+                                    <input type="hidden" id="productId" name="productId" value="@item.id" />
+                                </div></text>),
+               gridVehicle.Column(header: "Ýlan Baþlýðý", format: @<text> @item.Name </text>),
+gridVehicle.Column(header: "Kategorisi", format:
+@<text>
+    @{
+ var catGParentName = "";
+ var catGParentId = Model.PrdcCatList.FirstOrDefault(m => m.Id == item.CategoryId).ParentId;
+ if (catGParentId != null)
+ {
+     catGParentName = Model.PrdcCatList.FirstOrDefault(n => n.Id == catGParentId).Name;
+ }
+    }
+
+    @{
+ var catGParentName2 = "";
+ if (catGParentId != null)
+ {
+     var catGParentId2 = Model.PrdcCatList.FirstOrDefault(m => m.Id == catGParentId).ParentId;
+     if (catGParentId2 != null)
+     {
+         catGParentName2 = Model.PrdcCatList.FirstOrDefault(n => n.Id == catGParentId2).Name;
+     }
+ }
+    }
+
+    @if (!string.IsNullOrEmpty(catGParentName2))
+{
+<text> @catGParentName2 -</text>
+}
+
+    @if (!string.IsNullOrEmpty(catGParentName))
+{
+<text> @catGParentName -</text>
+}
+
+    @{
+ var CatGName = Model.PrdcCatList.FirstOrDefault(k => k.Id == item.CategoryId).Name;
+@CatGName
+    }
+
+</text>),
+gridVehicle.Column(header: "Açýklama", format:
+@<text> @{if (Convert.ToString(item.Explanation).Length < 50)
+ {
+@item.Explanation}
+else
+{
+@item.Explanation.Substring(0, 50); <text>...</text>}}</text>),
+
+gridVehicle.Column(header: "Fiyat", format:
+@<text> @item.CurrentPrice
+@{
+if (item.PriceCurrencyId != null)
+{
+@Model.PrdcCurrList.FirstOrDefault(n => n.Id == item.PriceCurrencyId).Name
+}}</text>),
+gridVehicle.Column(header: "Ýþlem", format:
+@<text>
+    <a class="btn-warning" href="@Url.Action("aracozellikleriduzenle", "otomobilvasita", new { prdcId = item.Id, productCatIds = item.CategoryId, productGroupIds = item.GroupId })">Düzenle</a>
+    <a href="@Url.Action("DeactiveProduct", "otomobilvasita", new { prdcId = item.Id })">Kaldýr</a>
+</text>
+)))
+                        </div>
+                    }
+                </div>
+            }
+            else if (@Model.UserProducts.Count() > 0)
+            {
+                <div>
+                    @Html.Label("Galerisindeki Yedek Parçalar")
+                    <hr />
+                    @{
+                        var grid = new WebGrid(Model.UserProducts.Where(m => m.ProductType == 2), canPage: true, canSort: true, rowsPerPage: 10,
+                    selectionFieldName: "selectedRow", ajaxUpdateContainerId: "otomobilvasitaGrid2");
+                        grid.Pager(WebGridPagerModes.NextPrevious);
+                        <div id="otomobilvasitaGrid">
+                            @grid.GetHtml(htmlAttributes: new { id = "otomobilvasitaGrid2" },
+                        tableStyle: "zebra",
+                        alternatingRowStyle: "alternate",
+                        selectedRowStyle: "select",
+                        columns: grid.Columns(
+                        grid.Column(header: "Görsel", format: @<text><div style="text-align: center;">
+                                    <img src="@item.ImagePath0" alt="@item.Name" />
+                                    <input type="hidden" id="@item.Id" name="@item.Name" value="@item.id" />
+                                </div></text>),
+               grid.Column(header: "Parça Çeþidi", format:
+            @<text>
+                @{ var lpgParentName = "";
+             var lpgParentId = Model.PrdcGrpList.FirstOrDefault(m => m.Id == item.GroupId).ParentId;
+             if (lpgParentId != null)
+             {
+                 lpgParentName = Model.PrdcGrpList.FirstOrDefault(n => n.Id == lpgParentId).ProductName;
+             }
+                }
+                @if (!string.IsNullOrEmpty(lpgParentName))
+         {<text> @lpgParentName -</text>
+}
+                @{ var lpgName = Model.PrdcGrpList.FirstOrDefault(k => k.Id == item.GroupId).ProductName;
+            @lpgName
+                }
+            </text>),
+     grid.Column(header: "Adý", format: @<text> @item.Name </text>),
+grid.Column(header: "Kategorisi", format:
+@<text>
+
+    @{
+ var catGName = Model.PrdcCatList.FirstOrDefault(k => k.Id == item.CategoryId).Name;
+@catGName
+    }
+
+</text>),
+grid.Column(header: "Açýklama", format:
+@<text> @{if (Convert.ToString(item.Explanation).Length < 50)
+ {@item.Explanation}
+else
+{@item.Explanation.Substring(0, 50); <text>...</text>}}</text>),
+grid.Column(header: "Marka", format:
+@<text>@Model.PrdcMarkList.FirstOrDefault(k => k.Id == item.MarkId).MarkName</text>),
+grid.Column(header: "Fiyat", format:
+@<text> @item.CurrentPrice
+@{if (item.PriceCurrencyId != null)
+{
+@Model.PrdcCurrList.FirstOrDefault(n => n.Id == item.PriceCurrencyId).Name
+}}</text>),
+grid.Column(header: "Ýþlem", format:
+@<text>
+    <a href="@Url.Action("aracozellikleriduzenle", "otomobilvasita", new { prdcId = item.Id, productCatIds = item.CategoryId, productGroupIds = item.GroupId })">Düzenle</a>
+    <a href="@Url.Action("DeactiveProduct", "otomobilvasita", new { prdcId = item.Id })">Kaldýr</a>
+</text>)))
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+
+
+    <div id="profilViewSide">
+        <div>
+        </div>
+        <div>
+            <h2></h2>
+        </div>
+    </div>
+}
+
+
+<script type="text/jscript">
+    $(document).ready(function () {
+        $("#UserProfileDetailsEdit").hide();
+        $("#UserProfileImgPre").hide();
+        $("#DateOfBirth").datepicker($.datepicker.regional["tr"]).datepicker("option", {
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "1900:@DateTime.Now.Year.ToString()"
+        });
+    });
+
+    $(function () {
+        $('table.zebra').live('hover', 'tr', function () {
+            $(this).toggleClass('clickable');
+        }).live('click', 'tr', function () {
+            location.href = '/otomobilvasita/aracozellikleri/?prdcId=' + $(this).find('#productId').val() + '&productGroup=12' + '&productCat=' + $(this).children()[2].innerText + '&productCurr=TL';
+        });
+    });
+
+    //$(function () {
+    //    $('#ProfileButtonEdit').click(function () {
+    //        $("#UserProfileDetails").hide();
+    //        $("#UserProfileDetailsEdit").show();
+    //    });
+    //});
+
+    function ProfileButtonEditClick() {
+        $("#UserProfileDetails").hide();
+        $("#UserProfileDetailsEdit").show();
+    }
+
+    $(function () {
+        $('#ProfilePhoto').change(function (e) {
+            var input = $(e.currentTarget);
+            var file = input[0].files[0];
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                image_base64 = e.target.result;
+                $('#UserProfileImgPre').attr('src', image_base64);
+                $("#UserProfileImgPre").show();
+            };
+            reader.readAsDataURL(file);
+        });
+    });
+
+    $(function () {
+        $('#RemoveProfilePhoto').change(function () {
+            if ($("#ProfilePhoto").val()) {
+
+            }
+        });
+    });
+</script>

@@ -1,0 +1,164 @@
+﻿@using System.Globalization
+@model BusinessObjects.otomobilvasitaViewModel
+
+
+<div id="sideBar" role="menu">
+    <div class="col-xs-12 col-sm-3 sidebar-offcanvas panel" id="wfcs">
+        @using (Html.BeginForm("SearchProductVehicle", @Model.FormName, FormMethod.Post, new { id = "catForm" }))
+        {
+            <div class="form-group">
+                <label for="otomobilvasitaCat1" title="Araç seçimi yapınız">Araç:</label>
+
+                <div class="select-style">
+                    @Html.DropDownListFor(
+                k => k.listCatG.FirstOrDefault().Id,
+                Model.listCatG.Where(k => k.RootLevel == 1).Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(CultureInfo.InvariantCulture),
+                    Text = x.Name.ToString(CultureInfo.InvariantCulture)
+                }), "Tüm Araçlar", new { id = "otomobilvasitaCat1", Name = "otomobilvasitaCat1", @class = "" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="otomobilvasitaCat2" title="Marka Seçimi yapınız">Marka:</label>
+                <div class="select-style">
+                    <select  id="otomobilvasitaCat2" class="" name="MarkId">
+                        <option value="null">Tüm Markalar</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="otomobilvasitaCat3" title="Model Seçimi yapınız">Model:</label>
+                <div class="select-style">
+                    <select  id="otomobilvasitaCat3" class="" name="ModelId">
+                        <option value="null">Tüm Modeller</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="otomobilvasitaCat6" title="Alt model seçiniz">Alt Model:</label>
+                <div class="select-style">
+                    <select    class="" id="otomobilvasitaCat6" name="otomobilvasitaCat6">
+                        <option value="null">Hepsi</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="product.FuelType" title="Yakıt tipi seçiniz">Yakıt Tipi:</label>
+                <div class="select-style">
+                    @Html.DropDownListFor(
+                            k => k.listFuelTypes.FirstOrDefault().Id,
+                            Model.listFuelTypes.Select(x => new SelectListItem
+                            {
+                                Value = x.Id.ToString(),
+                                Text = x.Name.ToString(),
+                                Selected = false
+                            }), new { id = "product.FuelType", @class = "" })
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label for="product.CaseType" title="Kasa tipi seçiniz">Kasa Tipi:</label>
+                <div class="select-style">
+                    @Html.DropDownListFor(
+                k => k.listCaseTypes.FirstOrDefault().Id,
+                Model.listCaseTypes.Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Name.ToString(),
+                    Selected = false
+                }), new { id = "product.CaseType", @class = "" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="product.GearType" title="Vites tipi seçiniz">Vites Tipi:</label>
+                <div class="select-style">
+                    @Html.DropDownListFor(
+                            k => k.listGearTypes.FirstOrDefault().Id,
+                            Model.listGearTypes.Select(x => new SelectListItem
+                            {
+                                Value = x.Id.ToString(),
+                                Text = x.Name.ToString(),
+                                Selected = false
+                            }), new { id = "product.GearType", @class = "" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="product.City" title="Şehir seçiniz">Lokasyon:</label>
+                <div class="select-style">
+                    @Html.DropDownListFor(
+                                    k => k.cities.FirstOrDefault().Id,
+                                    Model.cities.Select(x => new SelectListItem
+                                    {
+                                        Value = x.Id.ToString(),
+                                        Text = x.Name.ToString(),
+                                        Selected = false
+                                    }), new { id = "product.City", @class = "" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="fader1" title="Model yılı aralığı seçiniz"> Model Yılı Aralığı:</label>
+                <input type="range" min="1960" max="2015" value="1960" id="fader1" step="1" name="fader1">
+                <output for="fader" id="volume">1960</output><output for="fader" id="volume2">2015</output>
+                <input type="range" min="1980" max="2015" value="2015" id="fader2" step="1" name="fader2">
+            </div>
+            <div class="form-group" style="margin-top:10px;">
+                <label for="fader3" title="Silindir aralığı seçiniz"> Silindir Aralığı:</label>
+                <input type="range" min="750" max="4000" value="750" id="fader3" step="50" name="fader3">
+                <output for="fader" id="volume3">750</output><output for="fader" id="volume4">10000</output>
+                <input type="range" min="750" max="10000" value="10000" id="fader4" step="50" name="fader4">
+            </div>
+            <div class="form-group">
+                <label for="startPrice" title="Fiyat aralığı seçiniz">Fiyat Aralığı</label>
+                <table class="priceComp" role='presentation' .>
+                    <tr>
+                        <td><input type="number" id="startPrice" name="startPrice" step="100" min="0" max="10000000"></td>
+                        <td><input type="number" id="endPrice" name="startPrice" step="100" min="0" max="10000000"></td>
+                        <td><span class="spanTL">TL</span></td>
+                    </tr>
+                </table>
+            </div>
+            @Html.Hidden("hdnInpSearch")
+            <div id="sTvehicles" class="form-group">
+                <label for="searchTextIdVehicle" title="Kelime girerek otomobil arayabilirsiniz">Kelime girebilirsiniz..</label>
+                <input type="text"  id="searchTextIdVehicle" name="searchText" class="form-control" placeholder="İlan başlığı ya da açıklamasında" />
+                <input id="araVehicle" class="btn btn-warning" type="button" name="btnAraVehicle" value="Ara" title="Arama yap" />
+            </div>
+        }
+    </div>
+
+    @*<div class="col-xs-12 col-sm-3 panel" id="wfcsSparepart">
+        @using (Html.BeginForm("SearchProduct", "otomobilvasita", FormMethod.Post, new { id = "catFormSparepart" }))
+        {
+            <div class="fom-group">
+                <label for="otomobilvasitaCat1Y" title="Araç seçimi yapınız"> Araç:</label>
+                <div  class="select-style invisible">
+                    @Html.DropDownListFor(
+                k => k.listCatG.FirstOrDefault().Id,
+                Model.listCatG.Where(k => k.RootLevel == 1).Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(CultureInfo.InvariantCulture),
+                    Text = x.Name.ToString(CultureInfo.InvariantCulture)
+                }), "Tüm Araçlar", new { id = "otomobilvasitaCat1Y", @class = "" })
+                </div>
+            </div>
+            <div class="fom-group">
+                <label for="otomobilvasitaCat2Y" title="Marka seçimi yapınız"> Marka:</label>
+                <select  id="otomobilvasitaCat2Y" class="invisible" name="MarkId">
+                    <option>Tüm Markalar</option>
+                </select>
+            </div>
+            @Html.Hidden("hdnInpSearch2")
+            <div id="sTvehicles2" class="form-group">
+                <label for="searchTextIdVehicleY" title="Kelime girerek yedek parça arayabilirsiniz">Parça Kodu veya kelime girebilirsiniz..</label>
+                <input type="text"  id="searchTextIdVehicleY" name="searchTextY" class="form-control" placeholder="Parça kodu, adı ya da açıklamasında" />
+                <input id="araVehicleY" class="btn btn-warning" type="button" name="btnAraVehicleYy" value="Ara" />
+            </div>
+        }
+    </div>*@
+</div>
+
+
+
+
+

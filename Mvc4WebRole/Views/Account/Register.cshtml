@@ -1,0 +1,187 @@
+@model BusinessObjects.RegisterModel
+@{
+    ViewBag.Title = "Kaydol";
+}
+
+<link href="~/Content/css/font-awesome.css" rel="stylesheet" />
+<h1 style="text-align:center;" class="page-header">Yeni hesap olustur.</h1>
+
+<div class="well" id="registerFormPage">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <label for="UserName" class="control-label">Ad</label>
+            <div class="input-group">
+                <div class="input-group-addon glyphicon glyphicon-user"></div>
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Adinizi girin.", @required = "", @title = "Lütfen adinizi girin." })
+            </div>
+            @Html.ValidationMessageFor(m => m.Name)
+            <span class="help-block"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="UserName" class="control-label">Soyad</label>
+            <div class="input-group">
+                <div class="input-group-addon glyphicon glyphicon-user"></div>
+                @Html.TextBoxFor(m => m.SurName, new { @class = "form-control", @placeholder = "Soyadinizi girin.", @required = "", @title = "Lütfen soyadinizi girin." })
+            </div>
+            @Html.ValidationMessageFor(m => m.SurName)
+            <span class="help-block"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="UserName" class="control-label">Kullanýcý Adý</label>
+            <div class="input-group">
+                <div class="input-group-addon glyphicon glyphicon-user"></div>
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Kullanýcý adý girin.", @required = "", @title = "Lütfen kullanýcý adinizi girin." })
+            </div>
+            @Html.ValidationMessageFor(m => m.UserName)
+            <span class="help-block"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="eMail" class="control-label">Email</label>
+            <div class="input-group">
+                <div class="input-group-addon glyphicon glyphicon-envelope"></div>
+                @Html.TextBoxFor(m => m.eMail, new { @class = "form-control", @placeholder = "ornek@otomotivist.com", @required = "", @title = "Lütfen email girin." })
+            </div> @Html.ValidationMessageFor(m => m.eMail)
+            <span class="help-block"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="Password" class="control-label">Þifre</label>
+            <div class="input-group">
+                <div class="input-group-addon glyphicon glyphicon-lock"></div>
+                @Html.TextBoxFor(m => m.Password, new { @type = "password", @class = "form-control", @placeholder = "********", @required = "", @title = "Lütfen þifrenizi girin." })
+            </div>
+            <span class="help-block"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="ConfirmPassword" class="control-label">Tekrar Þifre</label>
+            <div class="input-group">
+                <div class="input-group-addon glyphicon glyphicon-lock"></div>
+                @Html.TextBoxFor(m => m.ConfirmPassword, new { @type = "password", @class = "form-control", @placeholder = "********", @required = "", @title = "Hatalý þifre giriþini engellemek için þifrenizi tekrar girin." })
+            </div>
+            <span class="help-block"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="Phone" class="control-label">Telefon</label>
+            <div class="input-group">
+                <div class="input-group-addon glyphicon glyphicon-phone"></div>
+                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", @placeholder = "05XX XXX xx XX", @title = "Telefon numaranizi girin." })
+            </div> @Html.ValidationMessageFor(m => m.Phone)
+            <span class="help-block"></span>
+        </div>
+
+        <hr />
+        <div class="clearfix"></div>
+        <br />
+        <div class="form-group">
+            @Html.ActionLink("Üyelik Sözleþmesini okudum kabul ediyorum", "kullanicisozlesmesi", "otomobilvasita")
+            @Html.CheckBox("sozlesme")
+
+        </div>
+        <div class="clearfix"></div>
+        <hr />
+        <a class="accessible" href="~/Account/Register">[Kaydol]</a>
+        <input type="submit" value="Kaydol" class="btn btn-success btn-block" />
+        <span class="Wellcome text-sm">Otomotivist.com üyeliðinizi yaptýktan sonra Eðer bir galeriyseniz galeri sayfasýndan, eðer bir kullanýcý iseniz profil kýsmýndan (twiter ve facebook plaginlerini aþaðýdaki gibi ekleyerek), facebook ve twiter sayfalarinizi yönetebilir, otomotivist içerisinde araç yedek parça ve servisinizi ziyaret eden kullanýcýlarýn kurumsal sosysayl sayfalarinizi da görmesini saðlayabilirsiniz</span>
+
+    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+<footer id="footer" role="contentinfo">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-xs-12 col-sm-4 panelpad">
+                <a class="twitter-timeline" href="https://twitter.com/otomotivist" data-widget-id="707687631514112000">Tweets by @@otomotivist</a>
+                <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
+
+                <a href="https://twitter.com/otomotivist" class="twitter-follow-button" data-show-count="false" data-size="large" data-dnt="true">Follow @@otomotivist</a>
+                <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+
+                <a href="https://twitter.com/intent/tweet?button_hashtag=TwitterStories" class="twitter-hashtag-button" data-size="large" data-related="otomotivist" data-dnt="true">Tweet #TwitterStories</a>
+                <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+
+                <a href="https://twitter.com/intent/tweet?screen_name=otomotivist" class="twitter-mention-button" data-size="large" data-related="otomotivist" data-dnt="true">Tweet to @@otomotivist</a>
+                <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+            </div>
+            <div class="col-md-4 col-lg-4 col-xs-12 col-sm-4 panelpad">
+                <div class="fb-page" data-href="https://www.facebook.com/otomotivist/?ref=hl" data-tabs="timeline" data-width="500" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/otomotivist/?ref=hl"><a href="https://www.facebook.com/otomotivist/?ref=hl">otomotivist.com</a></blockquote></div></div>
+                <div class="fb-comments" data-href="https://www.facebook.com/otomotivist/?ref=hl" data-numposts="5"></div>
+                <div class="fb-like" data-href="https://www.facebook.com/otomotivist?ref=hl" data-width="240" data-layout="standard" data-action="like" data-show-faces="true" data-share="false" data-colorscheme="dark"></div>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xs-12 col-sm-3 panelpad">
+                <div class="clearfix"></div>
+                <br />
+                <div class="footer-linkBox">
+                    <div class="layoutMenuDiv">
+                        <a class="ssba_google_share" href="https://plus.google.com/share?url=http://www.otomotivist.com/" target="_blank">
+                            <img src="~/Images/google.png" title="Google+" class="ssba" alt="Share on Google+" width="30" height="30">
+                        </a>
+                        <a href="https://plus.google.com/113660231663386144832" rel="publisher" target="_blank">Google+</a>
+                        <span class="ssba_sharecount"></span>
+                        <a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u=http://www.otomotivist.com" target="_blank">
+                            <img src="~/Images/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook" width="30" height="30">
+                        </a><span class="ssba_sharecount"></span>
+                        <a class="ssba_twitter_share" href="http://twitter.com/share?url=http://www.otomotivist.com" target="_blank">
+                            <img src="~/Images/twitter.png" title="Twitter" class="ssba" alt="Tweet otomotivisthakkinda this on Twitter" width="30" height="30">
+                        </a><span class="ssba_sharecount"></span>
+                        <a class="ssba_stumbleupon_share ssba_share_link" href="http://www.stumbleupon.com/submit?url=http://www.otomotivist.com" target="_blank">
+                            <img src="~/Images/stumbleupon.png" title="StumbleUpon" class="ssba" alt="StumbleUpon da paylaþ" width="30" height="30">
+                        </a><span class="ssba_sharecount"></span>
+                        <a class="ssba_linkedin_share ssba_share_link" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://www.otomotivist.com" target="_blank">
+                            <img src="~/Images/linkedin.png" title="Linkedin" class="ssba" alt="LinkedIn de paylaþ" width="30" height="30">
+                        </a><span class="ssba_sharecount"></span>
+                        <a class="ssba_email_share" href="mailto:?Subject=http://www.otomotivist.com/">
+                            <img src="~/Images/email.png" title="Email" class="ssba" alt="Herhangi birine Email gönderebilirsiniz" width="30" height="30" />
+                        </a>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <br />
+                <div class="footer-linkBox">
+                    <strong>Gizlilik & Güvenlik</strong>
+                    <ul>
+                        <li>@Html.ActionLink("Kullaným Koþullarý", "sozlesmehaklar", "otomobilvasita")</li>
+                        <li>@Html.ActionLink("Üyelik Sözleþmesi", "kullanicisozlesmesi", "otomobilvasita")</li>
+                        <li>@Html.ActionLink("Gizlilik Politikasý", "gizlilik", "otomobilvasita")</li>
+                        @{
+                            if (User != null && User.Identity.Name == "hamit")
+                            {
+                                <li>
+                                    @Html.ActionLink("Excel'den Fiyat Aktar", "ImportAndUpdateFromExcel", "Products")
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+                <br />
+                <div class="footer-linkBox">
+                    <strong>Kurumsal</strong>
+                    <ul>
+                        <li>@Html.ActionLink("Ana Sayfa", "yeniikinciel", "otomobilvasita")<a class="accessible" href="~/otomobilvasita/yeniikinciel" alt="anasayfa">[Ana Sayfa]</a></li>
+                        <li>@Html.ActionLink("Hakkýmýzda", "otomotivisthakkinda", "otomobilvasita")<a class="accessible" href="~/otomobilvasita/otomotivisthakkinda" alt="hakkýmýzda">[Hakkýnda]</a></li>
+                        <li>@Html.ActionLink("Ýletiþim", "iletisim", "otomobilvasita")<a class="accessible" href="~/otomobilvasita/iletisim" alt="iletiþim">[Ýletiþim]</a></li>
+                        <li>@Html.ActionLink("Sitemap", "Generate", "Sitemap")<a class="accessible" href="~/Sitemap/Generate" alt="Sitemap Güncelle">[Sitemap]</a></li>
+                    </ul>
+                </div>
+                <div class="footer-linkBox float-left copyright">
+                    <a href="/otomobilvasita/yeniikinciel" class="navbar-brand" alt="otomotivist logo">
+                        <img src="/Content/Images/logo.png" alt="otomotivist logo" onclick="href = '~/otomobilvasita/yeniikinciel'" onkeypress="    if (event.keycode == 13) { href = '~/otomobilvasita/yeniikinciel' }" class="navbar-logo">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>

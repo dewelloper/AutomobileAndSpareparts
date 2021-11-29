@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="877f8320ffb0484db1afeb4126b40bab" Name="Diagram1">
+        <EntityTypeShape EntityType="otomotivist.comModel.AutosServices" Width="1.5" PointX="5.3935416365943576" PointY="0.12152369326051496" />
+        <EntityTypeShape EntityType="otomotivist.comModel.Catagories" Width="1.5" PointX="5.7290622134362641" PointY="0.95578089400929445" />
+        <EntityTypeShape EntityType="otomotivist.comModel.Denominations" Width="1.5" PointX="7.7534516843750385" PointY="24.770161133618171" />
+        <EntityTypeShape EntityType="otomotivist.comModel.Marks" Width="1.5" PointX="7.2721177429296624" PointY="16.922781430614545" />
+        <EntityTypeShape EntityType="otomotivist.comModel.ProductGroups" Width="1.5" PointX="0.555225854998094" PointY="15.227414078650723" />
+        <EntityTypeShape EntityType="otomotivist.comModel.ProductPlaces" Width="1.5" PointX="2.4828642469285356" PointY="27.541414735625224" />
+        <EntityTypeShape EntityType="otomotivist.comModel.Products" Width="1.5" PointX="10.623096858441409" PointY="12.934032401504942" />
+        <EntityTypeShape EntityType="otomotivist.comModel.ProductStates" Width="1.5" PointX="10.803976021150115" PointY="9.40916675767357" />
+        <EntityTypeShape EntityType="otomotivist.comModel.Users" Width="1.5" PointX="3.0608468684651173" PointY="5.2558512265122737" />
+        <EntityTypeShape EntityType="otomotivist.comModel.UserTypes" Width="1.5" PointX="2.3647901315078093" PointY="4.4475120624748579" />
+        <AssociationConnector Association="otomotivist.comModel.FK_ProductPlaces_AutosServices" />
+        <AssociationConnector Association="otomotivist.comModel.FK_Products_Catagories" />
+        <AssociationConnector Association="otomotivist.comModel.FK_Products_Denominations" />
+        <AssociationConnector Association="otomotivist.comModel.FK_Products_Marks" />
+        <AssociationConnector Association="otomotivist.comModel.FK_Products_ProductGroups" />
+        <AssociationConnector Association="otomotivist.comModel.FK_Products_ProductPlaces" />
+        <AssociationConnector Association="otomotivist.comModel.FK_Products_ProductStates" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

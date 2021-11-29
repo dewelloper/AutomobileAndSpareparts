@@ -1,0 +1,126 @@
+﻿@using System.Globalization
+@using BusinessObjects
+@model VhicleModel
+
+
+
+<div id="searchProd">
+
+    @(ViewBag.SearchMsg)
+
+    @{
+        if (Model.products.Count <= 0)
+        {
+            <div class="errMessage">Üzgünüz, sistemimizde seçmiş olduğunuz kriterlere uygun araç bulunamadı...</div>
+        }
+    }
+
+
+    @(ViewBag.SearchMsg)
+
+
+
+    @if (Model.products.Count > 0)
+    {
+        var firstOrDefault = Model.products.FirstOrDefault();
+        if (firstOrDefault != null && firstOrDefault.ProductType == 1) //VEHICLE
+        {
+            var gridVehicle = new WebGrid(Model.products.Where(m => m.ProductType == 1), canPage: true, canSort: true, rowsPerPage: 20,
+            selectionFieldName: "selectedRow", ajaxUpdateContainerId: "profileVehicleGrid");
+            gridVehicle.Pager(WebGridPagerModes.All);
+            <div id="profileVehicleDiv" class="aramaSonuclari">
+                @gridVehicle.GetHtml(htmlAttributes: new { id = "profileVehicleGrid" },
+                tableStyle: "zebra",
+                alternatingRowStyle: "alternate",
+                selectedRowStyle: "select",
+                headerStyle: "header",
+                columns: gridVehicle.Columns(
+                 gridVehicle.Column(style: "tableImg", header: "Görsel", format: @<text><div style="text-align: center;">
+                        <img src="@item.ImagePath0" alt="@item.Name" />
+                        <input type="hidden" id="productId" name="productId" value="@item.id" />
+                    </div></text>),
+                gridVehicle.Column(header: "İlan Başlığı", format: @<text> @item.Name </text>),
+                gridVehicle.Column(header: "Kategorisi", format:
+                @<text>
+                    @{
+                        var catGParentName = "";
+                        var catGroup = Model.listCatG.FirstOrDefault(m => m.Id == item.CategoryId);
+                        if (catGroup != null)
+                        {
+                            var catGParentId = catGroup.ParentId;
+                            if (catGParentId != null)
+                            {
+                                var catGroup2 = Model.listCatG.FirstOrDefault(n => n.Id == catGParentId);
+                                if (catGroup2 != null)
+                                {
+                                    catGParentName = catGroup2.Name;
+                                }
+                            }
+                            var catGParentName2 = "";
+                            if (catGParentId != null)
+                            {
+                                var catGroup3 = Model.listCatG.FirstOrDefault(m => m.Id == catGParentId);
+                                if (catGroup3 != null)
+                                {
+                                    var catGParentId2 = catGroup3.ParentId;
+                                    if (catGParentId2 != null)
+                                    {
+                                        var catGroup4 = Model.listCatG.FirstOrDefault(n => n.Id == catGParentId2);
+                                        if (catGroup4 != null)
+                                        {
+                                            catGParentName2 = catGroup4.Name;
+                                        }
+                                    }
+                                }
+                            }
+                            if (!string.IsNullOrEmpty(catGParentName2))
+                            {
+                                @:@catGParentName2 -
+                                                     }
+                        }
+                    }
+
+                    @if (!string.IsNullOrEmpty(catGParentName))
+                    {
+                        <text> @catGParentName -</text>
+                    }
+                    @{
+                        var catGroup5 = Model.listCatG.FirstOrDefault(k => k.Id == item.CategoryId);
+                        if (catGroup5 != null)
+                        {
+                            var catGName = catGroup5.Name;
+                            @catGName
+                        }
+                    }
+                </text>),
+
+                gridVehicle.Column(header: "Fiyat", format:
+                @<text> @item.CurrentPrice
+                @{if (item.PriceCurrencyId != null && Model.currencies != null)
+                {
+                    var currency = Model.currencies.FirstOrDefault(n => n.Id == item.PriceCurrencyId);
+                    if (currency != null)
+                    {
+                        @currency.Name
+                    }
+                }}</text>),
+
+                gridVehicle.Column(header: "Model", format:
+                @<text> @item.ModelYear
+                </text>),
+
+                gridVehicle.Column(header: "Km.", format:
+                @<text> @item.Km
+                </text>),
+                gridVehicle.Column(header: "İl-İlçe", format:
+
+                @<text> @if(@Model.cities != null) 
+                { 
+                    @Model.cities.Where(n => n.CityPlateCode == Convert.ToString(@item.Value.City)).FirstOrDefault().Name
+                } 
+                </text>)))
+            </div>
+        }
+       
+    }
+</div>

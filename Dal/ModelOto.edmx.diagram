@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="480e076a7bcb40cb8b3db4f8d2442e8e" Name="Diagram1">
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.AuthTypes" Width="1.5" PointX="5.75" PointY="6.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.AutoServices" Width="1.5" PointX="0.75" PointY="6" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Bills" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.CaseTypes" Width="1.5" PointX="7.75" PointY="5.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Categories" Width="1.5" PointX="7.75" PointY="8.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.ChatLogs" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Cities" Width="1.5" PointX="2.75" PointY="9.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Colors" Width="1.5" PointX="9.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Countries" Width="1.5" PointX="4.75" PointY="9.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Credits" Width="1.5" PointX="9.75" PointY="6.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Currencies" Width="1.5" PointX="9.75" PointY="10.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.DamageStates" Width="1.5" PointX="11.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Denominations" Width="1.5" PointX="11.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Districts" Width="1.5" PointX="11.75" PointY="6.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.EnginePowers" Width="1.5" PointX="6.75" PointY="11.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.EngineVolumes" Width="1.5" PointX="11.75" PointY="9.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.FuelTypes" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Galleries" Width="1.5" PointX="2.75" PointY="12.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.GearTypes" Width="1.5" PointX="11.75" PointY="12.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.GuarantySituations" Width="1.5" PointX="13.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Marks" Width="1.5" PointX="13.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.ModelYears" Width="1.5" PointX="13.75" PointY="6.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.OrderDetails" Width="1.5" PointX="8.75" PointY="13.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Orders" Width="1.5" PointX="13.75" PointY="9.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.PaymentTypes" Width="1.5" PointX="4.75" PointY="14.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.PlateNationalities" Width="1.5" PointX="13.75" PointY="14.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.PostComments" Width="1.5" PointX="15.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.PostLikes" Width="1.5" PointX="15.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.PostShares" Width="1.5" PointX="15.75" PointY="6.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.ProductCategoryProvider" Width="1.5" PointX="15.75" PointY="9.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.ProductGroupProvider" Width="1.5" PointX="10.75" PointY="15.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.ProductGroups" Width="1.5" PointX="15.75" PointY="12.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.ProductPlaces" Width="1.5" PointX="3" PointY="6.875" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Products" Width="1.5" PointX="15.75" PointY="15.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.ProductSeller" Width="1.5" PointX="0.75" PointY="16.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.ProductStates" Width="1.5" PointX="6.75" PointY="16.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.ProductTypes" Width="1.5" PointX="17.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.PublishDurations" Width="1.5" PointX="2.75" PointY="17.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Regions" Width="1.5" PointX="17.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Roles" Width="1.5" PointX="17.75" PointY="6.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.SpareParts" Width="1.5" PointX="17.75" PointY="9.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.SubDistrict" Width="1.5" PointX="12.75" PointY="17.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.sysdiagrams" Width="1.5" PointX="17.75" PointY="13.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Towns" Width="1.5" PointX="17.75" PointY="16.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.TractionTypes" Width="1.5" PointX="8.75" PointY="18.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.TransportTypes" Width="1.5" PointX="19.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserAdresses" Width="1.5" PointX="19.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserEducationLevel" Width="1.5" PointX="4.75" PointY="19.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserFeedbacks" Width="1.5" PointX="19.75" PointY="6.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserFriends" Width="1.5" PointX="19.75" PointY="9.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserGender" Width="1.5" PointX="19.75" PointY="12.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserJob" Width="1.5" PointX="19.75" PointY="15.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserMessages" Width="1.5" PointX="17.75" PointY="19.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserPosts" Width="1.5" PointX="19.75" PointY="18.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserProfile" Width="1.5" PointX="0.75" PointY="20.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserRole" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.UserTypes" Width="1.5" PointX="10.75" PointY="20.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.VehicleTypes" Width="1.5" PointX="12.75" PointY="20.75" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.webpages_Membership" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.webpages_OAuthMembership" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.webpages_Roles" Width="1.5" PointX="3" PointY="3.375" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.BankBins" Width="1.5" PointX="21.75" PointY="0.75" />
+        <AssociationConnector Association="Mvc4WebRole.Models.Mvc4WebRoleContextModel.FK_dbo_ProductPlaces_dbo_AutoServices_AutoService_Id1" />
+        <AssociationConnector Association="Mvc4WebRole.Models.Mvc4WebRoleContextModel.FK_UserRole_UserRole" />
+        <AssociationConnector Association="Mvc4WebRole.Models.Mvc4WebRoleContextModel.FK_dbo_webpages_OAuthMembership_dbo_webpages_Membership_UserId" />
+        <AssociationConnector Association="Mvc4WebRole.Models.Mvc4WebRoleContextModel.webpages_UsersInRoles" />
+        <EntityTypeShape EntityType="Mvc4WebRole.Models.Mvc4WebRoleContextModel.Tokens" Width="1.5" PointX="7.375" PointY="21.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

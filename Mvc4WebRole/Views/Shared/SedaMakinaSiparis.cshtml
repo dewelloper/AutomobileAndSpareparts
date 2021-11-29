@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "SedaMakinaSiparis";
+}
+
+<div class="mainContent">
+    <h1>Seda Makine 3D Güvenli Ödeme Sayfası</h1>
+@using (Html.BeginForm("ConfirmOrder", "Seda", FormMethod.Post, new { id = "payForm" }))
+{
+    <div class="billInfo" style="border-top-width: 0;">
+        @Html.Label("Kredi Kartı Bilgileri", new { @class = "middleHeader" })
+        @Html.Label("Kart üzerindeki isim")
+        @Html.TextBox("txtCardOwnerName", "")
+
+        @Html.Label("Kart Numarası")
+        @Html.TextBox("txtCardNumber", "")
+
+        @Html.Label("Kart Geçerlilik Tarihi")
+        @{ var listMonth = new SelectList(new[]
+                                          {
+                                              new {ID="1",Name="01"},
+                                              new{ID="2",Name="02"},
+                                              new{ID="3",Name="03"},
+                                              new{ID="4",Name="04"},
+                                              new{ID="5",Name="05"},
+                                              new{ID="6",Name="06"},
+                                              new{ID="7",Name="07"},
+                                              new{ID="8",Name="08"},
+                                              new{ID="9",Name="09"},
+                                              new{ID="10",Name="10"},
+                                              new{ID="11",Name="11"},
+                                              new{ID="12",Name="12"}
+                                          }, "ID", "Name", 1);
+        }
+        @Html.DropDownList("drpLastUseMonth", listMonth)
+
+        @{ var listYear = new SelectList(new[]
+                                          {
+                                              new {ID="2014",Name="2014"},
+                                              new{ID="2015",Name="2015"},
+                                              new{ID="2016",Name="2016"},
+                                              new{ID="2017",Name="2017"},
+                                              new{ID="2018",Name="2018"},
+                                              new{ID="2019",Name="2019"},
+                                              new{ID="2026",Name="2026"},
+                                              new{ID="2021",Name="2021"},
+                                              new{ID="2022",Name="2022"},
+                                              new{ID="2023",Name="2023"},
+                                              new{ID="2024",Name="2024"},
+                                              new{ID="2025",Name="2025"}
+                                          }, "ID", "Name", 1);
+        }
+        @Html.DropDownList("drpLastUseYear", listYear)
+
+        @Html.Label("Güvenlik Kodu (CVV2)")
+        @Html.TextBox("txtCVV2", "")
+
+        @Html.Label("Kredi Kartı Ödeme Seçenekleri")
+        @Html.RadioButton("radioInstallment", false) Tek Çekim
+        @Html.RadioButton("radioInstallment", true) Taksit
+
+        @Html.Label("Taksit Sayısı")
+        @Html.TextBox("txtManyInstallment", "")
+
+        @Html.CheckBox("chkAgree") Ön bilgilendirme formu ve mesafeli satış sözleşmesini okudum, kabul ediyorum.
+
+        @Html.Hidden("hdnSelectedMonth", "")
+        @Html.Hidden("hdnSelectedYear", "")
+
+    </div>
+}
+    <div>
+        <img src="Images/Vakıfbankworldlogo.jpg" alt="Vakıfbank world logo" class="paymentPageImages" />
+        <img src="Images/visalogo.jpg" alt="visa logo" class="paymentPageImages" />
+        <img src="Images/mastercardlogo.jpg" alt="mastercard logo" class="paymentPageImages" />
+    </div>
+</div>

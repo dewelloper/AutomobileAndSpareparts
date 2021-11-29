@@ -1,0 +1,20 @@
+@model BusinessObjects.UserType
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>UserType</legend>
+
+    <div class="display-label">UserTypeName</div>
+    <div class="display-field">@Model.UserTypeName</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

@@ -1,0 +1,47 @@
+@using System.Globalization
+
+@{
+    Page.Title = "Ýlan Kategori Seçimi";
+}
+
+<div class="content-wrapper" style="display:none;">
+    <div id="selWizBtns">
+        <table role="presentation">
+            <tbody class="table">
+                <tr>
+                    <td>
+                        <div>
+                            <b>
+                                <a href="@Url.Action("otomobilyedekparcaservisilangirisi", "otomobilvasita", new { CallerId = 1 })" class="btn btn-primary">Araç</a>
+                            </b>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <b>
+                                <a href="@Url.Action("otomobilyedekparcaservisilangirisi", "otomobilvasita", new { CallerId = 2 })" class="btn btn-primary">Yedek parça</a>
+                            </b>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+<div class="container-fluid" style="padding-bottom: 100px;">
+    <div style="margin-bottom:10px;">
+        <div id="postSelect" class="panel panel-default" style="margin-bottom:10px;">
+            <h1 class="page-header">Ýlan Kategorisi</h1>
+            <ul class="postType">
+                <li class="addCaller1"><a href="~/otomobilvasita/otomobilyedekparcaservisilangirisi?CallerId=1" title="Araç Ýlaný!">Araç Ýlaný ver!<span class="fa fa-car"></span></a></li>
+                <li class="addCaller2"><a href="~/otomobilvasita/otomobilyedekparcaservisilangirisi?CallerId=2" title="Yedek Parça Ýlaný!">Yedek Parça Ýlaný!<span class="fa fa-wrench"></span></a></li>
+            </ul>
+
+        </div>
+    </div>
+</div>

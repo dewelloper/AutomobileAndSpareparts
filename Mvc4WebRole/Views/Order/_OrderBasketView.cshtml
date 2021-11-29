@@ -1,0 +1,529 @@
+﻿@using System.Globalization
+@using BusinessObjects
+@model OrderViewModel
+
+@using System.Data
+@using System.Linq;
+
+@{var table = (DataTable)HttpContext.Current.Session["basket"];}
+
+<div id="basket">
+    @TempData["ErrorMessages"]
+    <strong class="text-uppercase">Alış-Veriş Sepetinizin İçeriği</strong>
+    @using (Html.BeginForm("ConfirmOrder", "Order", FormMethod.Post, new { id = "submitForm" }))
+    {
+        <table id="orderBasketGrid" class="zebra" role="presentation">
+            <thead>
+                <tr>
+                    <th class="tableImg">Görsel</th>
+                    @foreach (var col in table.Columns.Cast<DataColumn>().Where(col => col.ColumnName != "id" && col.ColumnName != "productGrupId" && col.ColumnName != "productGrup" && col.ColumnName != "productCatg" && col.ColumnName != "productMark" && col.ColumnName != "productCurr"))
+                    {
+                        <th>@col.ColumnName</th>
+                    }
+                    <th>Toplam Fiyat</th>
+                    <th>İşlem</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (DataRow row in table.Rows)
+                {
+                    <tr>
+                        @foreach (DataColumn col in table.Columns)
+                        {
+                            if (col.ColumnName != "id" && col.ColumnName != "productGrupId" && col.ColumnName != "productGrup" && col.ColumnName != "productCatg" && col.ColumnName != "productMark")
+                            {
+                                if (col.ColumnName == "Miktarı")
+                                {
+                                    <td>
+                                        <input class="quantityInputShort" data-index="@table.Rows.IndexOf(row)" type="number" value='@row[col.ColumnName]' min="1" />
+                                    </td>
+                                }
+                                else if (col.ColumnName == "Birim Fiyatı")
+                                {
+                                    <td class="tblCellFR">@Convert.ToDecimal(row[col.ColumnName].ToString().Replace(".", ","))</td>
+                                    <td class="tblCellFR">@((Convert.ToInt32(row["Miktarı"])) * Convert.ToDecimal(row[col.ColumnName].ToString().Replace(".", ",")) + row["productCurr"].ToString()) </td>
+                                }
+                                else if (col.ColumnName == "Parça Adı")
+                                {
+                                    <td>@row[col.ColumnName]</td>
+                                }
+                            }
+                            if (col.ColumnName != "id")
+                            {
+                                continue;
+                            }
+                            <td class="tableImg">
+                                <img src="@Model.listProduct.FirstOrDefault(k => k.Id.ToString(CultureInfo.InvariantCulture) == row[col.ColumnName].ToString()).ImagePath0" alt="@Model.listProduct.FirstOrDefault(k => k.Id.ToString(CultureInfo.InvariantCulture) == row[col.ColumnName].ToString()).Name" />
+                            </td>
+                        }
+                        <td>
+                            <a href='@Url.Action("DeleteBasketItem", "otomobilvasita", new { id = row["id"].ToString() })' class="btn-warning">Sil</a>
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td colspan="4">Toplam Tutar</td>
+                    <td class="tblCellFR">
+                        @{
+                var table2 = (DataTable)HttpContext.Current.Session["basket"];
+                var toplam = table2.Rows.Cast<DataRow>().Sum(row2 => (from DataColumn col2 in table2.Columns where col2.ColumnName == "Birim Fiyatı" select ((Convert.ToInt32(row2["Miktarı"])) * Convert.ToDecimal(row2[col2.ColumnName].ToString().Replace(".", ",")))).Sum());
+                Session["TotalPrice"] = toplam;
+                <text> @toplam TL</text>
+                        }
+                    </td>
+
+                </tr>
+
+            </tbody>
+        </table>
+        if (User.Identity.IsAuthenticated)
+        {
+            Html.Label("Sipariş Notu : ");
+            Html.TextArea("orderExplanation");
+
+            @*<div id="selectAddress">
+                    <div class="divClear">
+                        @Html.Label("Kayıtlı Adres Seçin : ", new { id = "lblSelectAddress" })
+                    </div>
+                    <div class="divClear">
+                        <span class="FormListBox">
+                            @Html.DropDownListFor(
+                        m => m.listUserAddress.FirstOrDefault().Id,
+                        Model.listUserAddress.Where(m =>
+                        {
+                            var usrProfile = Model.listUserProfile.FirstOrDefault(k => k.UserName == User.Identity.Name);
+                            return usrProfile != null && m.UserId == (usrProfile.UserId);
+                        }).Select(x => new SelectListItem
+                        {
+                            Value = x.Id.ToString(CultureInfo.InvariantCulture),
+                            Text = x.Address.ToString(CultureInfo.InvariantCulture)
+                        }), new { id = "dropDownSelectedAddress" })
+                        </span>
+                    </div>
+                </div>*@
+            @*<div class="divClear">
+                    <button id="btnChangeAddress" type="button">Yeni Adres</button>
+                    <div id="newAddress">
+                        @Html.Label("Yeni Adres Girin : ", new { id = "lblNewAddress" })
+                        @Html.TextArea("txtAreaNewAddress", new { id = "txtAreaNewAddress" })
+                    </div>
+                </div>*@
+        <br />
+            <div class="divClear">
+                @Html.Label("Telefon : ")
+            </div>
+            var usrProf = Model.listUserProfile.FirstOrDefault(k => k.UserName == User.Identity.Name);
+            if (usrProf != null && (usrProf.GSM != null || usrProf.GSM != ""))
+            {
+                var usrProf2 = Model.listUserProfile.FirstOrDefault(k => k.UserName == User.Identity.Name);
+                if (usrProf2 != null)
+                {
+                    @Html.TextBox("relatedPhone", usrProf2.GSM, new { id = "txtBoxPhone", @class = "inputs" })
+                }
+            }
+            else
+            {
+                @Html.TextBox("relatedPhone", new { id = "txtBoxPhone", @class = "inputs" })
+            }
+            <div class="divClear">
+                @Html.Label("Gönderi Tipi : ")
+            </div>
+            <div class="divClear">
+                <span class="FormListBox" style="max-width:150px;">
+                    <select id="transportTypeSelect" name="transportTypeSelect"></select>
+                </span>
+            </div>
+            <div class="divClear">
+                @Html.Label("Açıklama : ", new { id = "lblOrderExp" })
+            </div>
+            @Html.TextArea("orderExplanation", new { id = "orderExplanation", @class = "inputs" })
+
+            <div class="billInfoWrapper">
+                <div class="divClear">
+                    <span style="color:red; font-size:large">(*) İşaretli alanların doldurulması zorunludur.</span>
+                </div>
+                <div class="billInfoInner">
+                    <p clas="laterspace">Lütfen fatura bilgilerinizi <strong>eksiksiz</strong> ve <strong>doğru</strong> olarak doldurunuz.</p>
+                    <span class="middleHeader">Fatura Bilgileri</span>
+                    <table class="billInfoTable">
+                        <tr class="billInfoTableRow">
+                            <td>
+                                <label>Fatura Tipi :</label>
+                            </td>
+                            <td>
+                                <span class="FormListBox">
+                                    <select name="IsCompany" id="selectBillType">
+                                        <option value="0">Bireysel</option>
+                                        <option value="1">Kurumsal</option>
+                                    </select>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="billInfoTableRow">
+                            <td>
+                                <label>Vergi No :</label>
+                            </td>
+                            <td>
+                                <input type="text" maxlength="11" value="" name="taxNum" class="inputs">
+                            </td>
+                        </tr>
+                        <tr class="billInfoTableRow">
+                            <td>
+                                <label>Vergi Dairesi :</label>
+                            </td>
+                            <td>
+                                <input maxlength="50" type="text" value="" name="taxOffice" class="inputs">
+                            </td>
+                        </tr>
+                        <tr class="billInfoTableRow">
+                            <td>
+                                <label>TC Kimlik No :</label>
+                            </td>
+                            <td>
+                                <input type="text" maxlength="11" value="" name="identificationNum" onkeypress="javascript:return onlyNumbers(event);" class="inputs">
+                            </td>
+                        </tr>
+                        <tr class="billInfoTableRow">
+                            <td>
+                                <label>Ad : <a style="color:red;">(*)</a></label>
+                            </td>
+                            <td>
+                                <input type="text" value="" name="name" class="inputs">
+                            </td>
+                        </tr>
+                        <tr class="billInfoTableRow">
+                            <td>
+                                <label>Soyad : <a style="color:red;">(*)</a></label>
+                            </td>
+                            <td>
+                                <input type="text" value="" maxlength="100" name="surname" class="inputs">
+                            </td>
+                        </tr>
+                        <tr class="billInfoTableRow">
+                            <td>
+                                <label>E-Posta Adresiniz : <a style="color:red;">(*)</a></label>
+                            </td>
+                            <td>
+                                <input type="text" value="" maxlength="100" name="email" class="inputs">
+                            </td>
+                        </tr>
+                        <tr class="billInfoTableRow">
+                            <td>
+                                <label>Firma Adı :</label>
+                            </td>
+                            <td>
+                                <input type="text" value="" maxlength="200" name="companyName" class="inputs">
+                            </td>
+                        </tr>
+                        <tr class="billInfoTableRow">
+                            <td>
+                                <label>Şehir : <a style="color:red;">(*)</a></label>
+                            </td>
+                            <td>
+                                <span class="FormListBox">
+                                    @Html.DropDownListFor(
+                            m => m.listCities.FirstOrDefault().Id,
+                            Model.listCities.Select(x => new SelectListItem
+                            {
+                                Value = x.Id.ToString(CultureInfo.InvariantCulture),
+                                Text = x.Name.ToString(CultureInfo.InvariantCulture)
+                            }).OrderBy(k => k.Text), new { id = "dropDownSelectedCity" })
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="billInfoTableRow">
+                            <td>
+                                <label>İlçe : <a style="color:red;">(*)</a></label>
+                            </td>
+                            <td>
+                                <span class="FormListBox">
+                                    <select id="TownsList" name="TownId">
+                                        <option value="0">Seçiniz...</option>
+                                    </select>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="billInfoTableRow">
+                            <td>
+                                <label>Mahalle : <a style="color:red;">(*)</a></label>
+                            </td>
+                            <td>
+                                <span class="FormListBox">
+                                    <select id="SubDistrictList" name="SubDistrictId">
+                                        <option value="0">Seçiniz...</option>
+                                    </select>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="billInfoTableRow">
+                            <td>
+                                <label>Adres Devamı... : <a style="color:red;">(*)</a></label>
+                            </td>
+                            <td>
+                                <textarea name="address" rows="3" class="inputs areawith"></textarea>
+                            </td>
+                        </tr>
+                        <tr class="billInfoTableRow">
+                            <td>
+                                <label>İş Telefonu Numaranız : <a style="color:red;">(*)</a></label>
+                            </td>
+                            <td>
+                                <input type="text" maxlength="11" value="" name="phone2" onkeypress="javascript:return onlyNumbers(event);" class="inputs">
+                            </td>
+                        </tr>
+                        <tr class="billInfoTableRow">
+                            <td>
+                                <label>Faks Numaranız :</label>
+                            </td>
+                            <td>
+                                <input maxlength="11" name="fax" onkeydown="javascript:return onlyNumbers(event);" type="text" value="" class="inputs">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div style="float:left;right:0px;">
+
+                <div class="billInfo">
+                    @*<img width="340" src="~/Images/security.jpg" />*@
+                    <div class="divClear">
+                        @Html.Label("Kredi Kartı Bilgileri", new { @class = "middleHeader" })
+                    </div>
+                    <div class="divClear">
+                        @Html.Label("Kart üzerindeki isim")<a style="color:red;">(*)</a><br />
+                        @Html.TextBox("txtCardOwnerName", "", new { @class = "inputs" })
+                    </div>
+                    <div class="divClear">
+                        @Html.Label("Kart Numarası")<a style="color:red;">(*)</a><br />
+                        @Html.TextBox("txtCardNumber", "", new { @class = "inputs" })
+                    </div>
+                    <div class="divClear">
+                        @Html.Label("Kart Geçerlilik Tarihi")<a style="color:red;">(*)</a><br />
+                    </div>
+                    <div class="divClear">
+                        <span class="FormListBox">
+                            @{ var listMonth = new SelectList(new[]
+                                          {
+                                              new {ID="1",Name="01"},
+                                              new{ID="2",Name="02"},
+                                              new{ID="3",Name="03"},
+                                              new{ID="4",Name="04"},
+                                              new{ID="5",Name="05"},
+                                              new{ID="6",Name="06"},
+                                              new{ID="7",Name="07"},
+                                              new{ID="8",Name="08"},
+                                              new{ID="9",Name="09"},
+                                              new{ID="10",Name="10"},
+                                              new{ID="11",Name="11"},
+                                              new{ID="12",Name="12"}
+                                          }, "ID", "Name", 1);
+                            }
+                        </span>
+                    </div>
+                    <div class="divClear">
+                        <span class="FormListBox">
+                            @Html.DropDownList("drpLastUseMonth", listMonth)
+                        </span>
+                    </div>
+                    <div class="divClear">
+                        <span class="FormListBox">
+                            @{ var listYear = new SelectList(new[]
+                                          {
+                                              new {ID="2014",Name="2014"},
+                                              new{ID="2015",Name="2015"},
+                                              new{ID="2016",Name="2016"},
+                                              new{ID="2017",Name="2017"},
+                                              new{ID="2018",Name="2018"},
+                                              new{ID="2019",Name="2019"},
+                                              new{ID="2026",Name="2026"},
+                                              new{ID="2021",Name="2021"},
+                                              new{ID="2022",Name="2022"},
+                                              new{ID="2023",Name="2023"},
+                                              new{ID="2024",Name="2024"},
+                                              new{ID="2025",Name="2025"}
+                                          }, "ID", "Name", 1);
+                            }
+                        </span>
+                    </div>
+                    <div class="divClear">
+                        <span class="FormListBox">
+                            <span class="FormListBox">
+                                @Html.DropDownList("drpLastUseYear", listYear)
+                            </span>
+                        </span>
+                    </div>
+                    <div class="divClear">
+                        @Html.Label("Güvenlik Kodu (CVV2)")<a style="color:red;">(*)</a><br />
+                        @Html.TextBox("txtCVV2", "", new { @class = "inputs" })
+                    </div>
+                    <div class="divClear">
+                        @Html.Label("Kredi Kartı Ödeme Seçenekleri")<a style="color:red;">(*)</a><br />
+                    </div>
+                    <div>
+                        <table style="width: 200px;" role="presentation">
+                            <tbody>
+                                <tr>
+                                    <td>@Html.RadioButton("radioInstallment", false, new { @class = "radiobtn" })<label for="radioInstallment1">Tek çekim</label></td>
+                                    <td>@Html.RadioButton("radioInstallment", true, new { @class = "radiobtn" })<label for="radioInstallment1">Taksitli</label></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="divClear">
+                        @Html.Label("Taksit Sayısı")<a style="color:red;">(*)</a><br />
+                        @Html.TextBox("txtManyInstallment", "", new { @class = "inputs" })
+                    </div>
+                    <div class="divClear">
+                        @Html.CheckBox("chkAgree", new { @class = "checkboxFixWidth" })<div clas="knowledgeAgree">Ön bilgilendirme formu ve mesafeli satış sözleşmesini okudum, kabul ediyorum.</div>
+                    </div>
+                    @Html.Hidden("hdnSelectedMonth", "")
+                    @Html.Hidden("hdnSelectedYear", "")
+
+                    <br />
+                    <div id="updateButton" class="floatRight">
+                        <input type="button" value="Sepeti Boşalt" class="btn-warning" onclick="window.location.replace('@Url.Action("CleanBasket", "otomobilvasita")    ')" onkeypress="if (event.keyCode == 13) { window.location.replace('@Url.Action("CleanBasket", "otomobilvasita")    ');}" />
+                        <input type="button" value="Alış verişe devam et" class="btn-primary" onclick="window.location.replace('@Url.Action("yeniikinciel", "otomobilvasita")    ')" onkeypress="if (event.keyCode == 13) { window.location.replace('@Url.Action("yeniikinciel", "otomobilvasita")    ') }" />
+                        <input type="button" class="btn-success" onclick="if(document.getElementById('chkAgree').checked == true){ $('#submitForm').submit();}else {alert('Sipariş sözleşmesini onaylamanız gerekmektedir...');}" onkeypress="if (event.keyCode == 13) { if (document.getElementById('chkAgree').checked == true) { $('#submitForm').submit(); } else { alert('Sipariş sözleşmesini onaylamanız gerekmektedir...'); } }" value="Siparişi Onayla" />
+
+                    </div>
+
+                </div>
+            </div>
+
+        }
+
+    }
+
+</div>
+
+@*<script src="/Scripts/jquery-1.8.2.js"></script>*@
+<script src="~/Scripts/jquery-2.2.2.min.js"></script>
+<script type="text/jscript">
+    $(document).ready(function () {
+        $("#newAddress").hide();
+        $(document).on('change', '.quantityInputShort', function () {
+            var data = {
+                Id: $(this).data('index'),
+                value: $(this).val()
+            };
+            var jqxhr = $.getJSON("/Order/BasketSession/", data, function () { });
+            jqxhr.complete(function () { location.reload(true); });
+        });
+
+        $.getJSON('/Order/GetTransportTypes/' + $('#transportTypeSelect').val(), function (data) {
+            var items = '';
+            $.each(data, function (i, chosen) {
+                items += "<option value='" + chosen.Value + "'>" + chosen.Text + "</option>";
+            });
+            if (items != '') {
+                $('#transportTypeSelect').html(items);
+            }
+        });
+
+        $.getJSON('/Order/GetAddresses/', function (data) {
+            var items = '';
+            $.each(data, function (i, chosen) {
+                items += "<option value='" + chosen.Value + "'>" + chosen.Text + "</option>";
+            });
+            if (items != '') {
+                $('#address').html(items);
+            }
+        });
+
+
+        function turkcesiralama(a, b) {
+            var atext = a.Text;
+            var btext = b.Text;
+            var alfabe = "AaBbCcÇçDdEeFfGgĞğHhIıİiJjKkLlMmNnOoÖöPpQqRrSsŞşTtUuÜüVvWwXxYyZz0123456789";
+            if (atext.length === 0 || btext.length === 0) {
+                return atext.length - btext.length;
+            }
+            for (var i = 0; i < atext.length && i < btext.length; i++) {
+                var ai = alfabe.indexOf(atext[i]);
+                var bi = alfabe.indexOf(btext[i]);
+                if (ai !== bi) {
+                    return ai - bi;
+                }
+            }
+        }
+
+        $("#btnChangeAddress").click(function () {
+            $("#selectAddress").hide();
+            $("#btnChangeAddress").hide();
+            $("#newAddress").show();
+        });
+
+        $('#drpLastUseMonth').change(function () {
+            $("#hdnSelectedMonth").val($('#drpLastUseMonth').val());
+        });
+
+        $('#drpLastUseYear').change(function () {
+            $("#hdnSelectedYear").val($('#drpLastUseYear').val());
+        });
+
+        $('#dropDownSelectedCity').click(function () {
+            $.getJSON('/otomobilvasita/TownList/' + $('#dropDownSelectedCity').val(), function (data) {
+                var items = '';
+                data.sort(turkcesiralama);
+                $.each(data, function (i, chosen) {
+                    items += "<option value='" + chosen.Value + "'>" + chosen.Text + "</option>";
+                });
+                if (items != '') {
+                    $('#TownsList').html(items);
+                }
+            });
+        });
+        $('#dropDownSelectedCity').change(function () {
+            $.getJSON('/otomobilvasita/TownList/' + $('#dropDownSelectedCity').val(), function (data) {
+                var items = '';
+                data.sort(turkcesiralama);
+                $.each(data, function (i, chosen) {
+                    items += "<option value='" + chosen.Value + "'>" + chosen.Text + "</option>";
+                });
+                if (items != '') {
+                    $('#TownsList').html(items);
+                }
+            });
+        });
+
+        $('#TownsList').click(function () {
+            $.getJSON('/otomobilvasita/SubDistrictList/' + $('#TownsList').val(), function (data) {
+                var items = '';
+                $.each(data, function (i, chosen) {
+                    items += "<option value='" + chosen.Value + "'>" + chosen.Text + "</option>";
+                });
+                if (items != '') {
+                    $('#SubDistrictList').html(items);
+                }
+            });
+        });
+        $('#TownsList').change(function () {
+            $.getJSON('/otomobilvasita/SubDistrictList/' + $('#TownsList').val(), function (data) {
+                var items = '';
+                $.each(data, function (i, chosen) {
+                    items += "<option value='" + chosen.Value + "'>" + chosen.Text + "</option>";
+                });
+                if (items != '') {
+                    $('#SubDistrictList').html(items);
+                }
+            });
+        });
+    });
+
+    //$('#orderBasketGrid tr').live('hover', function () {
+    //    if (this.parentElement.nodeName == "TBODY") {
+    //        $(this).toggleClass('clickable')
+    //    }
+    //}).live('click', function () {
+    //    if (this.parentElement.nodeName == "TBODY") {
+    //        location.href = '/otomobilvasita/aracozellikleri/?prdcId=' + $(this).find('#productId').val() + '&productGroup=' + $(this).find('#productGroup').val() + '&productCat=' + $(this).find('#productCat').val() + '&productCurr=' + $(this).find('#productCurr').val();
+    //    }
+    //    else if (this.parentElement.nodeName == "THEAD") {
+    //        location.href = '/otomobilvasita/SearchProductVehicle/?CatagoryId=-1&MarkId=1';
+    //    }
+    //});
+
+
+
+</script>

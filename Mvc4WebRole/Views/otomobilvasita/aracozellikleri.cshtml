@@ -1,0 +1,798 @@
+﻿@using System.Globalization
+@model BusinessObjects.PrdcDetailViewModel
+
+
+@{
+    string pageTitle = @ViewBag.Title ?? "Title Not Set";
+}
+
+<title>@pageTitle</title>
+
+@{
+    var accInfo = (BusinessObjects.AccountInformation)HttpContext.Current.Session["AccountInformation"];
+    ViewBag.H1 = "Otomotivist.com Ürün Detayı Sayfası";
+}
+<link href="~/Content/magnific-popup.css" rel="stylesheet" />
+
+<style type="text/css">
+    .panel-primary {
+        margin-top: 0px;
+    }
+
+    img {
+        max-height: 1200px !important;
+    }
+
+        img.mfp-img {
+            width: 800px;
+        }
+</style>
+
+<script src="~/Scripts/jquery-2.1.1.min.js"></script>
+
+
+<div class="container">
+    <div class="topInfo col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="col-md-7"><h3 class="page-header"><span ng-bind="baslik" class="ng-binding">@Model.selectedProduct.Name</span> <small class="text-danger" style="display:none;">#@Model.selectedProduct.Id</small></h3></div>
+        <div class="col-md-5 float-right">
+            <div class="ilanKodu">
+                İlan Kodu :<span class="text-danger">
+                    @Model.selectedProduct.Id <input type="hidden" id="productId" name="productId" value="@Model.selectedProduct.Id" />
+                </span>
+            </div>
+            <div class="recordDate">Eklenme Tarihi:<span class="text-danger">@Model.selectedProduct.RecordDate.ToShortDateString()</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div id="prdcDetailView" class="col-xs-8 col-sm-6 col-md-8 col-lg-8" itemscope itemtype="http://schema.org/Product">
+            <span itemprop="name"></span>
+            <span itemprop="description"></span>
+            <link rel="tag" itemprop="availability" href="http://schema.org/InStock" />
+
+            <div class="row">
+                <div id="prdcDetPics" class="col-xs-4 col-sm-6 col-md-4 col-lg-4">
+                    <div id="prdcDetBigPic">
+                        <img src="@Model.selectedProduct.ImagePath0" alt="@Model.selectedProduct.Name" id="prdcDetailImg" />
+                    </div>
+                    <div id="prdcDetSmallPics2">
+                        @{
+                            if (Model.selectedProduct.ImagePath0 != null)
+                            {
+                                <a href="@Model.selectedProduct.ImagePath0" class="prdcSmllPicA colorecowered" id="prdcSmllpicToBig">Büyük görüntüler için tıklayın...</a>
+                            }
+                            if (Model.selectedProduct.ImagePath1 != null)
+                            {
+                                <a href="@Model.selectedProduct.ImagePath1" class="prdcSmllPicA" alt="@Model.selectedProduct.ImagePath1"></a>
+                            }
+                            if (Model.selectedProduct.ImagePath2 != null)
+                            {
+                                <a href="@Model.selectedProduct.ImagePath2" class="prdcSmllPicA" alt="@Model.selectedProduct.ImagePath2"></a>
+                            }
+                            if (Model.selectedProduct.ImagePath3 != null)
+                            {
+                                <a href="@Model.selectedProduct.ImagePath3" class="prdcSmllPicA" alt="@Model.selectedProduct.ImagePath3"></a>
+                            }
+                            if (Model.selectedProduct.ImagePath4 != null)
+                            {
+                                <a href="@Model.selectedProduct.ImagePath4" class="prdcSmllPicA" alt="@Model.selectedProduct.ImagePath4"></a>
+                            }
+                            if (Model.selectedProduct.ImagePath5 != null)
+                            {
+                                <a href="@Model.selectedProduct.ImagePath5" class="prdcSmllPicA" alt="@Model.selectedProduct.ImagePath5"></a>
+                            }
+                            if (Model.selectedProduct.ImagePath6 != null)
+                            {
+                                <a href="@Model.selectedProduct.ImagePath6" class="prdcSmllPicA" alt="@Model.selectedProduct.ImagePath6"></a>
+                            }
+                            if (Model.selectedProduct.ImagePath7 != null)
+                            {
+                                <a href="@Model.selectedProduct.ImagePath7" class="prdcSmllPicA" alt="@Model.selectedProduct.ImagePath7"></a>
+                            }
+                            if (Model.selectedProduct.ImagePath8 != null)
+                            {
+                                <a href="@Model.selectedProduct.ImagePath8" class="prdcSmllPicA" alt="@Model.selectedProduct.ImagePath8"></a>
+                            }
+                            if (Model.selectedProduct.ImagePath9 != null)
+                            {
+                                <a href="@Model.selectedProduct.ImagePath9" class="prdcSmllPicA" alt="@Model.selectedProduct.ImagePath9"></a>
+                            }
+                            if (Model.selectedProduct.ImagePath10 != null)
+                            {
+                                <a href="@Model.selectedProduct.ImagePath10" class="prdcSmllPicA" alt="@Model.selectedProduct.ImagePath10"></a>
+                            }
+                        }
+                    </div>
+                    <div id="prdcDetSmallPics">
+                        @{
+                            if (Model.selectedProduct.ImagePath0 != null)
+                            {
+                                <img src="@Model.selectedProduct.ImagePath0" class="prdcDetSmallPic" alt="@Model.selectedProduct.Name" />
+                            }
+                            if (Model.selectedProduct.ImagePath1 != null)
+                            {
+                                <img src="@Model.selectedProduct.ImagePath1" class="prdcDetSmallPic" alt="@Model.selectedProduct.ImagePath1" />
+                            }
+                            if (Model.selectedProduct.ImagePath2 != null)
+                            {
+                                <img src="@Model.selectedProduct.ImagePath2" class="prdcDetSmallPic" alt="@Model.selectedProduct.ImagePath2" />
+                            }
+                            if (Model.selectedProduct.ImagePath3 != null)
+                            {
+                                <img src="@Model.selectedProduct.ImagePath3" class="prdcDetSmallPic" alt="@Model.selectedProduct.ImagePath3" />
+                            }
+                            if (Model.selectedProduct.ImagePath4 != null)
+                            {
+                                <img src="@Model.selectedProduct.ImagePath4" class="prdcDetSmallPic" alt="@Model.selectedProduct.ImagePath4" />
+                            }
+                            if (Model.selectedProduct.ImagePath5 != null)
+                            {
+                                <img src="@Model.selectedProduct.ImagePath5" class="prdcDetSmallPic" alt="@Model.selectedProduct.ImagePath5" />
+                            }
+                            if (Model.selectedProduct.ImagePath6 != null)
+                            {
+                                <img src="@Model.selectedProduct.ImagePath6" class="prdcDetSmallPic" alt="@Model.selectedProduct.ImagePath6" />
+                            }
+                            if (Model.selectedProduct.ImagePath7 != null)
+                            {
+                                <img src="@Model.selectedProduct.ImagePath7" class="prdcDetSmallPic" alt="@Model.selectedProduct.ImagePath7" />
+                            }
+                            if (Model.selectedProduct.ImagePath8 != null)
+                            {
+                                <img src="@Model.selectedProduct.ImagePath8" class="prdcDetSmallPic" alt="@Model.selectedProduct.ImagePath8" />
+                            }
+                            if (Model.selectedProduct.ImagePath9 != null)
+                            {
+                                <img src="@Model.selectedProduct.ImagePath9" class="prdcDetSmallPic" alt="@Model.selectedProduct.ImagePath9" />
+                            }
+                            if (Model.selectedProduct.ImagePath10 != null)
+                            {
+                                <img src="@Model.selectedProduct.ImagePath10" class="prdcDetSmallPic" alt="@Model.selectedProduct.ImagePath10" />
+                            }
+                        }
+                    </div>
+                </div>
+
+
+                <div id="prdcDetails" class="col-xs-4 col-sm-6 col-md-4 col-lg-4">
+                    @{
+                        if (Model.selectedProduct.ProductType == 2)
+                        {
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>Fiyatı </td>
+                                        <td>:</td>
+                                        <td>@Html.FormatValue(@Model.selectedProduct.CurrentPrice, "{0:C}") @Model.prdcCurrency</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kategorisi</td>
+                                        <td>:</td>
+                                        <td class="BoldText"><h5>@Model.prdcCat</h5></td>
+                                    </tr>
+                                    <tr>
+                                        <td>İlan Kodu </td>
+                                        <td>:</td>
+                                        <td>
+                                            @Model.selectedProduct.Id
+                                            <input type="hidden" id="@Model.selectedProduct.Id" name="@Model.selectedProduct.Name" value="@Model.selectedProduct.Id" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ürün Parça Kodu </td>
+                                        <td>:</td>
+                                        <td>@Model.selectedProduct.Code</td>
+                                    </tr>
+                                    <tr>
+                                        <td>İlan Eklenme Tarihi </td>
+                                        <td>:</td>
+                                        <td>@Model.selectedProduct.RecordDate.ToShortDateString()</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Adı </td>
+                                        <td>:</td>
+                                        <td>@Model.selectedProduct.Name</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Miktarı </td>
+                                        <td>:</td>
+                                        <td>@Model.selectedProduct.Quantity @Model.denominationList.FirstOrDefault(x => x.Id == Model.selectedProduct.DenominationId).Name</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Grubu</td>
+                                        <td>:</td>
+                                        <td>@Model.prdcGroup</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div id="prdcDetUsrInf">
+                                <h5 style="color:white;">İlan Sahibi İletişim Bilgileri :</h5>
+                                Kullanıcı Adı : @Model.prdcOwnerName<br />
+                                Tel : @Model.prdcOwnerPhone
+                            </div>
+                        }
+                        else if (Model.selectedProduct.ProductType == 1)
+                        {
+                            <table>
+                                <tbody>
+                                    <tr class="BoldProperties">
+                                        <td class="tdHead">Kategorisi</td>
+                                        <td></td>
+                                        <td class="tdFront"><h5>@Model.prdcCat</h5></td>
+                                    </tr>
+                                    <tr class="BoldProperties">
+                                        <td class="tdHead">Fiyatı </td>
+                                        <td></td>
+                                        <td class="cost">
+                                            @Html.FormatValue(@Model.selectedProduct.CurrentPrice, "{0:C}")
+                                        </td>
+                                    </tr>
+                                    <tr class="BoldProperties">
+                                        <td class="tdHead">Model (yıl) </td>
+                                        <td></td>
+                                        <td class="tdFront">@Model.selectedProduct.ModelYear</td>
+                                    </tr>
+                                    <tr class="BoldProperties">
+                                        <td class="tdHead">Km </td>
+                                        <td></td>
+                                        <td class="tdFront">@Model.selectedProduct.Km</td>
+                                    </tr>
+                                    <tr class="BoldProperties">
+                                        <td class="tdHead">Yakıt</td>
+                                        <td></td>
+                                        <td class="tdFront">@Model.prdcFuelTyp</td>
+                                    </tr>
+                                    <tr class="BoldProperties">
+                                        <td class="tdHead">Motor Hacmi </td>
+                                        <td></td>
+                                        <td class="tdFront">@HttpUtility.HtmlDecode(Model.prdcEngineCap)</td>
+                                    </tr>
+                                    <tr class="BoldProperties">
+                                        <td class="tdHead">Vites</td>
+                                        <td></td>
+                                        <td class="tdFront">@Model.prdcGearTyp</td>
+                                    </tr>
+
+                                    <tr class="BoldProperties">
+                                        <td class="tdHead">Motor Gücü</td>
+                                        <td></td>
+                                        <td class="tdFront">@Model.prdcEnginePow</td>
+                                    </tr>
+
+
+
+                                    <tr class="BoldProperties">
+                                        <td class="tdHead">Araç Cinsi</td>
+                                        <td></td>
+                                        <td class="tdFront">@Model.prdcVehicleTyp</td>
+                                    </tr>
+                                    <tr class="BoldProperties">
+                                        <td class="tdHead">Kasa Tipi</td>
+                                        <td></td>
+                                        <td class="tdFront">@Model.prdcCaseTyp</td>
+                                    </tr>
+                                    <tr class="BoldProperties">
+                                        <td class="tdHead">Renk</td>
+                                        <td></td>
+                                        <td class="tdFront">@Model.prdcColor</td>
+                                    </tr>
+                                    <tr class="BoldProperties">
+                                        <td class="tdHead">Durumu</td>
+                                        <td></td>
+                                        @if (@Model.selectedProduct.IsUsed == false)
+                                        {
+                                            <td class="tdFront">
+                                                Sıfır
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td class="tdFront">
+                                                2.El
+                                            </td>
+                                        }
+
+                                    </tr>
+
+
+
+                                    <tr class="BoldProperties">
+                                        <td class="tdHead">Kimden</td>
+                                        <td></td>
+                                        <td class="tdFront">@Model.prdcSeller</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="tdHead">Nerede</td>
+                                        <td></td>
+                                        <td>
+                                            @{
+                            if (Model.prdcCity != "")
+                            {
+                                @Model.prdcCity <br />
+                                if (Model.prdcTown != "")
+                                {
+                                    @Model.prdcTown                                    <br />
+                                }
+                                if (Model.prdcDistrict != "")
+                                {
+                                    @Model.prdcDistrict                                    <br />
+                                }
+                            }
+                                            }
+                                        </td>
+                                    </tr>
+                            </table>
+                            <div id="prdcDetUsrInf">
+                                <h5 style="color:white;">İlan Sahibi İletişim Bilgileri :</h5>
+                                Kullanıcı Adı : @Model.prdcOwnerName<br />
+                                Tel : @Model.prdcOwnerPhone
+                            </div>
+                        }
+                        else if (Model.selectedProduct.ProductType == 3)
+                        {
+
+                        }
+                    }
+
+
+                </div>
+
+            </div>
+            <div class="divClear">
+
+
+            </div>
+            <hr />
+
+
+            <div id="prdcDetailExpArea" class="panel panel-primary">
+                <div class="panel-heading"><bold>İlan Açıklaması </bold></div>
+                <div class="panel-body fontsizemin text-justify">
+                    @Html.Raw(Model.selectedProduct.Explanation)
+                </div>
+            </div>
+
+
+
+
+            @if (Model.selectedProduct.ProductType == 1)
+            {
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><bold>Tüm Özellikler</bold></div>
+                    <div class="panel-body">
+                        <div id="prdcDetCheckBoxes">
+                            <div class="div">
+
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.IsExchangable ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.Label("Takas Olur", new { @class = "prop-" + Model.selectedProduct.IsExchangable })
+                                </div>
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.UrgentSale ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.UrgentSale, "Acil Satılık", new { @class = "prop-" + Model.selectedProduct.UrgentSale })
+                                </div>
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.Maturity ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.Maturity, "Vade Olur", new { @class = "prop-" + Model.selectedProduct.Maturity })
+                                </div>
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.FromForeigner ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.FromForeigner, "Yabancıdan", new { @class = "prop-" + Model.selectedProduct.FromForeigner })
+                                </div>
+
+
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.NotSmoked ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.NotSmoked, "Sigara İçilmemiş", new { @class = "prop-" + Model.selectedProduct.NotSmoked })
+                                </div>
+
+                            </div>
+
+                            <div class="ozellikHeader">Güvenlik</div>
+                            <div class="div">
+
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.SeritTakipSistemi ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.SeritTakipSistemi, "Şerit takip sistemi", new { @class = "prop-" + Model.selectedProduct.SeritTakipSistemi })
+                                </div>
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.GeceGorus ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.GeceGorus, "Gece görüş", new { @class = "prop-" + Model.selectedProduct.GeceGorus })
+                                </div>
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.AAS ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.AAS, new { @class = "prop-" + Model.selectedProduct.AAS })
+                                </div>
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.ASR ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.ASR, new { @class = "prop-" + Model.selectedProduct.ASR })
+                                </div>
+
+
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.HavaYastigiPerdeler ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.HavaYastigiPerdeler, "Hava yastığı perdeler", new { @class = "prop-" + Model.selectedProduct.HavaYastigiPerdeler })
+                                </div>
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.HavaYastigiSurucu ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.HavaYastigiSurucu, "Hava yastığı sürücü", new { @class = "prop-" + Model.selectedProduct.HavaYastigiSurucu })
+                                </div>
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.HavaYastigiYan ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.HavaYastigiYan, "Hava yastığı yan", new { @class = "prop-" + Model.selectedProduct.HavaYastigiYan })
+                                </div>
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.HavaYastigiYolcu ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.HavaYastigiYolcu, "Hava yastığı yolcu", new { @class = "prop-" + Model.selectedProduct.HavaYastigiYolcu })
+                                </div>
+
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.MerkeziKilit ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.MerkeziKilit, "Merkezi kilit", new { @class = "prop-" + Model.selectedProduct.MerkeziKilit })
+                                </div>
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.UzaktanKumanda ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.UzaktanKumanda, "Uzaktan kumanda", new { @class = "prop-" + Model.selectedProduct.UzaktanKumanda })
+                                </div>
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.YorgunlukTespitSistemi ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.YorgunlukTespitSistemi, "Yorgunluk tespit sistemi", new { @class = "prop-" + Model.selectedProduct.YorgunlukTespitSistemi })
+                                </div>
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.Bas ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.Bas, "Bas", new { @class = "prop-" + Model.selectedProduct.Bas })
+                                </div>
+
+
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.Airmatic ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.Airmatic, "Airmatic", new { @class = "prop-" + Model.selectedProduct.Airmatic })
+                                </div>
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.TCS ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.TCS, new { @class = "prop-" + Model.selectedProduct.TCS })
+                                </div>
+
+                            </div>
+                            <div class="ozellikHeader">İç Donanım</div>
+                            <div class="div">
+
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.AhsapDireksiyon ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.AhsapDireksiyon, "Ahşap direksiyon", new { @class = "prop-" + Model.selectedProduct.AhsapDireksiyon })
+                                </div>
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.DeriDireksiyon ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.DeriDireksiyon, "Deri direksiyon", new { @class = "prop-" + Model.selectedProduct.DeriDireksiyon })
+                                </div>
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.HafizaliKoltuklar ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.HafizaliKoltuklar, "Hafızalı koltuklar", new { @class = "prop-" + Model.selectedProduct.HafizaliKoltuklar })
+                                </div>
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.Koltukisitma ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.Koltukisitma, "Koltuk ısıtma", new { @class = "prop-" + Model.selectedProduct.Koltukisitma })
+                                </div>
+
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.Sunroof ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.Sunroof, "Sunroof", new { @class = "prop-" + Model.selectedProduct.Sunroof })
+                                </div>
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.AnahtarsizCalistirabilme ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.AnahtarsizCalistirabilme, "Anahtarsız çalıştırabilme", new { @class = "prop-" + Model.selectedProduct.AnahtarsizCalistirabilme })
+                                </div>
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.DeriKoltuk ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.DeriKoltuk, "Deri koltuk", new { @class = "prop-" + Model.selectedProduct.DeriKoltuk })
+                                </div>
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.HizSabitleyici ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.HizSabitleyici, "Hız sabitleyici", new { @class = "prop-" + Model.selectedProduct.HizSabitleyici })
+                                </div>
+
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.Klima ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.Klima, "Klima", new { @class = "prop-" + Model.selectedProduct.Klima })
+                                </div>
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.BlueTooth ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.BlueTooth, "BlueTooth", new { @class = "prop-" + Model.selectedProduct.BlueTooth })
+                                </div>
+                                <div>
+
+                                    <span class="@(Model.selectedProduct.Telefon ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.Telefon, "Telefon", new { @class = "prop-" + Model.selectedProduct.Telefon })
+                                </div>
+                                <div>
+                                    <span class="@(Model.selectedProduct.AyarlanabilirDireksiyon ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.AyarlanabilirDireksiyon, "Ayarlanabilir direksiyon", new { @class = "prop-" + Model.selectedProduct.AyarlanabilirDireksiyon })
+                                </div>
+
+                                <div>
+                                    <span class="@(Model.selectedProduct.HidrolikDireksiyon ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.HidrolikDireksiyon, "Hidrolik direksiyon", new { @class = "prop-" + Model.selectedProduct.HidrolikDireksiyon })
+                                </div>
+                                <div>
+                                    <span class="@(Model.selectedProduct.YolBilgisayari ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.YolBilgisayari, "Yol bilgisayari", new { @class = "prop-" + Model.selectedProduct.YolBilgisayari })
+                                </div>
+                                <div>
+                                    <span class="@(Model.selectedProduct.ElektirikliIsitmaliCamlar ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.ElektirikliIsitmaliCamlar, "Elektirikli ısıtmalı camlar", new { @class = "prop-" + Model.selectedProduct.ElektirikliIsitmaliCamlar })
+                                </div>
+                                <div>
+                                    <span class="@(Model.selectedProduct.IsitmaliDireksiyon ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.IsitmaliDireksiyon, "Isıtmalı direksiyon", new { @class = "prop-" + Model.selectedProduct.IsitmaliDireksiyon })
+                                </div>
+
+                                <div>
+                                    <span class="@(Model.selectedProduct.SogutmaliTorpido ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.SogutmaliTorpido, "Sogutmalı Torpido", new { @class = "prop-" + Model.selectedProduct.SogutmaliTorpido })
+                                </div>
+                                <div>
+                                    <span class="@(Model.selectedProduct.HeadUpDisplay ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.HeadUpDisplay, "Head Up Display", new { @class = "prop-" + Model.selectedProduct.HeadUpDisplay })
+                                </div>
+                                <div>
+                                    <span class="@(Model.selectedProduct.IleriGorusKamerasi ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.IleriGorusKamerasi, "İleri göruş kamerası", new { @class = "prop-" + Model.selectedProduct.IleriGorusKamerasi })
+                                </div>
+                                <div>
+                                    <span class="@(Model.selectedProduct.GeriGorusKamerasi ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.GeriGorusKamerasi, "Geri görüş kamerası", new { @class = "prop-" + Model.selectedProduct.GeriGorusKamerasi })
+                                </div>
+
+                                <div>
+                                    <span class="@(Model.selectedProduct.KolDayama ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.KolDayama, "Kol dayama", new { @class = "prop-" + Model.selectedProduct.KolDayama })
+                                </div>
+                                <div>
+                                    <span class="@(Model.selectedProduct.IleriIleriVitesler ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.IleriIleriVitesler, "İleri vitesler++", new { @class = "prop-" + Model.selectedProduct.IleriIleriVitesler })
+                                </div>
+
+                            </div>
+                            <div class="ozellikHeader">Dış Donanım</div>
+                            <div class="div">
+
+                                <div>
+                                    <span class="@(Model.selectedProduct.AlasimJantlar ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.AlasimJantlar, "Alaşımlı jantlar", new { @class = "prop-" + Model.selectedProduct.AlasimJantlar })
+                                </div>
+                                <div>
+                                    <span class="@(Model.selectedProduct.FarYikama ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.FarYikama, "Far yıkama", new { @class = "prop-" + Model.selectedProduct.FarYikama })
+                                </div>
+                                <div>
+                                    <span class="@(Model.selectedProduct.YagmurSensoru ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.YagmurSensoru, "Yağmur sensörü", new { @class = "prop-" + Model.selectedProduct.YagmurSensoru })
+                                </div>
+                                <div>
+                                    <span class="@(Model.selectedProduct.CamTavan ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.CamTavan, "Cam tavan", new { @class = "prop-" + Model.selectedProduct.CamTavan })
+                                </div>
+
+
+                                <div>
+                                    <span class="@(Model.selectedProduct.Modifiyeli ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.Modifiyeli, "Modifiyeli", new { @class = "prop-" + Model.selectedProduct.Modifiyeli })
+                                </div>
+                                <div>
+                                    <span class="@(Model.selectedProduct.SisFari ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.SisFari, "Sis Farı", new { @class = "prop-" + Model.selectedProduct.SisFari })
+                                </div>
+                                <div>
+                                    <span class="@(Model.selectedProduct.ElektirikliYanAynalar ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.ElektirikliYanAynalar, "Elektirikli yan aynalar", new { @class = "prop-" + Model.selectedProduct.ElektirikliYanAynalar })
+                                </div>
+                                <div>
+                                    <span class="@(Model.selectedProduct.FarSensoru ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.FarSensoru, "Far sensörü", new { @class = "prop-" + Model.selectedProduct.FarSensoru })
+                                </div>
+
+                                <div>
+                                    <span class="@(Model.selectedProduct.XenonFarlar ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.XenonFarlar, "Xenon farlar", new { @class = "prop-" + Model.selectedProduct.XenonFarlar })
+                                </div>
+                                <div>
+                                    <span class="@(Model.selectedProduct.ParkSensoru ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.ParkSensoru, "Park sensörü", new { @class = "prop-" + Model.selectedProduct.ParkSensoru })
+                                </div>
+                                <div>
+                                    <span class="@(Model.selectedProduct.KatlanirAynalar ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.KatlanirAynalar, "Katlanır aynalar", new { @class = "prop-" + Model.selectedProduct.KatlanirAynalar })
+                                </div>
+                                <div>
+                                    <span class="@(Model.selectedProduct.GeceSensoru? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.GeceSensoru, "Gece sensörü", new { @class = "prop-" + Model.selectedProduct.GeceSensoru })
+                                </div>
+
+
+                                <div>
+                                    <span class="@(Model.selectedProduct.ArkaCamBuzCozucu ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.ArkaCamBuzCozucu, "Arka cam buz çözücü", new { @class = "prop-" + Model.selectedProduct.ArkaCamBuzCozucu })
+                                </div>
+                                <div>
+                                    <span class="@(Model.selectedProduct.PanoramikOnCam ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.PanoramikOnCam, "Panaromik ön cam", new { @class = "prop-" + Model.selectedProduct.PanoramikOnCam })
+                                </div>
+                                <div>
+                                    <span class="@(Model.selectedProduct.PanaromikCamTavan ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.PanaromikCamTavan, "Panaromik cam tavan", new { @class = "prop-" + Model.selectedProduct.PanaromikCamTavan })
+                                </div>
+                                <div>
+                                    <span class="@(Model.selectedProduct.HardTop ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.HardTop, "Hard Top", new { @class = "prop-" + Model.selectedProduct.HardTop })
+                                </div>
+
+                            </div>
+                            <div class="ozellikHeader">Multimedya</div>
+                            <div class="div">
+
+                                <div>
+                                    <span class="@(Model.selectedProduct.RadyoType ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.RadyoType, "Radyo teyp", new { @class = "prop-" + Model.selectedProduct.RadyoType })
+                                </div>
+                                <div>
+                                    <span class="@(Model.selectedProduct.RadyoCD ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.RadyoCD, "Radyo CD", new { @class = "prop-" + Model.selectedProduct.RadyoCD })
+                                </div>
+                                <div>
+                                    <span class="@(Model.selectedProduct.Mp3Calabilme ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.Mp3Calabilme, "Mp3 yürütebilme", new { @class = "prop-" + Model.selectedProduct.Mp3Calabilme })
+                                </div>
+                                <div>
+                                    <span class="@(Model.selectedProduct.NavigasyonTV ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.NavigasyonTV, "Navigasyon TV", new { @class = "prop-" + Model.selectedProduct.NavigasyonTV })
+                                </div>
+
+                                <div>
+                                    <span class="@(Model.selectedProduct.USBAUX ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.USBAUX, "USBAUX", new { @class = "prop-" + Model.selectedProduct.USBAUX })
+                                </div>
+                                <div>
+                                    <span class="@(Model.selectedProduct.AUX ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.AUX, "AUX", new { @class = "prop-" + Model.selectedProduct.AUX })
+                                </div>
+                                <div>
+                                    <span class="@(Model.selectedProduct.IPod ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.IPod, "IPod", new { @class = "prop-" + Model.selectedProduct.IPod })
+                                </div>
+                                <div>
+                                    <span class="@(Model.selectedProduct.Hoparlor6 ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.Hoparlor6, "Hoparlor 6++", new { @class = "prop-" + Model.selectedProduct.Hoparlor6 })
+                                </div>
+
+                                <div>
+                                    <span class="@(Model.selectedProduct.CDDVDDegistirici  ? "enable-prop" : "disable-prop")"></span>
+                                    @Html.LabelFor(m => m.selectedProduct.CDDVDDegistirici, "CD ve DVD değiştirici", new { @class = "prop-" + Model.selectedProduct.CDDVDDegistirici })
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            }
+
+            <div id="prdcDetailsBtns">
+                @if (Model.selectedProduct.ProductType == 2)
+                {
+                    <input id="prdcAddToBskt" name="prdcAddToBskt" onclick="location.href = '/otomobilvasita/InsertToOrderBasket?id=' + document.getElementById('productId').value + '&name=@Model.selectedProduct.Name    &price=@Model.selectedProduct.CurrentPrice.ToString()    &quantity=@Model.selectedProduct.Quantity.ToString()    &productGrupId=@Model.selectedProduct.GroupId.ToString()    &productGrup=@Model.prdcGroup    &productCatg=@Model.prdcCat    &productMark=@Model.prdcMark    &productCurr=@Model.prdcCurrency    '; alert('Sepete eklenmiştir');"
+                           onkeypress="if (event.keyCode == 13) {location.href = '/otomobilvasita/InsertToOrderBasket?id=' + document.getElementById('productId').value + '&name=@Model.selectedProduct.Name    &price=@Model.selectedProduct.CurrentPrice.ToString()    &quantity=@Model.selectedProduct.Quantity.ToString()    &productGrupId=@Model.selectedProduct.GroupId.ToString()    &productGrup=@Model.prdcGroup    &productCatg=@Model.prdcCat    &productMark=@Model.prdcMark    &productCurr=@Model.prdcCurrency    ';" }" type="submit" value="Sepete Ekle" class="btn btn-info" />
+                    <input type="button" onclick="location.href = '/Order/_OrderBasketView'" value="Sepete Git" class="btn btn-success" />
+                }
+                @if (accInfo != null)
+                {
+                    if (Model.selectedProduct.RegistererId == accInfo.UserId)
+                    {
+                        <input type="submit" id="editPrdcBtn" class="selectedTab btn-warning" name="editPrdcBtn" value="Düzenle" />
+                        <input id="prdDelete" class="btn btn-danger" name="prdDelete" type="submit" value="Sil" onclick="prdClick(productId.value);" onkeypress="    if (event.keyCode == 13) { prdClick(productId.value); }" />
+                    }
+                }
+            </div>
+        </div>
+
+        <div id="prdcDetailViewSide" class="col-xs-4 col-sm-6 col-md-4 col-lg-4">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading"><bold>İletişim Bilgileri  </bold><span class="float-right">@Html.ActionLink("Detaylı Bilgiler", "GoToTargetProfile", null, new { pid = @Model.selectedProduct.Id }, new { @class = "btnDetail" })</span></div>
+                <div class="panel-body">
+                    <div>
+                        <h3>@Model.prdcOwnerName</h3>
+
+                        @Model.prdcOwnerPhone
+                    </div>
+                    @{
+                        if (Model.prdcCity != "")
+                        {
+                            @Model.prdcCity                            <br />
+                            if (Model.prdcTown != "")
+                            {
+                                @Model.prdcTown <br />
+                            }
+                            if (Model.prdcDistrict != "")
+                            {
+                                @Model.prdcDistrict <br />
+                            }
+                        }
+                    }
+                </div>
+            </div>
+            <div class="divLine">
+                @{
+                    if (accInfo != null)
+                    {
+                        <a class="modalll btnmsjsend" id="modalPopup1" title="/otomobilvasita/MessageSenderPartial?uid=@accInfo.UserId&pid=@Model.selectedProduct.Id">Mesaj Gönder <i></i></a>
+                    }
+                    else
+                    {
+                        <a class="modalll btnmsjsend" id="modalPopup2" title="/otomobilvasita/MessageSenderPartial?uid=-1&pid=@Model.selectedProduct.Id">Mesaj Gönder <i></i></a>
+                    }
+                }
+
+                @{
+                    if (accInfo != null)
+                    {
+                        <a class="btnInteraction btnfavoriadd" href="/otomobilvasita/AddToFavorite?uid=@accInfo.UserId&amp;pid=@Model.selectedProduct.Id" onclick="alert('Favorilerinize eklenmiştir');" onkeypress="    if (event.keycode==13) {alert('Favorilerinize eklenmiştir');}">Favorilere Ekle<i></i></a>
+
+                    }
+                }
+            </div>
+            @{
+                if (accInfo != null)
+                {
+
+                    <a class="btnInteraction btngogallery" href="/otomobilvasita/GoToTargetProfile?pid=@Model.selectedProduct.Id">Galeriye Git <i></i></a>
+                }
+            }
+
+        </div>
+    </div>
+</div>
+
+@Html.Hidden("productCatIds", Model.prdcCatIds)
+@Html.Hidden("productGroupIds", Model.prdcGroupIds)
+
+
+
+
+

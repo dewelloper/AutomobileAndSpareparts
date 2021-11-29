@@ -1,0 +1,46 @@
+@model IEnumerable<BusinessObjects.Mark>
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Index</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table role="presentation">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                MarkName
+            </th>
+            <th>
+                MarkCode
+            </th>
+            <th>
+                Products
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+                <td>
+                    @item.MarkName
+                </td>
+                <td>
+                    @item.MarkCode
+                </td>
+                <td>
+                    @(item.Products == null ? "None" : item.Products.Count.ToString())
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

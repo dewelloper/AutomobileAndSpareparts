@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "EntryView";
+}
+
+<style>
+    .button:hover
+    {
+        background-color:white;
+    }
+</style>
+
+<h2>Hoş Geldiniz ...</h2>
+    <div style="width:33.3%; height:400px; float:left;">
+        <input type="button" style="width:100%; height:100%;" id="yedek" class="button" value="OTO YEDEK PARÇA" onclick="JumpYedek();" onkeypress="    if (event.keycode == 13) { JumpYedek(); }"/>
+    </div>
+    <div style="width:33.3%; height:400px; float:left;">
+        <input type="button" style="width:100%; height:100%;" id="servis" class="button" value="OTO SERVİS" onclick="JumpServis();" onkeypress="    if (event.keycode == 13) { JumpServis(); }" />
+    </div>
+    <div style="width:33.3%; height:400px; float:left;">
+        <input type="button" style="width:100%; height:100%;" id="oto" class="button" value="OTO ALIM-SATIM" onclick="    JumpOto();" onkeypress="    if (event.keycode == 13) { JumpOto(); }" />
+    </div>
+
+<script type="text/jscript">
+    function JumpYedek() {
+        window.location.href = "otomobilvasita/yeniikinciel";
+    }
+    function JumpServis() {
+        window.location.href = "otomobilvasita/Servis";
+    }
+    function JumpOto() {
+        window.location.href = "otomobilvasita/Oto";
+    }    
+</script>

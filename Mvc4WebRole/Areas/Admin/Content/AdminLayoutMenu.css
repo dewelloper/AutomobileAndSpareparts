@@ -1,0 +1,122 @@
+﻿/* http://meyerweb.com/eric/tools/css/reset/
+v2.0 | 20110126
+License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+margin: 0;
+padding: 0;
+border: 0;
+font-size: 100%;
+font: inherit;
+vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+display: block;
+}
+body {
+line-height: 1;
+}
+ol, ul {
+list-style: none;
+}
+blockquote, q {
+quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+content: '';
+content: none;
+}
+table {
+border-collapse: collapse;
+border-spacing: 0;
+}
+/*Site*/
+body {
+font-family: arial;
+}
+/*Menu*/
+div.menu_container {
+margin: 5px;
+border: solid 1px #aaa;
+padding: 5px;
+border-radius: 5px;
+background: #cccccc;
+background: -webkit-gradient(linear, center top, center bottom, from(#f0f0f0), to(#cccccc));
+background: -moz-linear-gradient(top, #f0f0f0, #cccccc);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f0f0f0', endColorstr='#cccccc');
+box-shadow: 5px 5px 5px #f0f0f0;
+}
+.menu {
+float: left;
+list-style: none outside none;   
+width: 100%;
+font-size: 14px;
+}
+.menu li {
+float: left;   
+position: relative;
+}
+.menu a {
+background: none repeat scroll 0 0 rgba(255, 255, 255, 0);
+color: #2b2b2b;
+display: block;
+padding: 5px;
+text-decoration: none;
+}
+.menu a:hover {
+background: none repeat scroll 0 0 rgba(255, 255, 255, 0);
+color: #2b2b2b;
+}
+.menu ul {
+background: none repeat scroll 0 0 #FFFFFF;
+left: -9999px;
+list-style: none outside none;
+position: absolute;
+}
+.menu ul li {
+float: none;
+}
+.menu ul a {
+white-space: nowrap;
+}
+.menu li:hover > ul {
+left: 0;
+border: solid 1px #888;
+border-radius: 4px;   
+box-shadow: 3px 3px 3px #c0c0c0;
+}
+.menu li.submenu:hover > ul {
+left: 100px;
+top: 0;
+border: solid 1px #888;
+border-radius: 4px;   
+box-shadow: 3px 3px 3px #c0c0c0;
+position: absolute;
+z-index: 5;
+}
+ 
+.menu li:hover a {
+background: none repeat scroll 0 0 rgba(255, 255, 255, 0); 
+}
+.menu li:hover ul a {
+text-decoration: none;
+}
+.menu li:hover ul li a:hover {
+background: none repeat scroll 0 0 #ddd;
+border-radius: 4px;
+}

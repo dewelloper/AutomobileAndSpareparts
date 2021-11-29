@@ -1,0 +1,81 @@
+@model BusinessObjects.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+
+
+<div style="clear:both;"></div>
+<section id="loginForm">
+    <h1 class="page-header" style="text-align:center;">Giriþ yapmak için yerel bir hesap kullan.</h1>
+    <b>@TempData["LoginMessage"]</b>
+
+
+    <div class="well">
+        @using (Html.BeginForm(new { returnUrl = ViewBag.ReturnUrl }))
+        {
+            @Html.AntiForgeryToken()
+
+
+            <div class="form-group">
+                <label for="UserName" class="control-label">Kullanýcý Adý veya Email</label>
+                <div class="input-group">
+                    <div class="input-group-addon glyphicon glyphicon-user"></div>
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "otomotivist", @required = "", @title = "Lütfen bir kullanýcý adý girin." })
+                </div>  @Html.ValidationMessageFor(m => m.UserName)
+                <span class="help-block"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label for="Password" class="control-label">Þifre</label>
+                <div class="input-group">
+                    <div class="input-group-addon glyphicon glyphicon-lock"></div>
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "*****", @required = "", @title = "Lütfen bir þifre girin." })
+                </div> @Html.ValidationMessageFor(m => m.Password)
+                <span class="help-block"></span>
+            </div>
+            <div class="rememberMe">
+                @Html.CheckBoxFor(m => m.RememberMe)
+                @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox " })
+            </div>
+
+            <a class="accessible" href="~/Account/Login">[Giriþ Yap]</a>
+            <input type="submit" class="btn btn-success btn-block " value="Giriþ Yap" />
+
+
+
+            <a href="/Account/ForgotPassword" class="btn btn-default btn-block">Þifremi Unuttum ?</a>
+
+        }
+    </div>
+</section>
+
+<section id="registerForm">
+    <h3 class="page-header" style="text-align:center;">   Eðer bir hesabýn yoksa <span class="text-success">ÜCRETSÝZ KAYIT OL</span></h3>
+
+    <div class="well">
+        <br /><ul class="list-unstyled" style="line-height: 2">
+            <li><span class="fa fa-check text-success glyphicon glyphicon-ok"></span> Yedek parça ilaný ekleyebilirsin.</li>
+            <li><span class="fa fa-check text-success glyphicon glyphicon-heart"></span> Otomobil ilaný ekleyebilirsin.</li>
+            <li><span class="fa fa-check text-success glyphicon glyphicon-plus-sign"></span>ilan ekleyebilirsin.</li>
+            <li><span class="fa fa-check text-success glyphicon glyphicon-gift"></span> Üstelik sýnýrsýz.</li>
+            <li><span class="fa fa-check text-success glyphicon glyphicon-hand-right"></span> Yedek parçalar çok özel fiyatlarla ulaþabilirsiniz.</li>
+
+        </ul>
+        <p><a href="~/Account/Register" class="btn btn-warning btn-block">HEMEN KAYIT OL!</a></p>
+    </div>
+</section>
+@*<section class="social" id="socialLoginForm">
+        <h2>Giriþ yapmak için baþka bir servis kullanýn.</h2>
+        @Html.Action("ExternalLoginsList", new { ViewBag.ReturnUrl })
+    </section>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+

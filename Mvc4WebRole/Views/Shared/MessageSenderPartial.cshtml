@@ -1,0 +1,81 @@
+﻿@model BusinessObjects.UserMessagesModel
+@{
+    Page.Title = "Otomotivist Mesaj Gönder";
+}
+
+
+@using (Html.BeginForm("SendMessage", "otomobilvasita", FormMethod.Post, new { id = "sendMessageForm" }))
+{ 
+    
+        <div id="divContainer" class="popDivCont">
+            @Html.HiddenFor(x => x.UserMessageses.ToList()[0].SenderUserId, new { Name = "accountId" })
+            @Html.HiddenFor(x => x.UserMessageses.ToList()[0].Id, new { Name = "advertisementId" })
+            <table role="presentation">
+                <tbody>
+                    <tr>
+                        <td>Konu:</td>
+                        <td>
+                            <input type="text"  id="txtSubject" class="txtBoxPop" name="txtSubject" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mesaj:</td>
+                        <td>
+                            @Html.TextArea("textareaMessage", new { rows = 5, columns = 80, @class = "txtareaPop" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="bottomTdPop">
+                            <input type="submit" style="width:auto;" class="selectedTab" value="Gönder" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    <div>
+        <ul class="messagehList">
+            @if (Model.UserMessageses.Count() > 0)
+            {
+                foreach (var message in Model.UserMessageses)
+                {
+                    <li>
+                        @if(message.ReceiveDate==null)
+                        { 
+                            <a style="color:red;"> @message.Title</a>
+                        }
+                        else
+                        {
+                            <a style="color:white;"> @message.Title</a>
+                        }
+                        <br />
+                        <p style="color:orange;">
+                            
+                                @message.Content
+                           
+                        </p>
+                        <input type="button" value="Cevapla" title="@message.SenderUserId|@message.Title|@message.Id" onclick="SetSender(this);" onkeypress="    if (event.keycode == 13) { SetSender(this); }" />
+                    </li>
+                }
+            }
+        </ul>
+
+    </div>    
+}
+
+<script type="text/javascript">
+    function SetSender(th) {
+        var titles = th.title.split('|');
+        document.getElementsByName('accountId')[0].value = titles[0];
+        document.getElementsByName('advertisementId')[0].value = -1;
+        document.getElementsByName('txtSubject')[0].value = 'Re ' + titles[1];
+        //titles[2]
+    }
+
+    //$j(document).ready(function () {
+    //    $j('.ui-dialog .ui-widget .ui-widget-content .ui-corner-all .ui-front .ui-draggable .ui-resizable').attr('style', 'position:absolute;z-index:9999;');
+    //});
+</script>
+
+

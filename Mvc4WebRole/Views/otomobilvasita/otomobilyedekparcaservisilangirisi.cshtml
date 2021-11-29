@@ -1,0 +1,1314 @@
+﻿@using BusinessObjects
+@model otomobilyedekparcaservisilangirisiViewModel
+
+
+@{
+    ViewBag.Title = "Admin Wizards";
+    ViewBag.H1 = "Otomotivist.com İlan Ekleme Sayfası";
+}
+
+<script type="text/javascript" src="~/Scripts/tinymce/tiny_mce.js"></script>
+<script type="text/javascript">
+    var theme = "";
+    if ($(window).width() < 460) {
+        theme = "simple";
+    } else {
+        theme = "advanced";
+    }
+    tinyMCE.init({
+        mode: "textareas",
+        //encoding: "xml",
+        theme: theme,
+        plugins: "autolink,lists,spellchecker,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
+
+        // Theme options
+        theme_advanced_buttons1: "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontselect,fontsizeselect",
+        theme_advanced_buttons2: "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
+        theme_advanced_buttons3: "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
+        theme_advanced_buttons4: "insertlayer,moveforward,movebackward,absolute,|,styleprops,spellchecker,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,blockquote,pagebreak,|,insertfile,insertimage",
+        theme_advanced_toolbar_location: "top",
+        theme_advanced_toolbar_align: "left",
+        theme_advanced_statusbar_location: "bottom",
+        theme_advanced_resizing: true,
+
+        // Skin options
+        skin: "o2k7",
+        skin_variant: "silver",
+
+        // Drop lists for link/image/media/template dialogs
+        template_external_list_url: "js/template_list.js",
+        external_link_list_url: "js/link_list.js",
+        external_image_list_url: "js/image_list.js",
+        media_external_list_url: "js/media_list.js",
+
+        // Replace values for the template plugin
+        template_replace_values: {
+            username: "Some User",
+            staffid: "991234"
+        },
+        setup: function (ed) {
+            ed.onSaveContent.add(function (i, o) {
+                o.content = o.content.replace(/&#39/g, "&apos");
+            });
+        }
+    });
+
+</script>
+<style type="text/css">
+    .tblBorder tr td:first-child {
+        padding-left: 20px;
+    }
+</style>
+<b class="message-error">@TempData["EnterPrdcMessage"]</b>
+<h3 class="page-header">İLAN EKLE - <span>  </span><small class="text-success" >ÜCRETSİZ</small></h3>
+<div class="well">@*addPostBox*@
+    @using (Html.BeginForm("EnterProduct", "otomobilvasita", FormMethod.Post, new { id = "submitForm", enctype = "multipart/form-data" }))
+    {
+        @Html.ValidationSummary(true)
+    <div class="form-group">
+        <h4 class="page-header">Araç Tipi / <span class=""> Vehicle Type</span></h4>
+    </div>
+    <div class="autotypeselect">
+      
+         <ul class="autotypes">
+
+            @foreach (var item in Model.listCatG.Where(a => a.RootLevel == 1))
+            {
+
+                <li class="autotype type-@item.Id" id="type-@item.Id">
+                    <span class="typic" ></span>
+                    <a id="type-image-@item.Id" href="#" class="" tipid="@item.Id">@item.Name</a>
+                </li>
+            }
+
+
+
+        </ul>
+    </div>
+        <div class="WizardFormSections">
+            <div class="form-group"><h4 class="page-header form-sec">Otomobil </h4></div>
+            <div class="WizardFormCategorySelection">
+                
+                
+                
+                <div class="CatSel" id="cs1" style="display:none;">
+                    @Html.Label("Araç Tipi ve Marka Model Seç")
+                    <div class="select-style">
+                        @Html.DropDownListFor(k => k.listCatG.FirstOrDefault().Id,
+                Model.listCatG.Where(a => a.RootLevel == 1).Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Name.ToString(),
+                }), "Seçim yapınız...", new { id = "AdminCat1" })
+                    </div>
+                </div>
+
+                <div class="CatSel" id="cs2">
+                    @Html.Label("Marka", new { id = "lAdminCat2", visible = "false" })
+                    <span class="FormListBox">
+                        <select  id="AdminCat2" name="AdminCat2"></select>
+                    </span>
+                </div>
+
+                <div class="CatSel" id="cs3">
+                    @Html.Label("Model", new { id = "lAdminCat3", visible = "false" })
+                    <span class="FormListBox">
+                        <select  id="AdminCat3" name="AdminCat3"></select>
+                    </span>
+                </div>
+                @if (Model.productType == 1)
+            {
+            <div class="CatSel" id="cs6">
+                @Html.Label("Alt Model", new { id = "lAdminCat6", visible = "false" })
+                <span class="FormListBox">
+                    <select  id="AdminCat6" name="AdminCat6"></select>
+                </span>
+            </div>
+            }
+                @if (Model.productType == 2)
+            {
+            <div class="CatSel" id="cs4">
+                @Html.Label("Yedek Parça", new { id = "lAdminCat4" })
+                <span class="FormListBox">
+                    <select  id="AdminCat4" name="AdminCat4">
+                        <option>Seçim yapınız.</option>
+                    </select>
+                </span>
+            </div>
+
+            <div class="CatSel" id="cs5">
+                @Html.Label("Yedek Parça", new { id = "lAdminCat5", visible = "false" })
+                <span class="FormListBox">
+                    <select  id="AdminCat5" name="AdminCat5">
+                        <option>Seçim yapınız.</option>
+                    </select>
+                </span>
+            </div>
+            }
+                @Html.Hidden("product.GroupId", Model.product.GroupId)
+                @Html.Hidden("product.CategoryId", Model.product.CategoryId)
+                @Html.Hidden("product.ProductType", Model.product.ProductType)
+
+            </div>
+        </div>
+
+    <div class="WizardFormAlt">
+       
+
+        @if (Model.productType == 2)
+        {
+            <div class="productType2">
+
+                <label class="page-header">Ürün Adı &  Açıklaması<small class="text-danger"> (Girmeniz gerekmektedir.)</small></label>
+                @Html.TextBox("product.Name", Model.product.Name, new { @class="form-control"  })
+            </div>
+
+    <div class="panel panel-default ptp1">
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.Label("Ürün Miktarı")
+                <div class="input-group currencyBox">
+                    @Html.TextBox("product.Quantity", "1", new { type = "number", @class = "form-control" })
+                    <div class=" select-style currencyBoxP">
+                        @Html.DropDownListFor(
+                k => k.denominationList.FirstOrDefault().Id,
+                Model.denominationList.Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Name.ToString()
+                }), new { id = "product.DenominationId", Name = "product.DenominationId" })
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Fiyatı <small class="text-success">(Ürününüzü satmak istediğiniz fiyatını yazınız.)</small></label>
+                <div class="input-group currencyBox">
+                    @Html.TextBoxFor(model => Model.product.CurrentPrice, new { @class = "form-control", @placeholder = "Örn:50.000" })<div class=" select-style currencyBoxP">
+
+                        @Html.DropDownListFor(
+        k => k.listCurrencies.FirstOrDefault().Id,
+        Model.listCurrencies.Select(x => new SelectListItem
+        {
+            Value = x.Id.ToString(),
+            Text = x.Name.ToString()
+        }), new { id = "product.PriceCurrencyId", Name = "product.PriceCurrencyId" })
+
+                    </div>
+                </div>
+                @Html.ValidationMessageFor(model => model.product.CurrentPrice)
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group ">
+                @Html.Label("Ürünün Barkodu")
+                @Html.TextBox("product.Barcode", Model.product.Barcode, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+
+                @Html.Label("Ürünün Kodu")
+                @Html.TextBox("product.Code", Model.product.Code, new { @class = "form-control" })
+
+
+            </div>
+        </div>
+
+        <div class="col-md-4">
+
+
+            @*[LastAccessDate]
+                ,[ModifierId]*@
+
+            @if (Model.productType == 2)
+            {
+                <div class="form-group">
+                    @Html.Label("Özel Kod")
+                    @Html.TextBox("product.SpecialCode", Model.product.SpecialCode, new { @class = "form-control" })
+                </div>
+
+
+            }
+
+            <div class="form-group ">
+                <div class="clearfix"></div>
+                @Html.Label("Kullanım Durumu")
+
+                <div class="form-control">
+                    @Html.RadioButtonFor(k => k.product.IsUsed, "false") Sıfır
+                    @Html.RadioButtonFor(k => k.product.IsUsed, "true") 2. El
+                </div>
+            </div>
+            <div class="form-group select-style">
+                @Html.Label("Ürün Markası")
+
+                @Html.DropDownListFor(
+            k => k.listMarks.FirstOrDefault().Id,
+            Model.listMarks.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = x.MarkName.ToString()
+            }), new { id = "product.MarkId", Name = "product.MarkId" })
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+        }
+        else if (Model.productType == 1)
+        {
+
+            <div class="productType1">
+                <label class="page-header" >İlan Başlığı  <small class="text-danger">İlanınıza bir başlık girmeniz gerekmektedir.</small></label>
+                @*@Html.TextBox("product.Name", Model.product.Name)*@
+                @Html.TextBoxFor(model => Model.product.Name, new { @class = "form-control", @placeholder = "Örn: Sahibinden Hasarsız Ford Fiesta (Dizel)" ,@ng_model="baslik" })
+                @Html.ValidationMessageFor(model => model.product.Name)
+
+
+                <div class="panel panel-default ptp1">
+                    <div class="col-md-4">
+                        <div class="form-group select-style">
+                            <label>Model Yılı</label>
+                            <span class="">
+                                @Html.DropDownListFor(
+                            k => k.listModelYears.FirstOrDefault().Value,
+                            Model.listModelYears.Select(x => new SelectListItem
+                            {
+                                Value = x.Value.ToString(),
+                                Text = x.Value.ToString()
+                            }), new { id = "product.ModelYear", Name = "product.ModelYear" })
+                            </span>
+                        </div>
+                        <div class="form-group select-style">
+                            <label for="model">Yakıt Türü</label>
+                            <span class="">
+                                @Html.DropDownListFor(
+                            k => k.listFuelTypes.FirstOrDefault().Id,
+                            Model.listFuelTypes.Select(x => new SelectListItem
+                            {
+                                Value = x.Id.ToString(),
+                                Text = x.Name.ToString()
+                            }), new { id = "product.FuelType", Name = "product.FuelType" })
+                            </span>
+                        </div>
+                        <div class="form-group select-style">
+                            <label for="model">Vites Tipi</label>
+                            <span class="">
+                                @Html.DropDownListFor(
+                             k => k.listGearTypes.FirstOrDefault().Id,
+                            Model.listGearTypes.Select(x => new SelectListItem
+                            {
+                                Value = x.Id.ToString(),
+                                Text = x.Name.ToString()
+                            }), new { id = "product.GearType", Name = "product.GearType" })
+                            </span>
+                        </div>
+                        <div class="form-group select-style">
+                            @Html.Label("Motor Hacmi")
+
+                            @Html.DropDownListFor(
+                k => k.listEngineVolumes.FirstOrDefault().Id,
+                Model.listEngineVolumes.Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = HttpUtility.HtmlDecode(x.Name.ToString())
+                }), new { id = "product.EngineCapacity", Name = "product.EngineCapacity" })
+
+
+
+                        </div>
+                        <div class="form-group ">
+                            <label>Kilometre <small class="text-danger">(Zorunlu)</small></label>
+                            <div class="input-group"> @Html.TextBox("product.Km", Model.product.Km, new { type = "number", minvalue = "0", @class = "form-control kmBox", @placeholder = "Örn:5000" }) <span class="input-group-addon">KM</span></div>
+                            @Html.ValidationMessageFor(model => model.product.Km)
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="form-group select-style">
+                            @Html.Label("Motor Gücü")
+
+                            @Html.DropDownListFor(
+                k => k.listEnginePowers.FirstOrDefault().Id,
+                Model.listEnginePowers.Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = Html.Raw(x.Name).ToString()
+                }), new { id = "product.EnginePower", Name = "product.EnginePower" })
+
+                        </div>
+
+
+                        <div class="form-group select-style">
+                            @Html.Label("Kasa Tipi")
+
+                            @Html.DropDownListFor(
+                k => k.listCaseTypes.FirstOrDefault().Id,
+                Model.listCaseTypes.Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Name.ToString()
+                }), new { id = "product.CaseType", Name = "product.CaseType" })
+
+                        </div>
+
+                        <div class="form-group select-style">
+                            @Html.Label("Renk")
+
+                            @Html.DropDownListFor(
+                k => k.listColors.FirstOrDefault().Id,
+                Model.listColors.Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Name.ToString()
+                }), new { id = "product.Color", Name = "product.Color" })
+
+                        </div>
+                        <div class="form-group select-style">
+                            @Html.Label("Araç Türü")
+
+                            @Html.DropDownListFor(
+                k => k.listVehicleTypes.FirstOrDefault().Id,
+                Model.listVehicleTypes.Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Name.ToString()
+                }), new { id = "product.VehicleType", Name = "product.VehicleType" })
+
+                        </div>
+                        <div class="form-group select-style">
+                            @Html.Label("Plaka / Uyruk")
+
+                            @Html.DropDownListFor(
+                k => k.listPlateNationalities.FirstOrDefault().Id,
+                Model.listPlateNationalities.Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Name.ToString()
+                }), new { id = "product.PlateNationality", Name = "product.PlateNationality" })
+
+                        </div>
+
+
+                    </div>
+                    <div class="col-md-4">
+
+
+                        <div class="form-group select-style">
+                            @Html.Label("Hasar Durumu")
+
+                            @Html.DropDownListFor(
+                k => k.listDamageStates.FirstOrDefault().Id,
+                Model.listDamageStates.Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Name.ToString()
+                }), new { id = "product.DamageState", Name = "product.DamageState" })
+
+                        </div>
+
+                        <div class="form-group select-style">
+                            @Html.Label("Çekiş Tipi")
+
+                            @Html.DropDownListFor(
+                k => k.listTractionTypes.FirstOrDefault().Id,
+                Model.listTractionTypes.Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Name.ToString()
+                }), new { id = "product.TractionType", Name = "product.Traction" })
+
+                        </div>
+
+                        <div class="form-group select-style">
+                            @Html.Label("Garanti Durumu")
+
+                            @Html.DropDownListFor(
+                k => k.listGuarantySituations.FirstOrDefault().Id,
+                Model.listGuarantySituations.Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Name.ToString()
+                }), new { id = "product.GuarantySituation", Name = "product.GuarantySituation" })
+
+                        </div>
+
+                        <div class="form-group select-style">
+                            @Html.Label("Yayınlanma Süresi")
+
+                            @Html.DropDownListFor(
+                k => k.listPublishDurations.FirstOrDefault().Id,
+                Model.listPublishDurations.Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Name.ToString()
+                }), new { id = "product.PublishDuration", Name = "product.PublishDuration" })
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        
+        @if (Model.productType == 2)
+        {
+          
+        }
+
+
+        <div class="divClear photoAddBox">
+            @if (Model.productType == 2)
+            {
+                @Html.Label("Ürünün Fotoğraflarını Ekleyin")
+            }
+            else if (Model.productType == 1)
+            {
+                @Html.Label("Aracın Fotoğraflarını Ekleyin")
+            }
+
+            <div class="upload-container" id="upload-container">
+                <div class="upload">
+
+                    <input type="file" id="ImgPath0" name="Images" accept="image/*" />
+                    <span class="delPic glyphicon glyphicon-remove"> </span>
+                    <div class="secilen"></div>
+                </div>
+            </div>
+            @Html.Hidden("ImagePath0", Model.product.ImagePath0)
+            @Html.Hidden("ImagePath1", Model.product.ImagePath1)
+            @Html.Hidden("ImagePath2", Model.product.ImagePath2)
+            @Html.Hidden("ImagePath3", Model.product.ImagePath3)
+            @Html.Hidden("ImagePath4", Model.product.ImagePath4)
+            @Html.Hidden("ImagePath5", Model.product.ImagePath5)
+            @Html.Hidden("ImagePath6", Model.product.ImagePath6)
+            @Html.Hidden("ImagePath7", Model.product.ImagePath7)
+            @Html.Hidden("ImagePath8", Model.product.ImagePath8)
+            @Html.Hidden("ImagePath9", Model.product.ImagePath9)
+            @Html.Hidden("ImagePath10", Model.product.ImagePath10)
+        </div>
+
+        <h4 class="page-header hTB text-primary">Lokasyon Bilgileri</h4>
+
+        <div class="panel panel-default ptp1">
+            <div class="col-md-4">
+@if (Model.productType == 2)
+{
+    <div class="form-group select-style">
+        <label>Şehir :</label>
+
+        @Html.DropDownListFor(
+                        m => m.listCities.FirstOrDefault().Id,
+                        Model.listCities.Select(x => new SelectListItem
+                        {
+                            Value = x.Id.ToString(),
+                            Text = x.Name.ToString()
+                        }).OrderBy(k => k.Text), new { id = "product.City", Name = "product.City" })
+
+    </div>
+}
+
+                <div class="form-group select-style">
+                    @Html.Label("Aktif-Pasif")
+
+                    <select  id="product.IsActive" name="product.IsActive">
+                        <option id="aktif" value="true" selected="selected">Aktif</option>
+                        <option id="pasif" value="false">Pasif</option>
+                    </select>
+
+                </div>
+
+                @if (Model.productType == 1)
+                {
+                   
+                    <div class="form-group select-style">
+                        @Html.Label("Kimden")
+
+                        @Html.DropDownListFor(
+            k => k.listProductSellers.FirstOrDefault().Id,
+            Model.listProductSellers.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = x.Name.ToString()
+            }), new { id = "product.ProductSeller", Name = "product.ProductSeller" })
+
+                    </div>
+                }
+
+               
+            </div>
+           @if (Model.productType == 2)
+           {<div class="col-md-4">
+            <div class="form-group select-style">
+                <label>İlçe :</label>
+
+                <select  id="product.Region" name="product.Region">
+                    <option value="0">Seçiniz...</option>
+                </select>
+
+            </div></div>
+            }
+
+            @if (Model.productType == 1 )
+                { <div class="col-md-4">
+
+                <div class="form-group select-style">
+                    <label>Şehir :</label>
+
+                    @Html.DropDownListFor(
+                        m => m.listCities.FirstOrDefault().Id,
+                        Model.listCities.Select(x => new SelectListItem
+                        {
+                            Value = x.Id.ToString(),
+                            Text = x.Name.ToString()
+                        }).OrderBy(k => k.Text), new { id = "product.City", Name = "product.City" })
+
+                </div>
+                <div class="form-group select-style">
+                    <label>İlçe :</label>
+
+                    <select  id="product.Region" name="product.Region">
+                        <option value="0">Seçiniz...</option>
+                    </select>
+
+                </div>
+                <div class="form-group select-style">
+                    <label>Mahalle :</label>
+
+                    <select  id="product.District" name="product.District">
+                        <option value="0">Seçiniz...</option>
+                    </select>
+
+                </div>
+            </div> }
+            @if (Model.productType == 2)
+            { <div class="col-md-4">
+
+               
+                <div class="form-group select-style">
+                    <label>Mahalle :</label>
+
+                    <select  id="product.District" name="product.District">
+                        <option value="0">Seçiniz...</option>
+                    </select>
+
+                </div>
+            </div> }
+
+
+            <div class="col-md-4">
+
+                @if(Model.productType == 1)          {
+                    <div class="form-group">
+                        <label>Fiyatı <small class="text-success">(Aracınızın satmak istediğiniz fiyatını yazınız.)</small></label>
+                        <div class="input-group currencyBox">
+                            @Html.TextBoxFor(model => Model.product.CurrentPrice, new { @class = "form-control", @placeholder = "Örn:50.000" })<div class=" select-style currencyBoxP">
+
+                                @Html.DropDownListFor(
+        k => k.listCurrencies.FirstOrDefault().Id,
+        Model.listCurrencies.Select(x => new SelectListItem
+        {
+            Value = x.Id.ToString(),
+            Text = x.Name.ToString()
+        }), new { id = "product.PriceCurrencyId", Name = "product.PriceCurrencyId" })
+
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.product.CurrentPrice)
+                    </div>
+
+                    <div class="form-group ">
+                        <hr />
+                        <div class="clearfix"></div>
+                        <br />                
+                        @Html.Label("Kullanım Durumu")
+
+                        <div class="form-control">
+                            @Html.RadioButtonFor(k => k.product.IsUsed, "false") Sıfır
+                            @Html.RadioButtonFor(k => k.product.IsUsed, "true") 2. El
+                        </div>
+                    </div>    }
+            </div>
+        </div>
+
+
+
+        <div class="divClear">
+            @if (Model.productType == 2)
+            {
+            
+    <h4 class="page-header hTB text-primary">Ürünün Açıklaması</h4>
+            }
+            else if (Model.productType == 1)
+            {
+
+                <h4 class="page-header hTB text-primary">Aracınızın özellikleri ve notlarınız</h4>
+            }
+            <div class="panel panel-default propBoXT">
+                <div class="form-group">
+                    @Html.TextAreaFor(k => k.product.Explanation, new { id = "product.Explanation", Name = "product.Explanation", @class = "resizer"})
+                    @Html.ValidationMessageFor(model => model.product.Explanation)
+                </div>
+            </div>
+        </div>
+
+
+                @if (Model.productType == 1)
+                {
+                    <h4 class="page-header hTB text-primary">Donanım Bilgileri</h4>
+            <div class="panel panel-default propBoXT">
+             
+                    @Html.Label("Özellik", new { @class = "labelHeader" })
+                
+                <hr />
+                <table class="panel panel-default propBoX">
+                    <tr>
+                        <td>
+
+                            @Html.CheckBoxFor(m => m.product.IsExchangable)
+                            @Html.Label("Takas Olur", new { @class = "checkbox" })
+
+
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.UrgentSale)
+                            @Html.LabelFor(m => m.product.UrgentSale, "Acil Satılık", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.Maturity)
+                            @Html.LabelFor(m => m.product.Maturity, "Vade Olur", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.FromForeigner)
+                            @Html.LabelFor(m => m.product.FromForeigner, "Yabancıdan", new { @class = "checkbox" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.NotSmoked)
+                            @Html.LabelFor(m => m.product.NotSmoked, "Sigara İçilmemiş", new { @class = "checkbox" })
+                        </td>
+                    </tr>
+                </table>
+
+                @Html.Label("Güvenlik", new { @class = "labelHeader" })
+                <hr />
+                <table class="panel panel-default propBoX">
+                    <tr>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.SeritTakipSistemi)
+                            @Html.LabelFor(m => m.product.SeritTakipSistemi, "Şerit takip sistemi", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.GeceGorus)
+                            @Html.LabelFor(m => m.product.GeceGorus, "Gece görüş", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.AAS)
+                            @Html.LabelFor(m => m.product.AAS, new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.ASR)
+                            @Html.LabelFor(m => m.product.ASR, new { @class = "checkbox" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.HavaYastigiPerdeler)
+                            @Html.LabelFor(m => m.product.HavaYastigiPerdeler, "Hava yastığı perdeler", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.HavaYastigiSurucu)
+                            @Html.LabelFor(m => m.product.HavaYastigiSurucu, "Hava yastığı sürücü", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.HavaYastigiYan)
+                            @Html.LabelFor(m => m.product.HavaYastigiYan, "Hava yastığı yan", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.HavaYastigiYolcu)
+                            @Html.LabelFor(m => m.product.HavaYastigiYolcu, "Hava yastığı yolcu", new { @class = "checkbox" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.MerkeziKilit)
+                            @Html.LabelFor(m => m.product.MerkeziKilit, "Merkezi kilit", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.UzaktanKumanda)
+                            @Html.LabelFor(m => m.product.UzaktanKumanda, "Uzaktan kumanda", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.YorgunlukTespitSistemi)
+                            @Html.LabelFor(m => m.product.YorgunlukTespitSistemi, "Yorgunluk tespit sistemi", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.Bas)
+                            @Html.LabelFor(m => m.product.Bas, "Bas", new { @class = "checkbox" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.Airmatic)
+                            @Html.LabelFor(m => m.product.Airmatic, "Airmatic", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.TCS)
+                            @Html.LabelFor(m => m.product.TCS, new { @class = "checkbox" })
+                        </td>
+                    </tr>
+                </table>
+
+                @Html.Label("İç Donanım", new { @class = "labelHeader" })
+                <hr />
+                <table class="panel panel-default propBoX">
+                    <tr>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.AhsapDireksiyon)
+                            @Html.LabelFor(m => m.product.AhsapDireksiyon, "Ahşap direksiyon", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.DeriDireksiyon)
+                            @Html.LabelFor(m => m.product.DeriDireksiyon, "Deri direksiyon", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.HafizaliKoltuklar)
+                            @Html.LabelFor(m => m.product.HafizaliKoltuklar, "Hafızalı koltuklar", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.Koltukisitma)
+                            @Html.LabelFor(m => m.product.Koltukisitma, "Koltuk ısıtma", new { @class = "checkbox" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.Sunroof)
+                            @Html.LabelFor(m => m.product.Sunroof, "Sunroof", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.AnahtarsizCalistirabilme)
+                            @Html.LabelFor(m => m.product.AnahtarsizCalistirabilme, "Anahtarsız çalıştırabilme", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.DeriKoltuk)
+                            @Html.LabelFor(m => m.product.DeriKoltuk, "Deri koltuk", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.HizSabitleyici)
+                            @Html.LabelFor(m => m.product.HizSabitleyici, "Hız sabitleyici", new { @class = "checkbox" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.Klima)
+                            @Html.LabelFor(m => m.product.Klima, "Klima", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.BlueTooth)
+                            @Html.LabelFor(m => m.product.BlueTooth, "BlueTooth", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.Telefon)
+                            @Html.LabelFor(m => m.product.Telefon, "Telefon", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.AyarlanabilirDireksiyon)
+                            @Html.LabelFor(m => m.product.AyarlanabilirDireksiyon, "Ayarlanabilir direksiyon", new { @class = "checkbox" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.HidrolikDireksiyon)
+                            @Html.LabelFor(m => m.product.HidrolikDireksiyon, "Hidrolik direksiyon", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.YolBilgisayari)
+                            @Html.LabelFor(m => m.product.YolBilgisayari, "Yol bilgisayari", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.ElektirikliIsitmaliCamlar)
+                            @Html.LabelFor(m => m.product.ElektirikliIsitmaliCamlar, "Elektirikli ısıtmalı camlar", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.IsitmaliDireksiyon)
+                            @Html.LabelFor(m => m.product.IsitmaliDireksiyon, "Isıtmalı direksiyon", new { @class = "checkbox" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.SogutmaliTorpido)
+                            @Html.LabelFor(m => m.product.SogutmaliTorpido, "Sogutmalı Torpido", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.HeadUpDisplay)
+                            @Html.LabelFor(m => m.product.HeadUpDisplay, "Head Up Display", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.IleriGorusKamerasi)
+                            @Html.LabelFor(m => m.product.IleriGorusKamerasi, "İleri göruş kamerası", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.GeriGorusKamerasi)
+                            @Html.LabelFor(m => m.product.GeriGorusKamerasi, "Geri görüş kamerası", new { @class = "checkbox" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.KolDayama)
+                            @Html.LabelFor(m => m.product.KolDayama, "Kol dayama", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.IleriIleriVitesler)
+                            @Html.LabelFor(m => m.product.IleriIleriVitesler, "İleri vitesler++", new { @class = "checkbox" })
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+
+                @Html.Label("Dış Donanım", new { @class = "labelHeader" })
+                <hr />
+                <table class="panel panel-default propBoX">
+                    <tr>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.AlasimJantlar)
+                            @Html.LabelFor(m => m.product.AlasimJantlar, "Alaşımlı jantlar", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.FarYikama)
+                            @Html.LabelFor(m => m.product.FarYikama, "Far yıkama", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.YagmurSensoru)
+                            @Html.LabelFor(m => m.product.YagmurSensoru, "Yağmur sensörü", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.CamTavan)
+                            @Html.LabelFor(m => m.product.CamTavan, "Cam tavan", new { @class = "checkbox" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.Modifiyeli)
+                            @Html.LabelFor(m => m.product.Modifiyeli, "Modifiyeli", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.SisFari)
+                            @Html.LabelFor(m => m.product.SisFari, "Sis Farı", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.ElektirikliYanAynalar)
+                            @Html.LabelFor(m => m.product.ElektirikliYanAynalar, "Elektirikli yan aynalar", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.FarSensoru)
+                            @Html.LabelFor(m => m.product.FarSensoru, "Far sensörü", new { @class = "checkbox" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.XenonFarlar)
+                            @Html.LabelFor(m => m.product.XenonFarlar, "Xenon farlar", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.ParkSensoru)
+                            @Html.LabelFor(m => m.product.ParkSensoru, "Park sensörü", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.KatlanirAynalar)
+                            @Html.LabelFor(m => m.product.KatlanirAynalar, "Katlanır aynalar", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.GeceSensoru)
+                            @Html.LabelFor(m => m.product.GeceSensoru, "Gece sensörü", new { @class = "checkbox" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.ArkaCamBuzCozucu)
+                            @Html.LabelFor(m => m.product.ArkaCamBuzCozucu, "Arka cam buz çözücü", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.PanoramikOnCam)
+                            @Html.LabelFor(m => m.product.PanoramikOnCam, "Panaromik ön cam", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.PanaromikCamTavan)
+                            @Html.LabelFor(m => m.product.PanaromikCamTavan, "Panaromik cam tavan", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.HardTop)
+                            @Html.LabelFor(m => m.product.HardTop, "Hard Top", new { @class = "checkbox" })
+                        </td>
+                    </tr>
+                </table>
+
+                @Html.Label("Multimedya", new { @class = "labelHeader" })
+                <hr />
+                <table class="panel panel-default propBoX">
+                    <tr>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.RadyoType)
+                            @Html.LabelFor(m => m.product.RadyoType, "Radyo teyp", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.RadyoCD)
+                            @Html.LabelFor(m => m.product.RadyoCD, "Radyo CD", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.Mp3Calabilme)
+                            @Html.LabelFor(m => m.product.Mp3Calabilme, "Mp3 yürütebilme", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.NavigasyonTV)
+                            @Html.LabelFor(m => m.product.NavigasyonTV, "Navigasyon TV", new { @class = "checkbox" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.USBAUX)
+                            @Html.LabelFor(m => m.product.USBAUX, "USBAUX", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.AUX)
+                            @Html.LabelFor(m => m.product.AUX, "AUX", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.IPod)
+                            @Html.LabelFor(m => m.product.IPod, "IPod", new { @class = "checkbox" })
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.Hoparlor6)
+                            @Html.LabelFor(m => m.product.Hoparlor6, "Hoparlor 6++", new { @class = "checkbox" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.CheckBoxFor(m => m.product.CDDVDDegistirici)
+                            @Html.LabelFor(m => m.product.CDDVDDegistirici, "CD ve DVD değiştirici", new { @class = "checkbox" })
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        }
+    </div>
+    <input id="wizardBtn" class="form-control btn btn-success" name="wizardBtn" type="submit" value="Kaydet" />
+
+    }
+</div>
+<script type="text/jscript">
+    $(document).ready(function () {
+        $('select option:first-child').attr("selected", "selected");
+        $("#cs2").hide();
+        $("#cs3").hide();
+        $("#cs5").hide();
+        $("#cs6").hide();
+        $("#product_CategoryId").val($('#AdminCat1').val());
+        $("#product_GroupId").val($('#dDproductGroup').val());
+        $("#product_ProductType").val(@Model.productType);
+
+        var currentImage = 0;
+        var emptyInput = true;
+
+        $("body").on("change", "input[name='Images']", function () {
+            if ($(this).parent().parent().children('div').length < 11) {
+                var pathToRemoveIcon = "@Url.Content("~/Images/PageContentImages/delete.png")";
+                currentImage = currentImage + 1;
+                var htmlToAppend = '<div class="upload"><input type="file" Name="Images" id="ImgPath' + currentImage + '" accept="image/*" /><span alt="Resmi KaldIr." class="delPic glyphicon glyphicon-remove" ></span><div class="secilen"></div></div>';
+                $('.upload-container').append(htmlToAppend);
+            } else {
+                emptyInput = false;
+            }
+        }).on("click", ".upload img", function () {
+            if ($(this).parent().parent().children('div').length > 1 && $(this).parent().parent().children('div').length < 11) {
+                if ($(this).parent().children('input').get(0).id != "ImgPath" + currentImage) {
+                    $(this).parent().remove();
+                    if (document.getElementById('upload-container').children.length < 11) {
+                        if (!emptyInput) {
+                            var pathToRemoveIcon = "@Url.Content("~/Images/PageContentImages/delete.png")";
+                            currentImage = currentImage + 1;
+                            var htmlToAppend = '<div class="upload"><input type="file" Name="Images" id="ImgPath' + currentImage + '" accept="image/*" /><span alt="Resmi KaldIr." class="delPic glyphicon glyphicon-remove" ></span><div class="secilen"></div></div>';
+                            $('.upload-container').append(htmlToAppend);
+                            emptyInput = true;
+                        }
+                    }
+                }
+            } else if ($(this).parent().parent().children('div').length == 11) {
+                var pathToRemoveIcon = "@Url.Content("~/Images/PageContentImages/delete.png")";
+                $(this).parent().remove();
+                if (!emptyInput) {
+                    currentImage = currentImage + 1;
+                    var htmlToAppend = '<div class="upload"><input type="file" Name="Images" id="ImgPath' + currentImage + '" accept="image/*" /><span alt="Resmi KaldIr." class="delPic glyphicon glyphicon-remove" ></span><div class="secilen"></div></div>';
+                    $('.upload-container').append(htmlToAppend);
+                    emptyInput = true;
+                }
+            }
+        });
+    });
+
+    $('.autotype').click(function () {
+        $('#AdminCat1').val($(this).children('a').attr('tipid'));
+        $("#product_CategoryId").val($(this).children('a').attr('tipid'));
+        $.getJSON('/otomobilvasita/CategoryList/' + $(this).children('a').attr('tipid'), function (data) {
+            var items = '';
+            $.each(data, function (i, chosen) {
+                items += "<option value='" + chosen.Value + "'>" + chosen.Text + "</option>";
+            });
+            $("#cs2").hide();
+            $("#cs3").hide();
+            $("#cs5").hide();
+            $("#cs6").hide();
+            $('#AdminCat2').html(items);
+            if (items != '') {
+                $("#cs2").show();
+            }
+        });
+        $.getJSON('/otomobilvasita/ProductGroupList/' + $(this).children('a').attr('tipid'), function (data) {
+            var items = '';
+            $.each(data, function (i, chosen) {
+                items += "<option value='" + chosen.Value + "'>" + chosen.Text + "</option>";
+            });
+            $('#AdminCat4').html(items);
+        });
+
+    });
+    $('.autotype').click(function () {
+        $("#CategoryId").val($(this).children('a').attr('tipid'));
+        $.getJSON('/otomobilvasita/CategoryList/' + $(this).children('a').attr('tipid'), function (data) {
+            var items = '';
+            $.each(data, function (i, chosen) {
+                items += "<option value='" + chosen.Value + "'>" + chosen.Text + "</option>";
+            });
+            $("#cs2").hide();
+            $("#cs3").hide();
+            $("#cs5").hide();
+            $("#cs6").hide();
+            $('#AdminCat2').html(items);
+            if (items != '') {
+                $("#cs2").show();
+            }
+        });
+        $.getJSON('/otomobilvasita/ProductGroupList/' + $(this).children('a').attr('tipid'), function (data) {
+            var items = '';
+            $.each(data, function (i, chosen) {
+                items += "<option value='" + chosen.Value + "'>" + chosen.Text + "</option>";
+            });
+            $('#AdminCat4').html(items);
+        });
+    });
+
+    $('#AdminCat2').click(function () {
+        $("#product_CategoryId").val($('#AdminCat2').val());
+        $.getJSON('/otomobilvasita/CategoryList/' + $('#AdminCat2').val(), function (data) {
+            var items = '';
+            $.each(data, function (i, chosen) {
+                items += "<option value='" + chosen.Value + "'>" + chosen.Text + "</option>";
+            });
+            $('#AdminCat3').html(items);
+            $("#cs3").hide();
+            $("#cs5").hide();
+            $("#cs6").hide();
+            if (items != '') {
+                $("#cs3").show();
+            }
+        });
+    });
+    $('#AdminCat2').change(function () {
+        $("#product_CategoryId").val($('#AdminCat2').val());
+        $.getJSON('/otomobilvasita/CategoryList/' + $('#AdminCat2').val(), function (data) {
+            var items = '';
+            $.each(data, function (i, chosen) {
+                items += "<option value='" + chosen.Value + "'>" + chosen.Text + "</option>";
+            });
+            $('#AdminCat3').html(items);
+            $("#cs3").hide();
+            $("#cs5").hide();
+            $("#cs6").hide();
+            if (items != '') {
+                $("#cs3").show();
+            }
+        });
+    });
+
+    $('#AdminCat3').click(function () {
+        $("#product_CategoryId").val($('#AdminCat3').val());
+        $.getJSON('/otomobilvasita/CategoryList/' + $('#AdminCat3').val(), function (data) {
+            var items = '';
+            $.each(data, function (i, chosen) {
+                items += "<option value='" + chosen.Value + "'>" + chosen.Text + "</option>";
+            });
+            $('#AdminCat6').html(items);
+            $("#cs6").hide();
+            $("#cs5").hide();
+            if (items != '') {
+                $("#cs6").show();
+            }
+        });
+    });
+    $('#AdminCat3').change(function () {
+        $("#product_CategoryId").val($('#AdminCat3').val());
+        $.getJSON('/otomobilvasita/CategoryList/' + $('#AdminCat3').val(), function (data) {
+            var items = '';
+            $.each(data, function (i, chosen) {
+                items += "<option value='" + chosen.Value + "'>" + chosen.Text + "</option>";
+            });
+            $('#AdminCat6').html(items);
+            $("#cs6").hide();
+            $("#cs5").hide();
+            if (items != '') {
+                $("#cs6").show();
+            }
+        });
+    });
+
+    $('#AdminCat4').click(function () {
+        $("#product_GroupId").val($('#AdminCat4').val());
+        $.getJSON('/otomobilvasita/ProductGroupList2/' + $('#AdminCat4').val(), function (data) {
+            var items = '';
+            $.each(data, function (i, chosen) {
+                items += "<option value='" + chosen.Value + "'>" + chosen.Text + "</option>";
+            });
+            $("#cs5").hide();
+            if (items != '') {
+                $('#AdminCat5').html(items);
+                $("#cs5").show();
+            }
+        });
+
+    });
+    $('#AdminCat4').change(function () {
+        $("#product_GroupId").val($('#AdminCat4').val());
+        $.getJSON('/otomobilvasita/ProductGroupList2/' + $('#AdminCat4').val(), function (data) {
+            var items = '';
+            $.each(data, function (i, chosen) {
+                items += "<option value='" + chosen.Value + "'>" + chosen.Text + "</option>";
+            });
+            $("#cs5").hide();
+            if (items != '') {
+                $('#AdminCat5').html(items);
+                $("#cs5").show();
+            }
+        });
+
+    });
+
+    $('#AdminCat5').change(function () {
+        $("#product_GroupId").val($('#AdminCat5').val());
+    });
+
+    $('#AdminCat6').change(function () {
+        $("#product_CategoryId").val($('#AdminCat6').val());
+    });
+
+    function jq(myid) {
+        return "#" + myid.replace(/(:|\.|\[|\])/g, "\\$1");
+    }
+
+    function turkcesiralama(a, b) {
+        var atext = a.Text;
+        var btext = b.Text;
+        var alfabe = "AaBbCcÇçDdEeFfGgĞğHhIıİiJjKkLlMmNnOoÖöPpQqRrSsŞşTtUuÜüVvWwXxYyZz0123456789";
+        if (atext.length === 0 || btext.length === 0) {
+            return atext.length - btext.length;
+        }
+        for (var i = 0; i < atext.length && i < btext.length; i++) {
+            var ai = alfabe.indexOf(atext[i]);
+            var bi = alfabe.indexOf(btext[i]);
+            if (ai !== bi) {
+                return ai - bi;
+            }
+        }
+    }
+
+    $(jq("product.City")).click(function () {
+        $.getJSON('/otomobilvasita/TownList/' + $(jq("product.City")).val(), function (data) {
+            var items = '';
+            data.sort(turkcesiralama);
+            $.each(data, function (i, chosen) {
+                items += "<option value='" + chosen.Value + "'>" + chosen.Text + "</option>";
+            });
+            if (items != '') {
+                $(jq("product.Region")).html(items);
+            }
+        });
+    });
+    $(jq("product.City")).change(function () {
+        $.getJSON('/otomobilvasita/TownList/' + $(jq("product.City")).val(), function (data) {
+            var items = '';
+            data.sort(turkcesiralama);
+            $.each(data, function (i, chosen) {
+                items += "<option value='" + chosen.Value + "'>" + chosen.Text + "</option>";
+            });
+            if (items != '') {
+                $(jq("product.Region")).html(items);
+            }
+        });
+    });
+
+    $(jq("product.Region")).click(function () {
+        $.getJSON('/otomobilvasita/SubDistrictList/' + $(jq("product.Region")).val(), function (data) {
+            var items = '';
+            $.each(data, function (i, chosen) {
+                items += "<option value='" + chosen.Value + "'>" + chosen.Text + "</option>";
+            });
+            if (items != '') {
+                $(jq("product.District")).html(items);
+            }
+        });
+    });
+    $(jq("product.Region")).change(function () {
+        $.getJSON('/otomobilvasita/SubDistrictList/' + $(jq("product.Region")).val(), function (data) {
+            var items = '';
+            $.each(data, function (i, chosen) {
+                items += "<option value='" + chosen.Value + "'>" + chosen.Text + "</option>";
+            });
+            if (items != '') {
+                $(jq("product.District")).html(items);
+            }
+        });
+    });
+
+
+    $('.autotype').click(function () {
+
+        $('.autotype').removeClass('activeType');
+        $('.autotype').children('i').remove();
+        $(this).addClass('activeType');
+        $(this).prepend('<i></i>');
+        $('.form-sec').text($(this).children('a').text());
+
+
+    });
+
+    $('div.upload').children('input').change(function () {
+
+      
+        $(this).parent('.upload').children('.secilen').text($(this).val());
+
+        $(this).parent('.upload').children('.delPic').css("display", "table");
+    });
+
+    $(document).ready(function () {
+
+        $('.autotype:eq(0)').trigger('click');
+    });
+
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

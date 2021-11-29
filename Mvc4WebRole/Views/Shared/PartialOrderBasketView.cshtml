@@ -1,0 +1,70 @@
+﻿@using System.Data
+
+@{
+    Page.Title = "Basket sayfası";
+}
+
+@{var table = (DataTable)HttpContext.Current.Session["basket"];}
+
+<div id="basket">
+    @{if (table != null)
+      {
+        <table class="partialBasketTable" role="presentation">
+            <thead>
+                <tr>
+                    @foreach (var col in table.Columns.Cast<DataColumn>().Where(col => col.ColumnName != "id" && col.ColumnName != "productGrupId" && col.ColumnName != "productGrup" && col.ColumnName != "productCatg" && col.ColumnName != "productMark" && col.ColumnName != "productCurr"))
+                    {
+                        if (col.ColumnName == "Birim Fiyatı")
+                        {
+                            <th>Toplam Fiyat</th>
+                        }else{
+                            <th>@col.ColumnName</th> 
+                        }
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (DataRow row in table.Rows)
+                {            
+                    <tr>
+                        @foreach (DataColumn col in table.Columns)
+                        {
+                            switch (col.ColumnName)
+                            {
+                                case "Birim Fiyatı":
+                                    <td class="tblCellFR">
+                                        @((Convert.ToInt32(row["Miktarı"])) * Convert.ToDecimal(row[col.ColumnName]))
+                                        @row["productCurr"].ToString()
+                                    </td>
+                                    break;
+                                case "Miktarı":
+                                case "Parça Adı":
+                                    <td>
+                                        @row[col.ColumnName]
+                                    </td>
+                                    break;
+                            }
+                        }
+                    </tr>                 
+                }
+                <tr>
+                    <td colspan="2">Toplam Tutar</td>
+                    <td class="tblCellFR">
+                        @{
+                            var table2 = (DataTable)HttpContext.Current.Session["basket"];
+                            var toplam = table2.Rows.Cast<DataRow>().Sum(row2 => (from DataColumn col2 in table2.Columns where col2.ColumnName == "Birim Fiyatı" select ((Convert.ToInt32(row2["Miktarı"]))*Convert.ToDecimal(row2[col2.ColumnName]))).Sum());
+                            var stoplam = toplam.ToString();
+                            Session["TotalPrice"] = toplam;
+                            <text> @toplam TL</text>
+                        }
+                    </td>
+                </tr>
+            </tbody>
+        </table>   
+        <div class="floatRight">
+            <input type="button" style="width:auto;" class="selectedTab" value="Sepete Git" onclick="window.location.replace('@Url.Action("_OrderBasketView", "Order")  ')"  />
+            <input type="button" style="width:auto;" class="selectedTab" value="Sepeti Boşalt" onclick="window.location.replace('@Url.Action("CleanBasket", "otomobilvasita")')" />   
+        </div> 
+      }
+    }
+</div>

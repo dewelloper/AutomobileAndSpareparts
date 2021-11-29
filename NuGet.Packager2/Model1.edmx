@@ -1,0 +1,658 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="otomotivist.comModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="otomotivistcomModelStoreContainer">
+          <EntitySet Name="AutosServices" EntityType="otomotivist.comModel.Store.AutosServices" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Catagories" EntityType="otomotivist.comModel.Store.Catagories" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Denominations" EntityType="otomotivist.comModel.Store.Denominations" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Marks" EntityType="otomotivist.comModel.Store.Marks" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProductGroups" EntityType="otomotivist.comModel.Store.ProductGroups" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProductPlaces" EntityType="otomotivist.comModel.Store.ProductPlaces" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Products" EntityType="otomotivist.comModel.Store.Products" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProductStates" EntityType="otomotivist.comModel.Store.ProductStates" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Users" EntityType="otomotivist.comModel.Store.Users" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserTypes" EntityType="otomotivist.comModel.Store.UserTypes" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_ProductPlaces_AutosServices" Association="otomotivist.comModel.Store.FK_ProductPlaces_AutosServices">
+            <End Role="AutosServices" EntitySet="AutosServices" />
+            <End Role="ProductPlaces" EntitySet="ProductPlaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Catagories" Association="otomotivist.comModel.Store.FK_Products_Catagories">
+            <End Role="Catagories" EntitySet="Catagories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Denominations" Association="otomotivist.comModel.Store.FK_Products_Denominations">
+            <End Role="Denominations" EntitySet="Denominations" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Marks" Association="otomotivist.comModel.Store.FK_Products_Marks">
+            <End Role="Marks" EntitySet="Marks" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_ProductGroups" Association="otomotivist.comModel.Store.FK_Products_ProductGroups">
+            <End Role="ProductGroups" EntitySet="ProductGroups" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_ProductPlaces" Association="otomotivist.comModel.Store.FK_Products_ProductPlaces">
+            <End Role="ProductPlaces" EntitySet="ProductPlaces" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_ProductStates" Association="otomotivist.comModel.Store.FK_Products_ProductStates">
+            <End Role="ProductStates" EntitySet="ProductStates" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AutosServices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceName" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="AuthorizedName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="AuthorizedSurname" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="AuthorizedEmail" Type="nvarchar" MaxLength="255" />
+          <Property Name="AuthorizedPassword" Type="nvarchar" Nullable="false" MaxLength="16" />
+          <Property Name="AuthorizedPhone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Website" Type="nvarchar" MaxLength="255" />
+          <Property Name="AddressDefinition" Type="nvarchar" MaxLength="1024" />
+          <Property Name="CountryId" Type="int" />
+          <Property Name="CityId" Type="int" />
+          <Property Name="RegionId" Type="int" />
+          <Property Name="RegistererId" Type="bigint" />
+          <Property Name="ModifierId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Catagories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RootLevel" Type="int" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Denominations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="ShortName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Marks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MarkName" Type="nvarchar" MaxLength="255" />
+          <Property Name="MarkCode" Type="nvarchar" MaxLength="14" />
+        </EntityType>
+        <EntityType Name="ProductGroups">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="255" />
+          <Property Name="ProductCode" Type="nvarchar" MaxLength="14" />
+        </EntityType>
+        <EntityType Name="ProductPlaces">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="AutoServiceId" Type="int" />
+          <Property Name="IpAddress" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EqualId" Type="bigint" />
+          <Property Name="SubProductId" Type="bigint" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="GroupId" Type="int" />
+          <Property Name="MarkId" Type="int" />
+          <Property Name="StatusId" Type="int" />
+          <Property Name="DenominationId" Type="int" />
+          <Property Name="PlaceId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Barcode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Explanation" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImagePath" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="OfferedPrice" Type="decimal" Precision="17" Scale="2" />
+          <Property Name="CurrentPrice" Type="decimal" Nullable="false" Precision="17" Scale="2" />
+          <Property Name="RecordDate" Type="datetime" />
+          <Property Name="LastAccessDate" Type="datetime" />
+          <Property Name="RegistererId" Type="bigint" />
+          <Property Name="ModifierId" Type="bigint" />
+          <Property Name="FeedCount" Type="int" />
+          <Property Name="SpecialCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="ProductStates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Surname" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="16" />
+          <Property Name="UserTypeId" Type="int" />
+          <Property Name="ModifierDate" Type="datetime" />
+          <Property Name="RegistererDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="UserTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserTypeName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_ProductPlaces_AutosServices">
+          <End Role="AutosServices" Type="otomotivist.comModel.Store.AutosServices" Multiplicity="0..1" />
+          <End Role="ProductPlaces" Type="otomotivist.comModel.Store.ProductPlaces" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AutosServices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductPlaces">
+              <PropertyRef Name="AutoServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Catagories">
+          <End Role="Catagories" Type="otomotivist.comModel.Store.Catagories" Multiplicity="0..1" />
+          <End Role="Products" Type="otomotivist.comModel.Store.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catagories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Denominations">
+          <End Role="Denominations" Type="otomotivist.comModel.Store.Denominations" Multiplicity="0..1" />
+          <End Role="Products" Type="otomotivist.comModel.Store.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Denominations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="DenominationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Marks">
+          <End Role="Marks" Type="otomotivist.comModel.Store.Marks" Multiplicity="0..1" />
+          <End Role="Products" Type="otomotivist.comModel.Store.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="MarkId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_ProductGroups">
+          <End Role="ProductGroups" Type="otomotivist.comModel.Store.ProductGroups" Multiplicity="0..1" />
+          <End Role="Products" Type="otomotivist.comModel.Store.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductGroups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_ProductPlaces">
+          <End Role="ProductPlaces" Type="otomotivist.comModel.Store.ProductPlaces" Multiplicity="0..1" />
+          <End Role="Products" Type="otomotivist.comModel.Store.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductPlaces">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="PlaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_ProductStates">
+          <End Role="ProductStates" Type="otomotivist.comModel.Store.ProductStates" Multiplicity="0..1" />
+          <End Role="Products" Type="otomotivist.comModel.Store.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductStates">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="otomotivist.comModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="Entities">
+          <EntitySet Name="AutosServices" EntityType="otomotivist.comModel.AutosServices" />
+          <EntitySet Name="Catagories" EntityType="otomotivist.comModel.Catagories" />
+          <EntitySet Name="Denominations" EntityType="otomotivist.comModel.Denominations" />
+          <EntitySet Name="Marks" EntityType="otomotivist.comModel.Marks" />
+          <EntitySet Name="ProductGroups" EntityType="otomotivist.comModel.ProductGroups" />
+          <EntitySet Name="ProductPlaces" EntityType="otomotivist.comModel.ProductPlaces" />
+          <EntitySet Name="Products" EntityType="otomotivist.comModel.Products" />
+          <EntitySet Name="ProductStates" EntityType="otomotivist.comModel.ProductStates" />
+          <EntitySet Name="Users" EntityType="otomotivist.comModel.Users" />
+          <EntitySet Name="UserTypes" EntityType="otomotivist.comModel.UserTypes" />
+          <AssociationSet Name="FK_ProductPlaces_AutosServices" Association="otomotivist.comModel.FK_ProductPlaces_AutosServices">
+            <End Role="AutosServices" EntitySet="AutosServices" />
+            <End Role="ProductPlaces" EntitySet="ProductPlaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Catagories" Association="otomotivist.comModel.FK_Products_Catagories">
+            <End Role="Catagories" EntitySet="Catagories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Denominations" Association="otomotivist.comModel.FK_Products_Denominations">
+            <End Role="Denominations" EntitySet="Denominations" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Marks" Association="otomotivist.comModel.FK_Products_Marks">
+            <End Role="Marks" EntitySet="Marks" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_ProductGroups" Association="otomotivist.comModel.FK_Products_ProductGroups">
+            <End Role="ProductGroups" EntitySet="ProductGroups" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_ProductPlaces" Association="otomotivist.comModel.FK_Products_ProductPlaces">
+            <End Role="ProductPlaces" EntitySet="ProductPlaces" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_ProductStates" Association="otomotivist.comModel.FK_Products_ProductStates">
+            <End Role="ProductStates" EntitySet="ProductStates" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AutosServices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ServiceName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AuthorizedName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AuthorizedSurname" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AuthorizedEmail" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AuthorizedPassword" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AuthorizedPhone" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Website" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AddressDefinition" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CountryId" />
+          <Property Type="Int32" Name="CityId" />
+          <Property Type="Int32" Name="RegionId" />
+          <Property Type="Int64" Name="RegistererId" />
+          <Property Type="Int64" Name="ModifierId" />
+          <NavigationProperty Name="ProductPlaces" Relationship="otomotivist.comModel.FK_ProductPlaces_AutosServices" FromRole="AutosServices" ToRole="ProductPlaces" />
+        </EntityType>
+        <EntityType Name="Catagories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="RootLevel" Nullable="false" />
+          <Property Type="Int32" Name="ParentId" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="otomotivist.comModel.FK_Products_Catagories" FromRole="Catagories" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Denominations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ShortName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="otomotivist.comModel.FK_Products_Denominations" FromRole="Denominations" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Marks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="MarkName" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MarkCode" MaxLength="14" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="otomotivist.comModel.FK_Products_Marks" FromRole="Marks" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="ProductGroups">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ProductName" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProductCode" MaxLength="14" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="otomotivist.comModel.FK_Products_ProductGroups" FromRole="ProductGroups" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="ProductPlaces">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IpAddress" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AutosServices" Relationship="otomotivist.comModel.FK_ProductPlaces_AutosServices" FromRole="ProductPlaces" ToRole="AutosServices" />
+          <NavigationProperty Name="Products" Relationship="otomotivist.comModel.FK_Products_ProductPlaces" FromRole="ProductPlaces" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="EqualId" />
+          <Property Type="Int64" Name="SubProductId" />
+          <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Code" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Barcode" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Explanation" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ImagePath" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="OfferedPrice" Precision="17" Scale="2" />
+          <Property Type="Decimal" Name="CurrentPrice" Nullable="false" Precision="17" Scale="2" />
+          <Property Type="DateTime" Name="RecordDate" Precision="3" />
+          <Property Type="DateTime" Name="LastAccessDate" Precision="3" />
+          <Property Type="Int64" Name="RegistererId" />
+          <Property Type="Int64" Name="ModifierId" />
+          <Property Type="Int32" Name="FeedCount" />
+          <Property Type="String" Name="SpecialCode" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsActive" />
+          <NavigationProperty Name="Catagories" Relationship="otomotivist.comModel.FK_Products_Catagories" FromRole="Products" ToRole="Catagories" />
+          <NavigationProperty Name="Denominations" Relationship="otomotivist.comModel.FK_Products_Denominations" FromRole="Products" ToRole="Denominations" />
+          <NavigationProperty Name="Marks" Relationship="otomotivist.comModel.FK_Products_Marks" FromRole="Products" ToRole="Marks" />
+          <NavigationProperty Name="ProductGroups" Relationship="otomotivist.comModel.FK_Products_ProductGroups" FromRole="Products" ToRole="ProductGroups" />
+          <NavigationProperty Name="ProductPlaces" Relationship="otomotivist.comModel.FK_Products_ProductPlaces" FromRole="Products" ToRole="ProductPlaces" />
+          <NavigationProperty Name="ProductStates" Relationship="otomotivist.comModel.FK_Products_ProductStates" FromRole="Products" ToRole="ProductStates" />
+        </EntityType>
+        <EntityType Name="ProductStates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="otomotivist.comModel.FK_Products_ProductStates" FromRole="ProductStates" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Surname" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="UserTypeId" />
+          <Property Type="DateTime" Name="ModifierDate" Precision="3" />
+          <Property Type="DateTime" Name="RegistererDate" Precision="3" />
+          <Property Type="Boolean" Name="IsActive" />
+        </EntityType>
+        <EntityType Name="UserTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UserTypeName" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_ProductPlaces_AutosServices">
+          <End Type="otomotivist.comModel.AutosServices" Role="AutosServices" Multiplicity="0..1" />
+          <End Type="otomotivist.comModel.ProductPlaces" Role="ProductPlaces" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Products_Catagories">
+          <End Type="otomotivist.comModel.Catagories" Role="Catagories" Multiplicity="0..1" />
+          <End Type="otomotivist.comModel.Products" Role="Products" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Products_Denominations">
+          <End Type="otomotivist.comModel.Denominations" Role="Denominations" Multiplicity="0..1" />
+          <End Type="otomotivist.comModel.Products" Role="Products" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Products_Marks">
+          <End Type="otomotivist.comModel.Marks" Role="Marks" Multiplicity="0..1" />
+          <End Type="otomotivist.comModel.Products" Role="Products" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Products_ProductGroups">
+          <End Type="otomotivist.comModel.ProductGroups" Role="ProductGroups" Multiplicity="0..1" />
+          <End Type="otomotivist.comModel.Products" Role="Products" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Products_ProductPlaces">
+          <End Type="otomotivist.comModel.ProductPlaces" Role="ProductPlaces" Multiplicity="0..1" />
+          <End Type="otomotivist.comModel.Products" Role="Products" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Products_ProductStates">
+          <End Type="otomotivist.comModel.ProductStates" Role="ProductStates" Multiplicity="0..1" />
+          <End Type="otomotivist.comModel.Products" Role="Products" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="otomotivistcomModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="AutosServices">
+            <EntityTypeMapping TypeName="otomotivist.comModel.AutosServices">
+              <MappingFragment StoreEntitySet="AutosServices">
+                <ScalarProperty Name="ModifierId" ColumnName="ModifierId" />
+                <ScalarProperty Name="RegistererId" ColumnName="RegistererId" />
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="AddressDefinition" ColumnName="AddressDefinition" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="AuthorizedPhone" ColumnName="AuthorizedPhone" />
+                <ScalarProperty Name="AuthorizedPassword" ColumnName="AuthorizedPassword" />
+                <ScalarProperty Name="AuthorizedEmail" ColumnName="AuthorizedEmail" />
+                <ScalarProperty Name="AuthorizedSurname" ColumnName="AuthorizedSurname" />
+                <ScalarProperty Name="AuthorizedName" ColumnName="AuthorizedName" />
+                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Catagories">
+            <EntityTypeMapping TypeName="otomotivist.comModel.Catagories">
+              <MappingFragment StoreEntitySet="Catagories">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="RootLevel" ColumnName="RootLevel" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Denominations">
+            <EntityTypeMapping TypeName="otomotivist.comModel.Denominations">
+              <MappingFragment StoreEntitySet="Denominations">
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marks">
+            <EntityTypeMapping TypeName="otomotivist.comModel.Marks">
+              <MappingFragment StoreEntitySet="Marks">
+                <ScalarProperty Name="MarkCode" ColumnName="MarkCode" />
+                <ScalarProperty Name="MarkName" ColumnName="MarkName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductGroups">
+            <EntityTypeMapping TypeName="otomotivist.comModel.ProductGroups">
+              <MappingFragment StoreEntitySet="ProductGroups">
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductPlaces">
+            <EntityTypeMapping TypeName="otomotivist.comModel.ProductPlaces">
+              <MappingFragment StoreEntitySet="ProductPlaces">
+                <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="otomotivist.comModel.Products">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="SpecialCode" ColumnName="SpecialCode" />
+                <ScalarProperty Name="FeedCount" ColumnName="FeedCount" />
+                <ScalarProperty Name="ModifierId" ColumnName="ModifierId" />
+                <ScalarProperty Name="RegistererId" ColumnName="RegistererId" />
+                <ScalarProperty Name="LastAccessDate" ColumnName="LastAccessDate" />
+                <ScalarProperty Name="RecordDate" ColumnName="RecordDate" />
+                <ScalarProperty Name="CurrentPrice" ColumnName="CurrentPrice" />
+                <ScalarProperty Name="OfferedPrice" ColumnName="OfferedPrice" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Explanation" ColumnName="Explanation" />
+                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SubProductId" ColumnName="SubProductId" />
+                <ScalarProperty Name="EqualId" ColumnName="EqualId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductStates">
+            <EntityTypeMapping TypeName="otomotivist.comModel.ProductStates">
+              <MappingFragment StoreEntitySet="ProductStates">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="otomotivist.comModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="RegistererDate" ColumnName="RegistererDate" />
+                <ScalarProperty Name="ModifierDate" ColumnName="ModifierDate" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTypes">
+            <EntityTypeMapping TypeName="otomotivist.comModel.UserTypes">
+              <MappingFragment StoreEntitySet="UserTypes">
+                <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_ProductPlaces_AutosServices" TypeName="otomotivist.comModel.FK_ProductPlaces_AutosServices" StoreEntitySet="ProductPlaces">
+            <EndProperty Name="ProductPlaces">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <EndProperty Name="AutosServices">
+              <ScalarProperty Name="Id" ColumnName="AutoServiceId" />
+            </EndProperty>
+            <Condition ColumnName="AutoServiceId" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Products_Catagories" TypeName="otomotivist.comModel.FK_Products_Catagories" StoreEntitySet="Products">
+            <EndProperty Name="Products">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <EndProperty Name="Catagories">
+              <ScalarProperty Name="Id" ColumnName="CategoryId" />
+            </EndProperty>
+            <Condition ColumnName="CategoryId" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Products_Denominations" TypeName="otomotivist.comModel.FK_Products_Denominations" StoreEntitySet="Products">
+            <EndProperty Name="Products">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <EndProperty Name="Denominations">
+              <ScalarProperty Name="Id" ColumnName="DenominationId" />
+            </EndProperty>
+            <Condition ColumnName="DenominationId" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Products_Marks" TypeName="otomotivist.comModel.FK_Products_Marks" StoreEntitySet="Products">
+            <EndProperty Name="Products">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <EndProperty Name="Marks">
+              <ScalarProperty Name="Id" ColumnName="MarkId" />
+            </EndProperty>
+            <Condition ColumnName="MarkId" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Products_ProductGroups" TypeName="otomotivist.comModel.FK_Products_ProductGroups" StoreEntitySet="Products">
+            <EndProperty Name="Products">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <EndProperty Name="ProductGroups">
+              <ScalarProperty Name="Id" ColumnName="GroupId" />
+            </EndProperty>
+            <Condition ColumnName="GroupId" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Products_ProductPlaces" TypeName="otomotivist.comModel.FK_Products_ProductPlaces" StoreEntitySet="Products">
+            <EndProperty Name="Products">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <EndProperty Name="ProductPlaces">
+              <ScalarProperty Name="Id" ColumnName="PlaceId" />
+            </EndProperty>
+            <Condition ColumnName="PlaceId" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Products_ProductStates" TypeName="otomotivist.comModel.FK_Products_ProductStates" StoreEntitySet="Products">
+            <EndProperty Name="Products">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <EndProperty Name="ProductStates">
+              <ScalarProperty Name="Id" ColumnName="StatusId" />
+            </EndProperty>
+            <Condition ColumnName="StatusId" IsNull="false" />
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

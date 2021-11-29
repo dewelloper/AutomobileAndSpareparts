@@ -1,0 +1,177 @@
+﻿@using System.Globalization
+@using BusinessObjects
+@model VhicleModel
+
+
+
+<div id="searchProdSpareparts">
+
+    @(ViewBag.SearchMsg)
+
+    @{
+        if (Model.products.Count <= 0)
+        {
+            <div class="errMessage">Üzgünüz, sistemimizde seçmiş olduğunuz kriterlere uygun araç bulunamadı...</div>
+        }
+    }
+
+    @(ViewBag.SearchMsg)
+
+    @if (Model.products.Count > 0)
+    {
+        var prdcX = Model.products.FirstOrDefault();
+        if (prdcX != null && prdcX.ProductType == 2) // SPARE PART
+        {
+            <label for="otomobilvasitaGrid2" class="topminus">Yeddek Parçalar:</label>
+            var grid = new WebGrid(Model.products, canPage: true, canSort: true, rowsPerPage: 15,
+                selectionFieldName: "selectedRow", ajaxUpdateContainerId: "otomobilvasitaGrid2");
+            grid.Pager(WebGridPagerModes.NextPrevious);
+            var prdcGrp = new string[grid.TotalRowCount];
+            var productCatg = new string[grid.TotalRowCount];
+            var productCurr = new string[grid.TotalRowCount];
+            var prdcMark = "";
+            var prdcGrpS = "";
+            var prdcCatgS = "";
+            var i = 0;
+            <div id="profileSPDiv" class="aramaSonuclari">
+                @grid.GetHtml(htmlAttributes: new { id = "otomobilvasitaGrid2" },
+                     tableStyle: "zebra",
+                     alternatingRowStyle: "alternate",
+                     selectedRowStyle: "select",
+                     headerStyle: "header",
+                    columns: grid.Columns(
+                         grid.Column(style: "tableImg", header: "Görsel", format: @<div style="text-align: center;">
+                        <img src="@item.ImagePath0" alt="@item.Name" />
+                        <input type="hidden" id="@item.Id" name="@item.Name" value="@item.id" />
+                    </div>),
+                        grid.Column(header: "Parça Çeşidi", format:
+                        @<text>
+                            @{
+                                var lpgParentName = "";
+                                var productGroup = Model.listpG.FirstOrDefault(m => m.Id == item.GroupId);
+                                if (productGroup != null)
+                                {
+                                    var lpgParentId = productGroup.ParentId;
+                                    if (lpgParentId != null)
+                                    {
+                                        var productGroup2 = Model.listpG.FirstOrDefault(n => n.Id == lpgParentId);
+                                        if (productGroup2 != null)
+                                        {
+                                            lpgParentName = productGroup2.ProductName;
+                                        }
+                                    }
+                                }
+                                if (!string.IsNullOrEmpty(lpgParentName))
+                                { @:@lpgParentName -
+                                                                 prdcGrp[i] = lpgParentName + " -> ";
+                                }
+                                var prdcGroup = Model.listpG.FirstOrDefault(k => k.Id == item.GroupId);
+                                if (prdcGroup != null)
+                                {
+                                    var lpgName = prdcGroup.ProductName;
+
+                                    @lpgName
+
+                                    prdcGrp[i] += lpgName;
+                                }
+                            }
+                        </text>),
+                        grid.Column(header: "Adı", format: @<text> @item.Name </text>),
+                        grid.Column(header: "Kategorisi", format:
+                        @<text>
+                            @{
+                                var catGParentName = "";
+                                var catGroup = Model.listCatG.FirstOrDefault(m => m.Id == item.CategoryId);
+                                if (catGroup != null)
+                                {
+                                    var catGParentId = catGroup.ParentId;
+                                    if (catGParentId != null)
+                                    {
+                                        var catGroup2 = Model.listCatG.FirstOrDefault(n => n.Id == catGParentId);
+                                        if (catGroup2 != null)
+                                        {
+                                            catGParentName = catGroup2.Name;
+                                        }
+                                    }
+                                    var catGParentName2 = "";
+                                    if (catGParentId != null)
+                                    {
+                                        var catGroup3 = Model.listCatG.FirstOrDefault(m => m.Id == catGParentId);
+                                        if (catGroup3 != null)
+                                        {
+                                            var catGParentId2 = catGroup3.ParentId;
+                                            if (catGParentId2 != null)
+                                            {
+                                                var catGroup4 = Model.listCatG.FirstOrDefault(n => n.Id == catGParentId2);
+                                                if (catGroup4 != null)
+                                                {
+                                                    catGParentName2 = catGroup4.Name;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (!string.IsNullOrEmpty(catGParentName2))
+                                    {
+                                        @:@catGParentName2 -
+                                                                     productCatg[i] = catGParentName2 + " -> ";
+                                    }
+                                }
+                                if (!string.IsNullOrEmpty(catGParentName))
+                                {
+                                    @:@catGParentName -
+                                                                 productCatg[i] += catGParentName + " -> ";
+                                }
+                                var catGroup5 = Model.listCatG.FirstOrDefault(k => k.Id == item.CategoryId);
+                                if (catGroup5 != null)
+                                {
+                                    var catGName = catGroup5.Name;
+                                    productCatg[i] += catGName;
+                                    prdcGrpS = prdcGrp[i];
+                                    prdcCatgS = productCatg[i];
+
+                                    @catGName
+                                }
+                            }
+                            <input type="hidden" id="productGroup" name="productGroup" value="@prdcGrpS" />
+                            <input type="hidden" id="productCat" name="productCat" value="@prdcCatgS" />
+                        </text>),
+                        grid.Column(header: "Açıklama", format: @<text> @if (Convert.ToString(item.Explanation).Length < 50)
+                        {@item.Explanation}
+                        else
+                        {@item.Explanation.Substring(0, 50)
+                            @:...
+                        } </text>),
+                        grid.Column(header: "Marka", format: @<text>
+                    @{
+                        var prdcMark2 = Model.listMarks.FirstOrDefault(k => k.Id == item.MarkId);
+                    }
+                    @if (prdcMark2 != null)
+                    {
+                        prdcMark = prdcMark2.MarkName;
+                    }
+                    @prdcMark </text>),
+                        grid.Column(header: "Fiyat", format: @<text> @item.CurrentPrice
+                        @if (item.PriceCurrencyId != null)
+                        {
+                            var prdcCurrency2 = Model.currencies.FirstOrDefault(n => n.Id == item.PriceCurrencyId);
+                            if (prdcCurrency2 != null)
+                            {
+                                productCurr[i] = prdcCurrency2.Name;
+                            }
+                            @productCurr[i]}
+                        <input type="hidden" id="productCurr" name="productCurr" value="@productCurr[i]" />
+                        @{
+                            i++;
+                        }
+                        </text>),
+                        grid.Column(header: "İşlem", format:
+                        @<text> <a href="@Url.Action("InsertToOrderBasket", "otomobilvasita", new { id = Convert.ToString(item.Id), name = item.Name, quantity = 1, price = item.CurrentPrice, productGrupId = item.GroupId, productGrup = prdcGrpS, productCatg = prdcCatgS, productMark = prdcMark })">Siparişe ekle</a></text>)))
+                
+            </div>
+        }
+
+    }
+
+
+
+</div>

@@ -1,0 +1,80 @@
+@using BusinessObjects
+@model BusinessObjects.User
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Name)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Name)
+    @Html.ValidationMessageFor(model => model.Name)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Surname)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Surname)
+    @Html.ValidationMessageFor(model => model.Surname)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Username)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Username)
+    @Html.ValidationMessageFor(model => model.Username)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Email)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Email)
+    @Html.ValidationMessageFor(model => model.Email)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Password)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Password)
+    @Html.ValidationMessageFor(model => model.Password)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.ModifierDate)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.ModifierDate)
+    @Html.ValidationMessageFor(model => model.ModifierDate)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.RegistererDate)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.RegistererDate)
+    @Html.ValidationMessageFor(model => model.RegistererDate)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.IsActive)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.IsActive)
+    @Html.ValidationMessageFor(model => model.IsActive)
+</div>
+
+<div class="editor-label">
+    UserType
+</div>
+<div class="editor-field">
+    @Html.DropDownListFor(model => model.UserTypeId, ((IEnumerable<UserType>)ViewBag.PossibleUserTypes).Select(option => new SelectListItem {
+        Text = Html.DisplayTextFor(_ => option).ToString(), 
+        Value = option.Id.ToString(),
+        Selected = (Model != null) && (option.Id == Model.UserTypeId)
+    }), "Choose...")
+    @Html.ValidationMessageFor(model => model.UserTypeId)
+</div>

@@ -1,0 +1,25 @@
+﻿@model ICollection<AuthenticationClientData>
+
+@if (Model.Count == 0)
+{
+    <div class="message-info">
+        <p>Yapılandırılmış harici kimlik doğrulama hizmeti bulunmamakta. Şu <a href="http://go.microsoft.com/fwlink/?LinkId=252166"> makaleyi</a> inceleyebilirsin
+        ASP.NET uygulamasınada dış hizmetler üzerinden oturum destekleme kurulumu hakkında ayrıntılı bilgi için.</p>
+    </div>
+}
+else
+{
+    using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }))
+    {
+    @Html.AntiForgeryToken()
+    <fieldset id="socialLoginList">
+        <legend>Başka bir servis kullanarak giriş yap</legend>
+        <p>
+        @foreach (var p in Model)
+        {
+            <button type="submit" name="provider" value="@p.AuthenticationClient.ProviderName" title="Log in using your @p.DisplayName account">@p.DisplayName</button>
+        }
+        </p>
+    </fieldset>
+    }
+}
